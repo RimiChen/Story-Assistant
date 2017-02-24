@@ -9,11 +9,12 @@ var storyMenuFunctions = (function () {
     var bookIconPath = './img/Book.png';
     for(var storyNumberIter = 0; storyNumberIter < storyNumber; storyNumberIter++){
       drawCanvas(storyNumberIter, storyNumberIter * 200, bookIconPath);
+      clickCanvas(storyNumberIter);
     }
     var writeIconPath = './img/icon_Create.png';
     drawCanvas(storyNumber, storyNumber * 200, writeIconPath);
-    
-    clickCanvas();
+    clickCanvas(storyNumber);
+
   };
 
   var createStory = function() {
@@ -51,10 +52,13 @@ var storyMenuFunctions = (function () {
     img.src = imgPath;
   };
   
-  var clickCanvas = function(){
+  var clickCanvas = function(index){
+    var elementName = "#canvas"+index;
+    
     $(document).ready(function(){
-      $("p").click(function(){
-          $(this).hide();
+      $(elementName).click(function(){
+          // open next page
+          window.location.href='./ui/index.html';
       });
     });
   };
