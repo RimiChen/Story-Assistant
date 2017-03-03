@@ -1,0 +1,10 @@
+body {
+    background-color: linen;
+}
+canvas {
+    border: 3px solid #ccc;
+    margin: 30px;
+}
+input{
+	visibility: hidden; 
+}
