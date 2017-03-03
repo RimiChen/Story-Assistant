@@ -11,6 +11,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 <link rel="stylesheet" href="../css/main_page.css">
+<link rel="stylesheet" href="../css/overlay.css">
 
 <!-- Script files -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
@@ -40,21 +41,48 @@
     <canvas id="get_tag_from_text" width="80%" height="20"></canvas>
 
 	</div>
+  <div>
+  
+
+  
   <div class="right_main">
-    <div class="overlay">
-      <!-- close button -->
-      <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-    </div>  
+
+  
+   
     <div class="top_viewmode_bar">
       <canvas id="whole_book_view"></canvas>
       <canvas id="chapter_view"></canvas>
     </div>
+    
     <div class="main_frame">
       <div class="text_body">
         <div id="inside_text">
         </div>
       </div>
     </div>
+
+    <!-- The overlay -->
+    <div id="over_frame" class="overlay">
+
+      <!-- Button to close the overlay navigation -->
+      <a href="javascript:void(0)" class="closebtn" onclick="storyMainPageFunctions.closeNav()">&times;</a>
+
+      <!-- Overlay content -->
+      <div class="overlay-content">
+        <div id = "noun_top">
+            <canvas id="character_category" ></canvas>
+            <canvas id="location_category" ></canvas>
+
+        </div>
+        <div id = "noun_list_1" class = "noun_list">
+       
+        </div>
+
+      </div>
+
+    </div>
+
+    
   </div>
 
 </body>

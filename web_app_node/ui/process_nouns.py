@@ -109,7 +109,7 @@ def process_content_find_verb():
         # create a dictionary to filter out duplicate things
         constant = 10
         print("frequency {}".format(noun_frequency(constant, len(tokenized))))
-        for i in tokenized[:250]:
+        for i in tokenized[:10]:
             words = nltk.word_tokenize(i)
             tagged = nltk.pos_tag(words)
             chunkGram = r"""Chunk: {<RB.?>*<VB.?>*<NNP>+<NN>?}"""
@@ -129,7 +129,7 @@ def process_content_find_verb():
                         # only print nnp
                         
                         if shouldGetVerb == True:
-                            print("\"{}\":\"{}\",".format(targetString, targetVerb))
+                            print("action {}, {}:".format(targetString, targetVerb))
                             shouldGetVerb = False
                             targetVerb = ""
                             targetString = ""
@@ -160,14 +160,14 @@ def process_content_find_verb():
                     # save the target string
                 count=count+1
                 
-                if count < 10:
-                    if shouldGetVerb == True:
-                        if 'VB' in chunked[count] or 'VBD' in chunked[count] or 'VBG' in chunked[count] or\
-                        'VBN' in chunked[count] or 'VBN' in chunked[count]:
-                            #print("Verb: {}".format(chunked[count]))
-                            targetVerb = targetVerb+" "+chunked[count][0]
-                            #print("action pair: ({}, {})".format(targetString, chunked[count][0]))
-                    
+                #if count < len(tokenized):
+                if shouldGetVerb == True:
+                    if 'VB' in chunked[count] or 'VBD' in chunked[count] or 'VBG' in chunked[count] or\
+                    'VBN' in chunked[count] or 'VBN' in chunked[count]:
+                        #print("Verb: {}".format(chunked[count]))
+                        targetVerb = targetVerb+" "+chunked[count][0]
+                        #print("action pair: ({}, {})".format(targetString, chunked[count][0]))
+                
     except Exception as e:
         print(str(e))    
 

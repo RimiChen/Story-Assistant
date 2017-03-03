@@ -51,13 +51,32 @@ div.top_viewmode_bar{
 	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
 }
 div.text_body{
-	height: 100%;
+
 	width: 55%;
     margin-top: 3%;
 	margin-left: 5%;
 	border: 4px solid #632523;
-	padding-top: 20px
+    background-color: #FFFFFF;
 	
+}
+div.noun_list{
+	height:80%;
+	width: 33%;
+    position: relative;
+    text-align: center; /* Centered text/links */
+	clear:both;
+
+}
+ul{
+	list-style-type:none;
+}
+#inside_text{
+	padding-top: 5%;
+	padding-left: 2.5%;
+	padding-right: 2.5%;
+	clear: both;
+	color: #000000;
+
 }
 #chapter_view{
 	width: 2.5%;

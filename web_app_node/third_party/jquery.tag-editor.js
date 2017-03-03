@@ -370,3 +370,7 @@
         beforeTagDelete: function(){}
     };
 }(jQuery));
+
+function getEditor(){
+  console($.fn.tagEditor);
+}
