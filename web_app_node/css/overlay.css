@@ -51,7 +51,15 @@
     margin-top: 5%; /* 30px top margin to avoid conflict with the close button on smaller screens */
 	margin-left: 12.5%;
 }
-
+.overlay-location-content {
+	height:80%;
+	width: 50%;
+	background-color: #FFFFFF;
+    position: relative;
+    text-align: center; /* Centered text/links */
+    margin-top: 5%; /* 30px top margin to avoid conflict with the close button on smaller screens */
+	margin-left: 12.5%;
+}
 /* The navigation links inside the overlay */
 .overlay a {
     padding: 8px;

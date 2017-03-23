@@ -9,27 +9,13 @@ var storyMainPageFunctions = (function () {
 
    var test = 0;
    readJson();
-   
-//   $('#character_tag_base').tagEditor({
-//        initialTags: ['Arial'],
-//        delimiter: ', ', /* space and comma */
-//        placeholder: 'Enter characters ...'
-//    });
-
-    $('#character_tag_base').tagEditor({
-        //initialTags: ['Hello', 'World'],
-        delimiter: ',', /* space and comma */
-        placeholder: 'Enter tags ...'
-    });    
+    
     draw("Character", 'character_tag_label');
-    $('#location_tag_base').tagEditor({
-        //initialTags: ['Woods', 'Ocean', 'Test'],
-        //delimiter: ',', /* space and comma */
-        placeholder: 'Enter locations ...'
-    });
+
     draw("Location", 'location_tag_label');    
     
     draw("Get Tags", 'get_tag_from_text'); 
+	draw("Get Places", 'get_location'); 
     
     draw_dark("Choose Character", 'character_category'); 
     draw_dark("Choose Location", 'location_category'); 
@@ -324,7 +310,7 @@ var storyMainPageFunctions = (function () {
     });
             
     this.addTagsOnCloseNav = function(input){
-      
+      // this will add tag when close the nav
       var tagArray = input.split(',')
       var color = randColor();
       for(i = 0; i < tagArray.length; i++){
@@ -346,15 +332,9 @@ var storyMainPageFunctions = (function () {
     //console.log(text);
     var divID = "story_tab"+index;
     document.getElementById(divID).innerHTML = text;
-    //currentDiv.innerHTML = text; 
-    //$(tempID).html(text);
-    //tempID).trigger('textchanged');
-    //var element = document.getElementById(tempID);
-    //element.innerHTML = text; 
 
     //add dot for character
     var needDraw = text.indexOf(color);
-    //console.log(needDraw);
     if(needDraw >=0){
       addDot(index, color, count);
     }
@@ -415,6 +395,9 @@ var storyMainPageFunctions = (function () {
     $('#character_tag_base').tagEditor('addTag',  selected_String);
     console.log(selected_String);
     (new tagFunction()).addTagsOnCloseNav(selected_String);
+	
+	
+	
   }
   return {
     setAll: setAll,

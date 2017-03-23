@@ -9,27 +9,18 @@ var storyMainPageFunctions = (function () {
 
    var test = 0;
    readJson();
+   readJson_location();
    
-//   $('#character_tag_base').tagEditor({
-//        initialTags: ['Arial'],
-//        delimiter: ', ', /* space and comma */
-//        placeholder: 'Enter characters ...'
-//    });
-
-    $('#character_tag_base').tagEditor({
-        //initialTags: ['Hello', 'World'],
-        delimiter: ',', /* space and comma */
-        placeholder: 'Enter tags ...'
-    });    
     draw("Character", 'character_tag_label');
-    $('#location_tag_base').tagEditor({
-        //initialTags: ['Woods', 'Ocean', 'Test'],
-        //delimiter: ',', /* space and comma */
-        placeholder: 'Enter locations ...'
-    });
+
     draw("Location", 'location_tag_label');    
     
-    draw("Get Tags", 'get_tag_from_text'); 
+    draw("Get Tags", 'get_tag_from_text');
+	
+	draw("Get Places", 'get_location_from_text'); 
+	
+	
+	console.log("Show place is displayed");
     
     draw_dark("Choose Character", 'character_category'); 
     draw_dark("Choose Location", 'location_category'); 
@@ -38,6 +29,8 @@ var storyMainPageFunctions = (function () {
     var $parent = $( "#main_frame" );
     
     clickCanvas();
+	clickCanvasGetLocation();
+	console.log("Why the browser won't clear data by it self!!")
     //loadText("../text_sample/austen-sense.txt");
     newLoadText("../text_sample/austen-sense.txt");
 
@@ -49,6 +42,7 @@ var storyMainPageFunctions = (function () {
     drawCanvas("chapter_view", '../img/chapter_view.png');
     
     tagFunction();
+	tagFunction_location();
     //postData('data to process');
     //$( "#minimap" ).minimap( $parent );
 
@@ -184,7 +178,21 @@ var storyMainPageFunctions = (function () {
       });
 
     });
-  }; 
+  };
+
+  var clickCanvasGetLocation = function(){
+    var elementName = "#get_location_from_text";
+    
+    $(document).ready(function(){
+      $(elementName).click(function(){
+        // open next page
+        //alert("Test");
+        openLocationNav();
+      });
+
+    });
+  };
+  
   function clickPageCanvas(index){
     var elementName = "#canvas"+index;
     
@@ -265,7 +273,8 @@ var storyMainPageFunctions = (function () {
   var closeNav = function() {
       formResult();
       document.getElementById("over_frame").style.width = "0%";
-  }  
+  }
+ 
   var readJson = function(){
     $(document).ready(function () {
       $.getJSON( "../file/sample.json", function( data ) {
@@ -280,9 +289,28 @@ var storyMainPageFunctions = (function () {
           "class": "my-new-list",
           html: items.join( "" )
         }).appendTo( "#noun_list_1" );
-      });
+		
+	  });
     });    
   }
+   var readJson_location = function(){
+    $(document).ready(function () {
+      $.getJSON( "../file/sample.json", function( data ) {
+        var items = [];
+        $.each( data, function( key, val ) {
+          // <input type="checkbox" name="vehicle" value="Bike"> I have a bike<br>
+          //items.push( "<li id='" + key + "'>" + key + "</li>" );
+          items.push( "<input type='checkbox' name='locationCheck' value='" + key + "'>" + key + "<br>" );
+        });
+       
+		$( "<form/>", {
+          "class": "my-new-list",
+          html: items.join( "" )
+        }).appendTo( "#noun_list_location" );
+      
+	  });
+    });    
+  } 
   var tagFunction = function(){
     var sampleTags = ['c++', 'java', 'php', 'coldfusion', 'javascript', 'asp', 'ruby', 'python', 'c', 'scala', 'groovy', 'haskell', 'perl', 'erlang', 'apl', 'cobol', 'go', 'lua'];
     //-------------------------------
@@ -334,6 +362,7 @@ var storyMainPageFunctions = (function () {
     }
           
   }
+  
   function highLightColor(index, word, color, count){
     var tempID = "#story_tab"+index;
     //var element = document.getElementById(tempID);
@@ -381,7 +410,7 @@ var storyMainPageFunctions = (function () {
     //newCanvas.style.background-color = color;
 
   }
-  function randColor(){
+  var randColor = function(){
     var r =Math.floor(Math.random() * 255);
     var g =Math.floor(Math.random() * 255);
     var b =Math.floor(Math.random() * 255);
@@ -397,32 +426,26 @@ var storyMainPageFunctions = (function () {
     var selected = [];
     var selected_String = "";
     
-    $('#character_tag_base').tagEditor('destory');
-    $('#character_tag_base').tagEditor();    
-    
     $('input[name="characterCheck"]:checked').each(function() {
       //console.log(this.value);
 
       //selected.push(this.value);
       selected_String = selected_String + ","+this.value;
 
-     // $('#character_tag_base').tagEditor('addTag', this.value);
-      //$('#character_tag_base').tagEditor('addTag', this.value+',');      
-      //alert( $('#character_tag_base').tagEditor('getTags')[0].tags );
-      //$('#character_tag_base').tagEditor('destroy');
       
     });
-    $('#character_tag_base').tagEditor('addTag',  selected_String);
     console.log(selected_String);
     (new tagFunction()).addTagsOnCloseNav(selected_String);
   }
   return {
     setAll: setAll,
     clickCanvas: clickCanvas,
+	clickCanvasGetLocation: clickCanvasGetLocation,
     drawCanvas: drawCanvas,
     textOnChange: textOnChange,
     divOnChange: divOnChange,
     loadText: loadText,
+	randColor: randColor,
     tagFunction:tagFunction,
     openNav: openNav,
     closeNav: closeNav,
