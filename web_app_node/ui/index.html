@@ -27,6 +27,7 @@
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js" type="text/javascript" charset="utf-8"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js" type="text/javascript" charset="utf-8"></script>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
 
 <script src="../third_party/jQuery-Paging-master/jquery.paging.min.js"></script>
 
@@ -39,6 +40,7 @@
 
 <script src="../third_party/jquery-minimap.js"></script>
 
+<script src="../methods/addElement.js"></script>
 <script src="./location.js"></script>
 <script src="./index.js"></script>
 <script src="./text.js"></script>
@@ -75,8 +77,7 @@
     </div>
     
     <div class="main_frame">
-      <div id="rightMap">
-      </div> 
+
       <div id="tab_menu">
       <!--put tab button here -->
       </div>
@@ -87,7 +88,11 @@
       <div id="inside_text">
       </div>
       <!--dynamicaly generate div here-->
-    
+      <div id="rightMap">
+      </div>     
+      <div id="rightLocation">
+      </div>     
+
     </div>
 
     <!-- The overlay -->

@@ -17,7 +17,7 @@ ul.tagit li.tagit-choice {
     background: none;
     background-color: #DEE7F8;
 
-    font-weight: normal;
+    font-weight: light;
 }
 ul.tagit li.tagit-choice .tagit-label:not(a) {
     color: #555;
@@ -34,8 +34,8 @@ ul.tagit li.tagit-choice .ui-icon {
 ul.tagit li.tagit-choice .tagit-close .text-icon {
     display: inline;
     font-family: arial, sans-serif;
-    font-size: 6px;
-    line-height: 16px;
+    font-size: 5px;
+    line-height: 5px;
     color: #777;
 }
 ul.tagit li.tagit-choice:hover, ul.tagit li.tagit-choice.remove {
@@ -51,7 +51,7 @@ ul.tagit input[type="text"] {
     background: none;
 }
 .ui-widget {
-    font-size: 1.1em;
+    font-size: 1.5em;
 }
 
 /* Forked from a jQuery UI theme, so that we don't require the jQuery UI CSS as a dependency. */

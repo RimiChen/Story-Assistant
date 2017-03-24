@@ -1,6 +1,6 @@
 
 
-var tabNumber = 10;
+var tabNumber = 20;
 var colorList = {};
 var storyMainPageFunctions = (function () {
     
@@ -96,7 +96,8 @@ var storyMainPageFunctions = (function () {
           addDiv(tab_iter, result[tab_iter-1]);
           addCanvas(tabNumber,tab_iter);
           addButton(tabNumber, tab_iter);
-
+          addElement.addDiv("rightLocation", "location_container"+tab_iter, "location_container", "location_container"+tab_iter);
+          
         }
         
         var first_page = document.getElementById("story_tab"+1);
@@ -110,7 +111,7 @@ var storyMainPageFunctions = (function () {
     var newButton = document.createElement("button");
     newButton.id = "button"+id_number;
     newButton.class = "tab_button";
-    newButton.innerHTML = "Page_"+id_number;
+    newButton.innerHTML = id_number;
     newButton.value = id_number;
     //newButton.setAttribute('onclick')
     var tab_menu = document.getElementById("tab_menu");    
@@ -331,16 +332,29 @@ var storyMainPageFunctions = (function () {
         //console.log("total page = "+tabNumber);
         //get text, highlight word
         var color = randColor();
-        colorList[currentTag] = color;
+        if(colorList[currentTag] ){
+        }
+        else{
+          colorList[currentTag] = color;
+        }
         console.log(colorList);
         var count =0;
-        for(item in colorList){
-          count = count +1;
-          for(i =0; i<tabNumber; i++){
+        for(i =0; i<tabNumber; i++){
+
+          var currentNode = document.getElementById("canvas"+(i+1));
+          while (currentNode.firstChild) {
+              currentNode.removeChild(currentNode.firstChild);
+          }
+          count =0;
+          for(item in colorList){
+            count++;
+            //console.log("***"+count);
             highLightColor(i+1, item, colorList[item], count);
             //nsole.log(item+"   "+ colorList[item]);
           }
         }
+       //var currentDot = document.getElementByClassName("dot");
+       //console.log(currentDot);
         
         
         //highLightColor(1, currentTag);
@@ -363,7 +377,7 @@ var storyMainPageFunctions = (function () {
           
   }
   
-  function highLightColor(index, word, color, count){
+  var highLightColor = function(index, word, color, count){
     var tempID = "#story_tab"+index;
     //var element = document.getElementById(tempID);
     //console.log($(tempID).text());
@@ -374,13 +388,9 @@ var storyMainPageFunctions = (function () {
     
     //console.log(text);
     var divID = "story_tab"+index;
-    document.getElementById(divID).innerHTML = text;
-    //currentDiv.innerHTML = text; 
-    //$(tempID).html(text);
-    //tempID).trigger('textchanged');
-    //var element = document.getElementById(tempID);
-    //element.innerHTML = text; 
-
+    var currentText = document.getElementById(divID);
+    currentText.innerHTML = text;
+    //console.log(currentText.innerHTML);
     //add dot for character
     var needDraw = text.indexOf(color);
     //console.log(needDraw);
@@ -392,9 +402,11 @@ var storyMainPageFunctions = (function () {
   function addDot(index, color, count){
     var newCanvas = document.createElement("canvas");
     newCanvas.id = "dot"+index;
+    newCanvas.class = "dot";
 
     var tempID = "canvas"+index;
     var dotTarget = document.getElementById(tempID);
+
     
     dotTarget.appendChild(newCanvas);
 
@@ -407,8 +419,15 @@ var storyMainPageFunctions = (function () {
     ctx.fillStyle = color;
     ctx.fill();
     ctx.lineWidth = 0;
-    //newCanvas.style.background-color = color;
+    newCanvas.style.border = 'none';
+    //newCanvas.style.backgroundColor = color;
+    //newCanvas.style.width = "10px";
+    //newCanvas.style.height = "10px";
+    //newCanvas.style.position = "absolute";
+    //console.log(count);
 
+    newCanvas.style.top = dotTarget.style.top;
+    newCanvas.style.left = dotTarget.style.left+100;    
   }
   var randColor = function(){
     var r =Math.floor(Math.random() * 255);
@@ -446,6 +465,7 @@ var storyMainPageFunctions = (function () {
     divOnChange: divOnChange,
     loadText: loadText,
 	randColor: randColor,
+  highLightColor: highLightColor,
     tagFunction:tagFunction,
     openNav: openNav,
     closeNav: closeNav,
