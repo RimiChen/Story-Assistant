@@ -85,7 +85,7 @@
             console.log(locationChange);
             generateBar(locationChange, targetNode);
 
-            lastLocation = locationChange.slice(-1).pop();
+            lastLocation = locationChange[locationChange.length-1];
           }
         }
 
@@ -128,7 +128,7 @@
     for(k=0; k< locationChange.length; k++){
       var place = locationChange[k];
       locationCount = locationCount+1;
-      var newCanvas = document.createElement("canvas");
+      var newCanvas = document.createElement("div");
       newCanvas.id = target+"_location_"+locationCount;
       //indexCount++;
       newCanvas.class = "location_mark";
@@ -143,17 +143,24 @@
 
      //console.log(newCanvas.id);
       var currentDot = document.getElementById(newCanvas.id);
-      var ctx = currentDot.getContext("2d");
-      ctx.beginPath();
+     // var ctx = currentDot.getContext("2d");
+      //ctx.beginPath();
       //console.log(currentNode.style.height);
       var tempName = "#"+target;
-      console.log($(tempName).height());
+      //console.log($(tempName).height());
       //ctx.rect(5, 10+locationCount*40, 100, 40);
-      ctx.fillStyle = locationColorList[place];
-      ctx.fill();
-      ctx.lineWidth = 0;
+      //ctx.fillStyle = locationColorList[place];
+      //ctx.fill();
+      //ctx.lineWidth = 0;
+
       newCanvas.style.backgroundColor = locationColorList[place];
-      newCanvas.style.border = 'none';
+      //newCanvas.style.marginLeft = '5%';
+      newCanvas.style.display ="table-cell";
+      newCanvas.style.marginTop = "1px";
+      //newCanvas.style.height = '10%';
+      
+
+      //newCanvas.style.border = 'none';
       //newCanvas.style.border = 'none';
       //console.log("--->"+place+"  "+locationColorList[place]);
       //newCanvas.style.backgroundColor = locationColorList[place];
