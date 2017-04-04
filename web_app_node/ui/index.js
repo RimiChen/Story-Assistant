@@ -2,14 +2,21 @@
 
 var tabNumber = 20;
 var colorList = {};
+var informList = {};
+var charaSelectList = {};
+var locationSelectList = {};
+var frequencyList = {};
 var storyMainPageFunctions = (function () {
     
   // Keep this variable private inside this closure scope
   var setAll = function() {
 
-   var test = 0;
-   readJson();
-   readJson_location();
+    var test = 0;
+    readJsonColor();
+	readJson();
+    readJson_location();
+	//console.log(frequencyList);
+
    
     draw("Character", 'character_tag_label');
 
@@ -18,6 +25,7 @@ var storyMainPageFunctions = (function () {
     draw("Get Tags", 'get_tag_from_text');
 	
 	draw("Get Places", 'get_location_from_text'); 
+	draw("Frequency", 'show_frequency'); 
 	
 	
 	console.log("Show place is displayed");
@@ -28,8 +36,10 @@ var storyMainPageFunctions = (function () {
     // passing a reference to the element you'd like the map to be based on.
     var $parent = $( "#main_frame" );
     
-    clickCanvas();
+    clickFrequency();
+	clickCanvas();
 	clickCanvasGetLocation();
+	//clickChara();
 	console.log("Why the browser won't clear data by it self!!")
     //loadText("../text_sample/austen-sense.txt");
     newLoadText("../text_sample/austen-sense.txt");
@@ -193,7 +203,18 @@ var storyMainPageFunctions = (function () {
 
     });
   };
-  
+  function clickFrequency(){
+    var elementName = "#show_frequency";
+    
+    $(document).ready(function(){
+      $(elementName).click(function(){
+        // open next page
+        //alert("Test");
+        openFrequencyNav();
+      });
+
+    });
+  };  
   function clickPageCanvas(index){
     var elementName = "#canvas"+index;
     
@@ -275,17 +296,46 @@ var storyMainPageFunctions = (function () {
       formResult();
       document.getElementById("over_frame").style.width = "0%";
   }
- 
+  function readJsonColor(){
+    $(document).ready(function () {
+	  //var jsonData = $.parseJSON("../file/sample2.json");
+	  //console.log(jsonData);
+	  console.log("Test");
+      $.getJSON( "../file/sample2.json", function( data ) {
+        $.each( data, function( key, val ) {
+			console.log(val);
+        });
+
+	  });
+
+      $.getJSON( "../file/sample2.json", function( data ) {
+        $.each( data, function( key, val ) {
+			
+			var color = randColor();
+			colorList[key] = color;
+			if(informList[key]){
+				//informList[key] = informList[key].add(val);
+			}
+			else{
+				informList[key] = val;
+			}
+        });
+
+	  });
+    });    
+  } 
   var readJson = function(){
     $(document).ready(function () {
-      $.getJSON( "../file/sample.json", function( data ) {
+      $.getJSON( "../file/sample2.json", function( data ) {
         var items = [];
         $.each( data, function( key, val ) {
           // <input type="checkbox" name="vehicle" value="Bike"> I have a bike<br>
           //items.push( "<li id='" + key + "'>" + key + "</li>" );
-          items.push( "<input type='checkbox' name='characterCheck' value='" + key + "'>" + key + "<br>" );
+          //console.log(key+":" + val[1]);
+		  frequencyList[key] = val[1];
+		  items.push( "<input type='checkbox' name='characterCheck' value='" + key + "'>" + key + "<br>" );
         });
-       
+        //console.log(frequencyList);
         $( "<form/>", {
           "class": "my-new-list",
           html: items.join( "" )
@@ -296,7 +346,7 @@ var storyMainPageFunctions = (function () {
   }
    var readJson_location = function(){
     $(document).ready(function () {
-      $.getJSON( "../file/sample.json", function( data ) {
+      $.getJSON( "../file/sample2.json", function( data ) {
         var items = [];
         $.each( data, function( key, val ) {
           // <input type="checkbox" name="vehicle" value="Bike"> I have a bike<br>
@@ -331,13 +381,15 @@ var storyMainPageFunctions = (function () {
         
         //console.log("total page = "+tabNumber);
         //get text, highlight word
-        var color = randColor();
-        if(colorList[currentTag] ){
-        }
-        else{
-          colorList[currentTag] = color;
-        }
-        console.log(colorList);
+        //var color = randColor();
+        //if(colorList[currentTag] ){
+        //}
+        //else{
+          //colorList[currentTag] = color;
+        //}
+        //console.log(colorList);
+
+        //console.log(charaSelectList);
         var count =0;
         for(i =0; i<tabNumber; i++){
 
@@ -346,7 +398,7 @@ var storyMainPageFunctions = (function () {
               currentNode.removeChild(currentNode.firstChild);
           }
           count =0;
-          for(item in colorList){
+          for(item in charaSelectList){
             count++;
             //console.log("***"+count);
             highLightColor(i+1, item, colorList[item], count);
@@ -371,6 +423,12 @@ var storyMainPageFunctions = (function () {
       var color = randColor();
       for(i = 0; i < tagArray.length; i++){
         $('#characterTags').tagit('createTag', tagArray[i])
+        if(charaSelectList[tagArray[i]] ){
+        }
+        else{
+          charaSelectList[tagArray[i]] = 1;
+          charaSelectList[tagArray[i]] = 1;
+        }		
       }
       return false;
     }
@@ -411,6 +469,7 @@ var storyMainPageFunctions = (function () {
     dotTarget.appendChild(newCanvas);
 
 
+    
     
     var currentDot = document.getElementById(newCanvas.id);
     var ctx = currentDot.getContext("2d");

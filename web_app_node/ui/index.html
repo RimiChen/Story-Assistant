@@ -42,8 +42,10 @@
 
 <script src="../methods/addElement.js"></script>
 <script src="./location.js"></script>
+
 <script src="./index.js"></script>
 <script src="./text.js"></script>
+<script src="./frequency.js"></script>
 
 
 
@@ -61,6 +63,7 @@
   
     <canvas id="get_tag_from_text" width="80%" height="20"></canvas>
     <canvas id="get_location_from_text" width="80%" height="20"></canvas>
+    <canvas id="show_frequency" width="80%" height="20"></canvas>
 
 	</div>
   <div>
@@ -116,19 +119,28 @@
 
     </div>
     
-     <div id="over_location_frame" class="overlay">
+    <div id="over_location_frame" class="overlay">
 
       <!-- Button to close the overlay navigation -->
       <a href="javascript:void(0)" class="closebtn" onclick="closeLocationNav()">&times;</a>
 
       <!-- Overlay content -->
-        <div class="overlay-location-content">
+      <div class="overlay-location-content">
           <div id = "noun_list_location" class = "noun_list">
-        </div>
+          </div>
 
       </div>
 
     </div>   
+    <div id="over_frequency_frame" class="overlay">
+
+      <!-- Button to close the overlay navigation -->
+      <a href="javascript:void(0)" class="closebtn" onclick="closeFrequencyNav()">&times;</a>
+
+      <!-- Overlay content -->
+
+    </div>
+
   </div>
 
 </body>

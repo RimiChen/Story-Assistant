@@ -46,21 +46,14 @@
         //console.log("total page = "+tabNumber);
         //get text, highlight word
         var color = storyMainPageFunctions.randColor();
-        if(locationColorList[currentTag]){
-        }
-        else{
-          locationColorList[currentTag] = color;
-        }
+
         console.log(locationColorList);
         var count =0;
-        for(item in locationColorList){
-          count = count +1;
-          for(i =0; i<tabNumber; i++){
-            //storyMainPageFunctions.highLightColor(i+1, item, locationColorList[item], count);
-            //nsole.log(item+"   "+ colorList[item]);
-            locationSpan(i+1, item, locationColorList[item], count);
-            //updateSpan(i+1);
-          }
+        for(item in locationSelectList){
+          count++;
+          //console.log("***"+count);
+          highLightColor(i+1, item, colorList[item], count);
+          //nsole.log(item+"   "+ colorList[item]);
         }
         var locationChange;
         var lastLocation ="null";
@@ -104,6 +97,13 @@
       var tagArray = input.split(',')
       for(i = 0; i < tagArray.length; i++){
         $('#locationTags').tagit('createTag', tagArray[i])
+		
+		if(locationSelectList[tagArray[i]] ){
+        }
+        else{
+          locationSelectList[tagArray[i]] = 1;
+          locationSelectList[tagArray[i]] = 1;
+        }	
       }
       return false;
     }

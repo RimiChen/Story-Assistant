@@ -104,7 +104,9 @@ div.dot{
     height: 5%;
     border: 1px solid #FF0000;
 }
-
+#over_frequency_frame div{
+    border: 1px solid #FFFFFF;
+}
 #tab_menu{
 	height:5%;
 	width: 55%;

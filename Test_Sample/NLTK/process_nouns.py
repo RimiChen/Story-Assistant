@@ -108,8 +108,9 @@ def process_content_find_verb():
         #how many words in this range
         # create a dictionary to filter out duplicate things
         constant = 10
+        dictionary_verb = {};
         print("frequency {}".format(noun_frequency(constant, len(tokenized))))
-        for i in tokenized[:250]:
+        for i in tokenized[:1500]:
             words = nltk.word_tokenize(i)
             tagged = nltk.pos_tag(words)
             chunkGram = r"""Chunk: {<RB.?>*<VB.?>*<NNP>+<NN>?}"""
@@ -128,15 +129,20 @@ def process_content_find_verb():
                     if 'NNP' in item or 'NN' in item:
                         # only print nnp
                         
+                        currentWord = chunked[count][countNoun][0]
+                        currentWordCount = sample_text.count(currentWord)
+                        targetWordCount = sample_text.count(targetString)
                         if shouldGetVerb == True:
-                            print("\"{}\":\"{}\",".format(targetString, targetVerb))
+                            test = '\"'+targetWordCount+'\"';
+                            dictionary_verb.setdefault(targetString,[test]).append(targetVerb);
+                            #print(dictionary_verb);
+                            #print("\"{}\": [\"{}\",\"{}\"],".format(targetString, targetVerb, targetWordCount))
                             shouldGetVerb = False
                             targetVerb = ""
                             targetString = ""
                         #print("Stop get action {}".format(targetString))
                         
-                        currentWord = chunked[count][countNoun][0]
-                        currentWordCount = sample_text.count(currentWord)
+
                         if currentWordCount > noun_frequency(constant, len(tokenized)):
                             if countNoun == 0:
                                 currentChunk = chunked[count]
@@ -160,14 +166,18 @@ def process_content_find_verb():
                     # save the target string
                 count=count+1
                 
-                if count < 10:
+                if count < 3:
                     if shouldGetVerb == True:
                         if 'VB' in chunked[count] or 'VBD' in chunked[count] or 'VBG' in chunked[count] or\
                         'VBN' in chunked[count] or 'VBN' in chunked[count]:
                             #print("Verb: {}".format(chunked[count]))
                             targetVerb = targetVerb+" "+chunked[count][0]
                             #print("action pair: ({}, {})".format(targetString, chunked[count][0]))
-                    
+        
+        #print(dictionary_verb);
+        for x in dictionary_verb:
+            print(repr(x),":",dictionary_verb[x], ",")
+        
     except Exception as e:
         print(str(e))    
 
