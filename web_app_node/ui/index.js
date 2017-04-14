@@ -210,6 +210,8 @@ var storyMainPageFunctions = (function () {
       $(elementName).click(function(){
         // open next page
         //alert("Test");
+		editNodes();
+		drawGraph();
         openFrequencyNav();
       });
 

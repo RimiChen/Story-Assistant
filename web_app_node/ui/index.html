@@ -36,6 +36,11 @@
 
 <script src="../third_party/aehlke-tag-it/js/tag-it.js" type="text/javascript" charset="utf-8"></script>
 
+<!--vis link-->
+<script type="text/javascript" src="../third_party/vis_library/vis.min.js"></script>
+<link href="../third_party/vis_library/vis.min.css" rel="stylesheet" type="text/css"/>
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+<!--vis link-->
 
 
 <script src="../third_party/jquery-minimap.js"></script>
@@ -46,13 +51,15 @@
 <script src="./index.js"></script>
 <script src="./text.js"></script>
 <script src="./frequency.js"></script>
-
+<script src="./graph.js"></script>
 
 
 </head>
 
 
 <body onload = "storyMainPageFunctions.setAll()">
+<div id="mynetwork"></div>
+
 	<!--Load stories from  -->
   <div class="minimap"></div>
 	<div class="left_tag_list">
@@ -133,6 +140,7 @@
 
     </div>   
     <div id="over_frequency_frame" class="overlay">
+		<div id = "location_graph"></div>
 
       <!-- Button to close the overlay navigation -->
       <a href="javascript:void(0)" class="closebtn" onclick="closeFrequencyNav()">&times;</a>
@@ -142,6 +150,55 @@
     </div>
 
   </div>
+<script type="text/javascript">
+console.log("Test vis");
+    //{id: 0, label: "0", group: 'source'},
+    var nodes = [
+    ];
+	//{from: 1, to: 0},
+
+    var edges = [
+    ]
+
+    // create a network
+    var container = document.getElementById('location_graph');
+    var data = {
+        nodes: nodes,
+        edges: edges
+    };
+    var options = {
+        nodes: {
+            shape: 'dot',
+            size: 20,
+            font: {
+                size: 15,
+                color: '#ffffff'
+            },
+            borderWidth: 2
+        },
+        edges: {
+            width: 2
+        },
+        groups: {
+            diamonds: {
+                color: {background:'red',border:'white'},
+                shape: 'diamond'
+            },
+            mints: {color:'rgb(0,255,140)'},
+            icons: {
+                shape: 'icon',
+                icon: {
+                    face: 'FontAwesome',
+                    code: '\uf0c0',
+                    size: 50,
+                    color: 'orange'
+                }
+            },
+        }
+    };
+    var network = new vis.Network(container, data, options);
+
+</script>
 
 </body>
 

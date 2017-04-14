@@ -40,7 +40,11 @@
 	text-align: left;
 	clear: both;
 }
-
+#location_graph{
+	height: 100%;
+	width: 100%;
+	margin-left: 2%;
+}
 /* Position the content inside the overlay */
 .overlay-content {
 	height:80%;

@@ -2,13 +2,17 @@
   
   function openFrequencyNav() {
       //console.log("Open frequency nav");
-	  showFrequency();
+	  //showFrequency();
+	 
+	  //generate location graph
+	  
 	  document.getElementById("over_frequency_frame").style.width = "100%";
   }
 
   /* Close when someone clicks on the "x" symbol inside the overlay */
   function closeFrequencyNav() {
       document.getElementById("over_frequency_frame").style.width = "0%";
+	  cleanNodes();
   }
   function showFrequency(){
 	//console.log(colorList);
