@@ -11,7 +11,7 @@ var addElement = (function () {
   //moveable canvas
   var addCanvas = function(appendTarget, id,  divClass, color, content, x, y, width, height, border_color ){
 
-    console.log("create"+id);
+    //console.log("create"+id);
 	var target_div = document.getElementById(appendTarget);    
 	var newDiv = document.createElement("div");
 
@@ -33,11 +33,51 @@ var addElement = (function () {
 
 		createMenu(this.id);
 	  }
+	  if(this.class == "chara_menu"){
+		var tempString = this.id;
+		tempString = tempString.replace("menu_frequency_chara_", "");
+		var lastIndex = tempString.lastIndexOf("_");
+		var res = tempString.substring(0, lastIndex);
+		console.log(res+": "+this.innerHTML);
+		//to get a list of related pages
+		var pageList = findPages(res, this.innerHTML);
+		console.log(pageList);
+		
+		if(pageList.length >0){
+			closeFrequencyNav();
+			storyMainPageFunctions.openStoryTab(tabNumber, pageList[0]);
+		}
+		
+	  }
 	  
     });
 
     target_div.appendChild(newDiv);
   }
+  function findPages(chara_name, action_name){
+	var pages = [];
+	for(i =1 ; i <= tabNumber; i++){
+		var tempID = "#story_tab"+i;
+		var text = $(tempID).text();		
+		//find all occurence of character
+		var charaIndex = getIndicesOf(chara_name, text, false);
+		//find all occurence of action
+		var actionIndex = getIndicesOf(action_name, text, false);
+		if(charaIndex.length >0 && actionIndex.length > 0){
+			
+			for(chara_i = 0 ; chara_i < charaIndex.length; chara_i++){
+				for(action_i = 0 ; action_i < actionIndex.length; action_i++){
+					if(charaIndex[chara_i] < actionIndex[action_i] && (actionIndex[action_i] - charaIndex[chara_i])<50){
+						console.log("Page "+i +"  "+charaIndex +"; "+actionIndex);
+						pages.push(i);
+					}
+				}
+			}
+		}
+	}
+	return pages;
+  }
+
   return {
     addDiv: addDiv,
 	addCanvas: addCanvas

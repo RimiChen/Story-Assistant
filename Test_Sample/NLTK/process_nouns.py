@@ -133,7 +133,8 @@ def process_content_find_verb():
                         currentWordCount = sample_text.count(currentWord)
                         targetWordCount = sample_text.count(targetString)
                         if shouldGetVerb == True:
-                            test = '\"'+targetWordCount+'\"';
+                            test = str(targetWordCount);
+							
                             dictionary_verb.setdefault(targetString,[test]).append(targetVerb);
                             #print(dictionary_verb);
                             #print("\"{}\": [\"{}\",\"{}\"],".format(targetString, targetVerb, targetWordCount))

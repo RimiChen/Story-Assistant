@@ -2,7 +2,7 @@
   
   function openFrequencyNav() {
       //console.log("Open frequency nav");
-	  //showFrequency();
+	  showFrequency();
 	 
 	  //generate location graph
 	  
@@ -52,6 +52,7 @@
 			y_px = y+"px";
 			
 			var f2w = Math.floor(Math.log(frequencyList[key]+1)*20);
+			console.log(frequencyList[key]);
 			var w = f2w;
 			var width = w+"px";
 			var height = w+"px";
@@ -62,9 +63,12 @@
 
 	}
   }
+  function testPrint(){
+	console.log(JSON.stringify(frequencyList));
+  }
   function createMenu(id){
 	var target = document.getElementById(id);
-  	console.log(id+": "+target.style.left+", "+target.style.top);
+  	//console.log(id+": "+target.style.left+", "+target.style.top);
 	//clear all and create
 	var left = parseInt((target.style.left).replace(/px/,""));
 	var shift = parseInt((target.style.width).replace(/px/,""));
@@ -73,10 +77,15 @@
 	var target_chara = id.replace(/frequency_chara_/,"");
 	//console.log(target_chara);
 	if(target_chara in informList){
+		var count = 0;
 		for(i = 0; i < informList[target_chara].length; i++){
-			var top = parseInt((target.style.top).replace(/px/,""))+22*i;
+			var top = parseInt((target.style.top).replace(/px/,""))+22*count;
 			var top_px = top+"px";
-		addElement.addCanvas("over_frequency_frame", "menu_"+id+"_"+i,  "chara_menu", "#000000", informList[target_chara][i], x_position_px, top_px, "100px", "20px", "#FFFFFF");
+			if(informList[target_chara][i]!=""){
+				addElement.addCanvas("over_frequency_frame", "menu_"+id+"_"+i,  "chara_menu", "#000000", informList[target_chara][i], x_position_px, top_px, "100px", "20px", "#FFFFFF");
+				count++;
+
+			}
 		}
 	}
   }

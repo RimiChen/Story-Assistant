@@ -6,6 +6,7 @@ var informList = {};
 var charaSelectList = {};
 var locationSelectList = {};
 var frequencyList = {};
+var characterActionList = {};
 var storyMainPageFunctions = (function () {
     
   // Keep this variable private inside this closure scope
@@ -13,8 +14,10 @@ var storyMainPageFunctions = (function () {
 
     var test = 0;
     readJsonColor();
+	//printActions();
 	readJson();
     readJson_location();
+
 	//console.log(frequencyList);
 
    
@@ -55,7 +58,7 @@ var storyMainPageFunctions = (function () {
 	tagFunction_location();
     //postData('data to process');
     //$( "#minimap" ).minimap( $parent );
-
+	//printActions();
   };
   function changeValue(test){
     test = 2;
@@ -153,7 +156,7 @@ var storyMainPageFunctions = (function () {
     tab_menu.appendChild(newCanvas);
 
   }  
-  function openStoryTab(tabNumber, id_number) {
+  var openStoryTab = function(tabNumber, id_number) {
     $(document).ready(function(){
   // Declare all variables
       // Show the current tab, and add an "active" class to the button that opened the tab
@@ -298,19 +301,27 @@ var storyMainPageFunctions = (function () {
       formResult();
       document.getElementById("over_frame").style.width = "0%";
   }
+
   function readJsonColor(){
     $(document).ready(function () {
-	  //var jsonData = $.parseJSON("../file/sample2.json");
+	  //var jsonData = $.parseJSON("../file/sample3.json");
 	  //console.log(jsonData);
-	  console.log("Test");
-      $.getJSON( "../file/sample2.json", function( data ) {
+	  //console.log("Test");
+      $.getJSON( "../file/sample3.json", function( data ) {
         $.each( data, function( key, val ) {
-			console.log(val);
+			//console.log(val);
+			//put into character action list
+			if(characterActionList[key]){
+			}
+			else{
+				characterActionList[key] = val;
+				//console.log("Test "+key);
+			}
         });
 
 	  });
 
-      $.getJSON( "../file/sample2.json", function( data ) {
+      $.getJSON( "../file/sample3.json", function( data ) {
         $.each( data, function( key, val ) {
 			
 			var color = randColor();
@@ -324,17 +335,27 @@ var storyMainPageFunctions = (function () {
         });
 
 	  });
-    });    
+    });
+	//printActions();  
+  } 
+  function printActions(){
+	//console.log(characterActionList);
+	//console.log(frequencyList);
+	//console.log(frequencyList["Dashwood"])
+	for(var tempKey in frequencyList){
+	//	console.log("000");
+		console.log(tempKey+": "+frequencyList[tempKey]);
+	}
   } 
   var readJson = function(){
     $(document).ready(function () {
-      $.getJSON( "../file/sample2.json", function( data ) {
+      $.getJSON( "../file/sample3.json", function( data ) {
         var items = [];
         $.each( data, function( key, val ) {
           // <input type="checkbox" name="vehicle" value="Bike"> I have a bike<br>
           //items.push( "<li id='" + key + "'>" + key + "</li>" );
-          //console.log(key+":" + val[1]);
-		  frequencyList[key] = val[1];
+          //console.log(key+":" + val[0]);
+		  frequencyList[key] = val[0];
 		  items.push( "<input type='checkbox' name='characterCheck' value='" + key + "'>" + key + "<br>" );
         });
         //console.log(frequencyList);
@@ -348,7 +369,7 @@ var storyMainPageFunctions = (function () {
   }
    var readJson_location = function(){
     $(document).ready(function () {
-      $.getJSON( "../file/sample2.json", function( data ) {
+      $.getJSON( "../file/sample3.json", function( data ) {
         var items = [];
         $.each( data, function( key, val ) {
           // <input type="checkbox" name="vehicle" value="Bike"> I have a bike<br>
@@ -519,6 +540,7 @@ var storyMainPageFunctions = (function () {
   }
   return {
     setAll: setAll,
+	openStoryTab, openStoryTab,
     clickCanvas: clickCanvas,
 	clickCanvasGetLocation: clickCanvasGetLocation,
     drawCanvas: drawCanvas,
