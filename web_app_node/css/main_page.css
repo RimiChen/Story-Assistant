@@ -68,6 +68,18 @@ div.noun_list{
 	clear:both;
 
 }
+div.tag_list{
+	height: 10%;
+	width: 80%;
+    position: relative;
+    text-align: left; /* Centered text/links */
+	border: 1px solid #FFFFFF;
+	position: relative;
+	margin-bottom: 3%;
+	margin-left: 5%;
+	background-color: white;
+
+}
 div.dot{
 	height: 10px;
 	width: 10px;

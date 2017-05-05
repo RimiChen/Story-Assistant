@@ -280,6 +280,7 @@ var storyMainPageFunctions = (function () {
   /* Close when someone clicks on the "x" symbol inside the overlay */
   var closeNav = function() {
       formResult();
+	  
       document.getElementById("over_frame").style.width = "0%";
   }
 
@@ -503,8 +504,27 @@ var storyMainPageFunctions = (function () {
 
       
     });
-    console.log(selected_String);
+    //console.log(selected_String);
+	addCharaTags(selected_String);
     (new tagFunction()).addTagsOnCloseNav(selected_String);
+  }
+  function addCharaTags(selected_String){
+	console.log(selected_String);
+	tag_list_base = selected_String.split(",");
+	//add to list
+    var items = [];
+    $.each( tag_list_base, function(key, val ) {
+        // <input type="checkbox" name="vehicle" value="Bike"> I have a bike<br>
+        //items.push( "<li id='" + key + "'>" + key + "</li>" );
+		if(val != ""){
+			items.push( "<input type='checkbox' name='characterTagCheck' value='" + val + "' ><label style='background:"+colorList[val]+"; color: black'>" + val + "</label><br>" );
+		}
+	});
+       
+	$( "<form/>", {
+        "class": "my-new-list",
+		html: items.join( "" )
+    }).appendTo( "#character_tag_list" );	
   }
   return {
     setAll: setAll,
