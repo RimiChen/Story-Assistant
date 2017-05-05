@@ -52,7 +52,7 @@
         for(item in locationSelectList){
           count++;
           //console.log("***"+count);
-          highLightColor(i+1, item, colorList[item], count);
+          //storyMainPageFunctions.highLightColor(i+1, item, colorList[item], count);
           //nsole.log(item+"   "+ colorList[item]);
         }
         var locationChange;
@@ -273,3 +273,4 @@
     }
     return isStop;
   }
+ 

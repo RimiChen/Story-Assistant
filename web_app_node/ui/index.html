@@ -43,10 +43,25 @@
 <!--vis link-->
 
 
+<!-- English words -->
+<script src="../third_party/afinn-master/afinn_en.js"></script>
+<!-- Danish words -->
+<script src="../third_party/afinn-master/afinn_da.js"></script>
+<script>
+	var afinn = afinn_en;
+</script>
+<!-- Algorithm -->
+<script src="../third_party/afinn-master/sentiment.js"></script>
+
+
+
 <script src="../third_party/jquery-minimap.js"></script>
 
+<script src="./variable_settings.js"></script>
 <script src="../methods/addElement.js"></script>
+<script src="./sentiment_analysis.js"></script>
 <script src="./location.js"></script>
+
 
 <script src="./index.js"></script>
 <script src="./text.js"></script>
@@ -71,6 +86,8 @@
     <canvas id="get_tag_from_text" width="80%" height="20"></canvas>
     <canvas id="get_location_from_text" width="80%" height="20"></canvas>
     <canvas id="show_frequency" width="80%" height="20"></canvas>
+    <canvas id="show_sentiment" width="80%" height="20"></canvas>
+	
 
 	</div>
   <div>
@@ -148,57 +165,19 @@
       <!-- Overlay content -->
 
     </div>
+    <div id="over_sentiment_frame" class="overlay">
+		<div id = "location_graph"></div>
+
+      <!-- Button to close the overlay navigation -->
+      <a href="javascript:void(0)" class="closebtn" onclick="closeSentimentNav()">&times;</a>
+
+      <!-- Overlay content -->
+
+    </div>
+	
 
   </div>
-<script type="text/javascript">
-console.log("Test vis");
-    //{id: 0, label: "0", group: 'source'},
-    var nodes = [
-    ];
-	//{from: 1, to: 0},
 
-    var edges = [
-    ]
-
-    // create a network
-    var container = document.getElementById('location_graph');
-    var data = {
-        nodes: nodes,
-        edges: edges
-    };
-    var options = {
-        nodes: {
-            shape: 'dot',
-            size: 20,
-            font: {
-                size: 15,
-                color: '#ffffff'
-            },
-            borderWidth: 2
-        },
-        edges: {
-            width: 2
-        },
-        groups: {
-            diamonds: {
-                color: {background:'red',border:'white'},
-                shape: 'diamond'
-            },
-            mints: {color:'rgb(0,255,140)'},
-            icons: {
-                shape: 'icon',
-                icon: {
-                    face: 'FontAwesome',
-                    code: '\uf0c0',
-                    size: 50,
-                    color: 'orange'
-                }
-            },
-        }
-    };
-    var network = new vis.Network(container, data, options);
-
-</script>
 
 </body>
 

@@ -1,6 +1,6 @@
 
 
-var tabNumber = 20;
+
 var colorList = {};
 var informList = {};
 var charaSelectList = {};
@@ -29,6 +29,7 @@ var storyMainPageFunctions = (function () {
 	
 	draw("Get Places", 'get_location_from_text'); 
 	draw("Frequency", 'show_frequency'); 
+	draw("Sentiment", 'show_sentiment'); 
 	
 	
 	console.log("Show place is displayed");
@@ -40,6 +41,7 @@ var storyMainPageFunctions = (function () {
     var $parent = $( "#main_frame" );
     
     clickFrequency();
+	clickSentiment();
 	clickCanvas();
 	clickCanvasGetLocation();
 	//clickChara();
@@ -48,6 +50,7 @@ var storyMainPageFunctions = (function () {
     newLoadText("../text_sample/austen-sense.txt");
 
     divOnChange();
+	//console.log(text_separate_result);
     //console.log("%%%"+textContent);
     //paging();
     
@@ -75,44 +78,37 @@ var storyMainPageFunctions = (function () {
     $(document).ready(function(){
       $('#inside_text').bind('contentchanged', function() {
         // do something after the div content has changed
-        //alert('woo');
         var currentDiv = document.getElementById('inside_text');
-        //console.log("^^^^^"+currentDiv.innerHTML);
+
         //separate text in here
-        //Without html length
-        console.log( $.trim($('#inside_text').text()).length );
+       
+	   //Without html length
         
         //divide text in here
         var currentText = $('#inside_text').text();
-        //console.log(currentText);
-        //console.log(currentText[0]);
 
-        //var text = " I am totally unappreciated in my time. You can run this whole park from this room with minimal staff for up to 3 days. You think that kind of automation is easy? Or cheap? You know anybody who can network 8 connection machines and debug 2 million lines of code for what I bid for this job? Because if he can I'd like to see him try.";
+        var match_paragraph = new RegExp('\\S[\\s\\S]{0,'+paragraph_limit+'}\\S(?=\\s|$)', "g");
+        //console.log(myRe);
+		var m;
+        //var result = new Array();
 
-        var myRe = /\S[\s\S]{0,3000}\S(?=\s|$)/g;
-        var m;
-        var result = new Array();
-
-        while ((m = myRe.exec(currentText)) !== null) {
-           result.push(m[0]);
+        while ((m = match_paragraph.exec(currentText)) !== null) {
+           text_separate_result.push(m[0]);
         }
 
-        //console.log(result[0]);
+        //how many pages are needed
+		total_page_number = text_separate_result.length;
 
         
         var text_area = document.getElementById('text_body');
-        console.log($('#story_body').height());
-        //add tab button in here
-        //var tabNumber = 8;
 
         for(var tab_iter = 1 ; tab_iter < tabNumber+1; tab_iter++){
-          addDiv(tab_iter, result[tab_iter-1]);
+          addDiv(tab_iter, text_separate_result[tab_iter-1]);
           addCanvas(tabNumber,tab_iter);
           addButton(tabNumber, tab_iter);
           addElement.addDiv("rightLocation", "location_container"+tab_iter, "location_container", "location_container"+tab_iter);
           
         }
-        
         var first_page = document.getElementById("story_tab"+1);
         first_page.style.display = "block";
         
@@ -160,14 +156,6 @@ var storyMainPageFunctions = (function () {
     $(document).ready(function(){
   // Declare all variables
       // Show the current tab, and add an "active" class to the button that opened the tab
-      //alert(id_number);
-/*
-      var tabcontent = document.getElementsByClassName("story_page");
-      console.log("Get "+tabcontent.length+" pages");
-      for (i = 0; i < tabcontent.length; i++) {
-          tabcontent[i].style.display = "none";
-      }
-*/
       var tempID;
 
       for (i = 1; i < tabNumber+1; i++) {
@@ -219,7 +207,19 @@ var storyMainPageFunctions = (function () {
       });
 
     });
-  };  
+  };
+  function clickSentiment(){
+    var elementName = "#show_sentiment";
+    
+    $(document).ready(function(){
+      $(elementName).click(function(){
+        // open next page
+        //alert("Test");
+        openSentimentNav();
+      });
+
+    });
+  };   
   function clickPageCanvas(index){
     var elementName = "#canvas"+index;
     
@@ -233,25 +233,6 @@ var storyMainPageFunctions = (function () {
     });
   }; 
   
-
-  var loadText = function(filePath){
-    $(document).ready(function(){
-
-      $.ajax({
-        url : filePath,
-        dataType: "text",
-        success : function (data) {
-          $("#inside_text").text(data);
-          //alert(result);
-          //this.text_content = result;
-          //console.log(text_content);
-          //return result;
-          updateResult(data);
-        }
-      });
-    });
-    
-  };
   function updateResult(data){
     text_content = data;
     console.log("???"+this.text_content);
@@ -304,10 +285,15 @@ var storyMainPageFunctions = (function () {
 
   function readJsonColor(){
     $(document).ready(function () {
+<<<<<<< HEAD
+	  console.log("Test");
+      $.getJSON( "../file/sample2.json", function( data ) {
+=======
 	  //var jsonData = $.parseJSON("../file/sample3.json");
 	  //console.log(jsonData);
 	  //console.log("Test");
       $.getJSON( "../file/sample3.json", function( data ) {
+>>>>>>> origin/master
         $.each( data, function( key, val ) {
 			//console.log(val);
 			//put into character action list
@@ -327,7 +313,6 @@ var storyMainPageFunctions = (function () {
 			var color = randColor();
 			colorList[key] = color;
 			if(informList[key]){
-				//informList[key] = informList[key].add(val);
 			}
 			else{
 				informList[key] = val;
@@ -352,13 +337,17 @@ var storyMainPageFunctions = (function () {
       $.getJSON( "../file/sample3.json", function( data ) {
         var items = [];
         $.each( data, function( key, val ) {
+<<<<<<< HEAD
+		  frequencyList[key] = val[1];
+=======
           // <input type="checkbox" name="vehicle" value="Bike"> I have a bike<br>
           //items.push( "<li id='" + key + "'>" + key + "</li>" );
           //console.log(key+":" + val[0]);
 		  frequencyList[key] = val[0];
+>>>>>>> origin/master
 		  items.push( "<input type='checkbox' name='characterCheck' value='" + key + "'>" + key + "<br>" );
         });
-        //console.log(frequencyList);
+
         $( "<form/>", {
           "class": "my-new-list",
           html: items.join( "" )
@@ -401,42 +390,32 @@ var storyMainPageFunctions = (function () {
         //addEvent('onTagClicked: ' + eventTags.tagit('tagLabel', ui.tag));
         var currentTag = eventTags.tagit('tagLabel', ui.tag);
         //console.log(currentTag);
-        
-        //console.log("total page = "+tabNumber);
-        //get text, highlight word
-        //var color = randColor();
-        //if(colorList[currentTag] ){
-        //}
-        //else{
-          //colorList[currentTag] = color;
-        //}
-        //console.log(colorList);
 
-        //console.log(charaSelectList);
-        var count =0;
-        for(i =0; i<tabNumber; i++){
+        if(charaSelectList[currentTag] ==1){
+			//if never highlight, then highlight
 
-          var currentNode = document.getElementById("canvas"+(i+1));
-          while (currentNode.firstChild) {
-              currentNode.removeChild(currentNode.firstChild);
-          }
-          count =0;
-          for(item in charaSelectList){
-            count++;
-            //console.log("***"+count);
-            highLightColor(i+1, item, colorList[item], count);
-            //nsole.log(item+"   "+ colorList[item]);
-          }
-        }
-       //var currentDot = document.getElementByClassName("dot");
-       //console.log(currentDot);
-        
-        
-        //highLightColor(1, currentTag);
+			for(i =0; i<tabNumber; i++){
+				//for each page
+			  count =0;
+   			  highLightColor(i+1, currentTag, colorList[currentTag], count);
+/*
+			  for(item in charaSelectList){
+				count++;
+				if(charaSelectList[item]==2){
+					highLightColor(i+1, item, colorList[item], count);
+				}
+			  }
+*/
+			}		
+			charaSelectList[currentTag] = 2;
+		}
+		else{
+			// colored
+			
+		}
+		//var currentDot = document.getElementByClassName("dot");
       },
       onTagExists: function(evt, ui) {
-        //addEvent('onTagExists: ' + eventTags.tagit('tagLabel', ui.existingTag));
-        //alert("Tag exists");
       },
     });
             
@@ -447,10 +426,13 @@ var storyMainPageFunctions = (function () {
       for(i = 0; i < tagArray.length; i++){
         $('#characterTags').tagit('createTag', tagArray[i])
         if(charaSelectList[tagArray[i]] ){
-        }
+        
+		}
         else{
           charaSelectList[tagArray[i]] = 1;
-          charaSelectList[tagArray[i]] = 1;
+		  character_index[tagArray[i]] = Object.keys(charaSelectList).length;
+			//console.log(Object.keys(charaSelectList).length);
+          //charaSelectList[tagArray[i]] = 1;
         }		
       }
       return false;
@@ -459,28 +441,35 @@ var storyMainPageFunctions = (function () {
   }
   
   var highLightColor = function(index, word, color, count){
-    var tempID = "#story_tab"+index;
-    //var element = document.getElementById(tempID);
-    //console.log($(tempID).text());
-    var text = $(tempID).text();
-    var regex = new RegExp('('+word+')', 'ig');
+    $(document).ready(function () {
+		var tempID = "#story_tab"+index;
+		var story_text = $(tempID).text();
+		//console.log(story_text);
+		var regex = new RegExp('('+word+')', 'ig');
 
-    text = text.replace(regex, '<span class="highlight" style="background-color: '+color+'">$1</span>')
-    
-    //console.log(text);
-    var divID = "story_tab"+index;
-    var currentText = document.getElementById(divID);
-    currentText.innerHTML = text;
-    //console.log(currentText.innerHTML);
-    //add dot for character
-    var needDraw = text.indexOf(color);
-    //console.log(needDraw);
-    if(needDraw >=0){
-      addDot(index, color, count);
-    }
+		story_text = story_text.replace(regex, '<span class="highlight" style="background-color: '+color+'">$1</span>')
+		//also color previously selected words
+		for(item in charaSelectList){
+			if(charaSelectList[item]==2){
+				regex = new RegExp('('+item+')', 'ig');
+				story_text = story_text.replace(regex, '<span class="highlight" style="background-color: '+colorList[item]+'">$1</span>')
+			}
+		}
+		var divID = "story_tab"+index;
+		var currentText = document.getElementById(divID);
+		text_separate_result[index] = story_text;
+		currentText.innerHTML = text_separate_result[index];
+		var needDraw = story_text.indexOf(color);
+
+		if(needDraw >=0){
+		  addDot(index, color,character_index[word]);
+		}
+    });
+
     
   }
   function addDot(index, color, count){
+	//console.log(index);
     var newCanvas = document.createElement("canvas");
     newCanvas.id = "dot"+index;
     newCanvas.class = "dot";
@@ -502,11 +491,6 @@ var storyMainPageFunctions = (function () {
     ctx.fill();
     ctx.lineWidth = 0;
     newCanvas.style.border = 'none';
-    //newCanvas.style.backgroundColor = color;
-    //newCanvas.style.width = "10px";
-    //newCanvas.style.height = "10px";
-    //newCanvas.style.position = "absolute";
-    //console.log(count);
 
     newCanvas.style.top = dotTarget.style.top;
     newCanvas.style.left = dotTarget.style.left+100;    
@@ -523,14 +507,10 @@ var storyMainPageFunctions = (function () {
   var formResult = function(){
     //when close the window get result
    // var currentForm = document.getElementById("#characterCheck")
-   // console.log(currentForm.value);
     var selected = [];
     var selected_String = "";
     
     $('input[name="characterCheck"]:checked').each(function() {
-      //console.log(this.value);
-
-      //selected.push(this.value);
       selected_String = selected_String + ","+this.value;
 
       
@@ -546,9 +526,8 @@ var storyMainPageFunctions = (function () {
     drawCanvas: drawCanvas,
     textOnChange: textOnChange,
     divOnChange: divOnChange,
-    loadText: loadText,
 	randColor: randColor,
-  highLightColor: highLightColor,
+	highLightColor: highLightColor,
     tagFunction:tagFunction,
     openNav: openNav,
     closeNav: closeNav,
