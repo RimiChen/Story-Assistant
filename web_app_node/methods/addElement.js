@@ -11,11 +11,6 @@ var addElement = (function () {
   //moveable canvas
   var addCanvas = function(appendTarget, id,  divClass, color, content, x, y, width, height, border_color ){
 
-<<<<<<< HEAD
-    //console.log("create  "+id);
-=======
-    //console.log("create"+id);
->>>>>>> origin/master
 	var target_div = document.getElementById(appendTarget);    
 	var newDiv = document.createElement("div");
 

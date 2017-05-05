@@ -285,15 +285,10 @@ var storyMainPageFunctions = (function () {
 
   function readJsonColor(){
     $(document).ready(function () {
-<<<<<<< HEAD
+
 	  console.log("Test");
-      $.getJSON( "../file/sample2.json", function( data ) {
-=======
-	  //var jsonData = $.parseJSON("../file/sample3.json");
-	  //console.log(jsonData);
-	  //console.log("Test");
       $.getJSON( "../file/sample3.json", function( data ) {
->>>>>>> origin/master
+
         $.each( data, function( key, val ) {
 			//console.log(val);
 			//put into character action list
@@ -337,14 +332,7 @@ var storyMainPageFunctions = (function () {
       $.getJSON( "../file/sample3.json", function( data ) {
         var items = [];
         $.each( data, function( key, val ) {
-<<<<<<< HEAD
-		  frequencyList[key] = val[1];
-=======
-          // <input type="checkbox" name="vehicle" value="Bike"> I have a bike<br>
-          //items.push( "<li id='" + key + "'>" + key + "</li>" );
-          //console.log(key+":" + val[0]);
 		  frequencyList[key] = val[0];
->>>>>>> origin/master
 		  items.push( "<input type='checkbox' name='characterCheck' value='" + key + "'>" + key + "<br>" );
         });
 
@@ -424,7 +412,7 @@ var storyMainPageFunctions = (function () {
       var tagArray = input.split(',')
       var color = randColor();
       for(i = 0; i < tagArray.length; i++){
-        $('#characterTags').tagit('createTag', tagArray[i])
+        $('#characterTags').tagit('createTag', tagArray[i]);
         if(charaSelectList[tagArray[i]] ){
         
 		}

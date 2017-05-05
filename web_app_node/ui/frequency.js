@@ -13,6 +13,7 @@
   function closeFrequencyNav() {
       document.getElementById("over_frequency_frame").style.width = "0%";
 	  cleanNodes();
+	  cleanAllNodes();
   }
   function showFrequency(){
 	//console.log(colorList);
@@ -27,14 +28,14 @@
 		var target_h = target.offsetHeight-100;
 		
 		console.log(target_w +","+target_h);
-		if(key in charaSelectList && key != "" && !(key in created)){
+		if(key in charaSelectList && key != ""){
 			console.log("character: "+key);
 			var x =Math.floor(Math.random() * target_w);
 			x_px = x+"px";
 			var y =Math.floor(Math.random() * target_h);
 			y_px = y+"px";
 			
-			var f2w = Math.floor(Math.log(frequencyList[key]+1)*10);
+			var f2w = Math.floor(Math.log(frequencyList[key]+1)*20);
 			var w = f2w;
 			var width = w+"px";
 			var height = w+"px";
@@ -43,7 +44,7 @@
 			created[key] = 1;
 			//addElement.addCanvas("over_frequency_frame", "frequency_"+key,  "freqeucy_chara", key);
 		}
-		if(key in locationSelectList && key != "" && !(key in created)){
+		if(key in locationSelectList && key != ""){
 			console.log("location: "+key);
 			//console.log("character: "+key);
 			var x =Math.floor(Math.random() * target_w);
@@ -88,5 +89,8 @@
 			}
 		}
 	}
+  }
+  function cleanAllNodes(){
+	$('#over_frequency_frame').contents().not('.closebtn').remove();
   }
   
