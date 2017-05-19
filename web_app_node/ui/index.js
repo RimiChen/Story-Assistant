@@ -4,6 +4,7 @@
 var colorList = {};
 var informList = {};
 var charaSelectList = {};
+var charaAddedList = {};
 var locationSelectList = {};
 var frequencyList = {};
 var characterActionList = {};
@@ -62,6 +63,8 @@ var storyMainPageFunctions = (function () {
     //postData('data to process');
     //$( "#minimap" ).minimap( $parent );
 	//printActions();
+	listenCharaTagOnChange();
+	listenLocationTagOnChange();
   };
   function changeValue(test){
     test = 2;
@@ -106,7 +109,7 @@ var storyMainPageFunctions = (function () {
           addDiv(tab_iter, text_separate_result[tab_iter-1]);
           addCanvas(tabNumber,tab_iter);
           addButton(tabNumber, tab_iter);
-          addElement.addDiv("rightLocation", "location_container"+tab_iter, "location_container", "location_container"+tab_iter);
+          addElement.addDiv("rightLocation", "location_container"+tab_iter, "location_container", "");
           
         }
         var first_page = document.getElementById("story_tab"+1);
@@ -413,7 +416,7 @@ var storyMainPageFunctions = (function () {
       var tagArray = input.split(',')
       var color = randColor();
       for(i = 0; i < tagArray.length; i++){
-        $('#characterTags').tagit('createTag', tagArray[i]);
+        //$('#characterTags').tagit('createTag', tagArray[i]);
         if(charaSelectList[tagArray[i]] ){
         
 		}
@@ -516,8 +519,14 @@ var storyMainPageFunctions = (function () {
     $.each( tag_list_base, function(key, val ) {
         // <input type="checkbox" name="vehicle" value="Bike"> I have a bike<br>
         //items.push( "<li id='" + key + "'>" + key + "</li>" );
-		if(val != ""){
-			items.push( "<input type='checkbox' name='characterTagCheck' value='" + val + "' ><label style='background:"+colorList[val]+"; color: black'>" + val + "</label><br>" );
+		
+		if(charaAddedList[val]){
+		}
+		else{
+			if(val != ""){
+				items.push( "<input type='checkbox' name='characterTagCheck' value='" + val + "' ><label style='background:"+colorList[val]+"; color: black'>" + val + "</label><br>" );
+			}
+			charaAddedList[val] = 1;
 		}
 	});
        
@@ -525,6 +534,46 @@ var storyMainPageFunctions = (function () {
         "class": "my-new-list",
 		html: items.join( "" )
     }).appendTo( "#character_tag_list" );	
+  }
+  function listenCharaTagOnChange(){
+	$(function() {
+
+		$('#character_tag_list').change(function() {
+			var selected_String = "";		
+			$('input[name="characterTagCheck"]:checked').each(function() {
+			  selected_String = selected_String + ","+this.value;
+
+			});
+
+			tag_list_base = selected_String.split(",");
+			//add to list
+			var items = [];
+			$.each( tag_list_base, function(key, val ) {
+				// <input type="checkbox" name="vehicle" value="Bike"> I have a bike<br>
+				//items.push( "<li id='" + key + "'>" + key + "</li>" );
+				if(val != ""){
+					if(charaSelectList[val] ==1){
+						//if never highlight, then highlight
+
+						for(i =0; i<tabNumber; i++){
+							//for each page
+						  count =0;
+						  highLightColor(i+1, val, colorList[val], count);
+
+						}		
+						charaSelectList[val] = 2;
+					}
+					else{
+						// colored
+						
+					}
+				}
+			});
+		
+			//console.log(selected_String);
+		}); 
+		
+	});	
   }
   return {
     setAll: setAll,

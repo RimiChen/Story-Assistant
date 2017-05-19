@@ -2,101 +2,11 @@ Importing libraries...
 I'm reading: The family of Dashwood had long been settled in Sussex.            Their estate was large, and their residence was at Norland Park,in the centre of their property, where, for many generations, they had lived in so respectable a manner as to engage the general good opinion of their surrounding acquaintance.            The late owner of this estate was a single man, who lived to a very advanced age, and who for many years of his life, had a constant companion and housekeeper in his sister.
 * * * 
 Here's what I learned:
- > 
-{
-  "storypoints": [
-    {
-      "at": 1
-    }
-  ], 
-  "r": [
-    "many"
-  ], 
-  "relation": "has_property", 
-  "l": [
-    "generations"
-  ]
-}
-None
- > 
-{
-  "storypoints": [
-    {
-      "at": 1
-    }
-  ], 
-  "r": [
-    "good"
-  ], 
-  "relation": "has_property", 
-  "l": [
-    "opinion"
-  ]
-}
-None
- > 
-{
-  "storypoints": [
-    {
-      "at": 2
-    }
-  ], 
-  "r": [
-    "late"
-  ], 
-  "relation": "has_property", 
-  "l": [
-    "owner"
-  ]
-}
-None
- > 
-{
-  "storypoints": [
-    {
-      "at": 2
-    }
-  ], 
-  "r": [
-    "single"
-  ], 
-  "relation": "has_property", 
-  "l": [
-    "man"
-  ]
-}
-None
- > 
-{
-  "storypoints": [
-    {
-      "at": 2
-    }
-  ], 
-  "r": [
-    "many"
-  ], 
-  "relation": "has_property", 
-  "l": [
-    "years"
-  ]
-}
-None
- > 
-{
-  "storypoints": [
-    {
-      "at": 2
-    }
-  ], 
-  "r": [
-    "constant"
-  ], 
-  "relation": "has_property", 
-  "l": [
-    "companion"
-  ]
-}
-None
+ > the generations are many
+ > the opinion is good
+ > the owner is late
+ > the man is single
+ > the years are many
+ > the companion is constant
 * * *
 Process completed.

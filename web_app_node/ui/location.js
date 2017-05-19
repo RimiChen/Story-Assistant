@@ -1,4 +1,5 @@
   var locationColorList = {};
+  var locationChosenList = {};
   
   function openLocationNav() {
       document.getElementById("over_location_frame").style.width = "100%";
@@ -25,6 +26,7 @@
       
     });
     console.log(selected_String);
+	addLocationTags(selected_String);
     (new tagFunction_location()).addTagsOnCloseNav(selected_String);
   } 
   var tagFunction_location = function(){
@@ -39,50 +41,7 @@
     eventTags.tagit({
       allowSpaces: true,
       onTagClicked: function(evt, ui) {
-        //addEvent('onTagClicked: ' + eventTags.tagit('tagLabel', ui.tag));
-        var currentTag = eventTags.tagit('tagLabel', ui.tag);
-        //console.log(currentTag);
-        
-        //console.log("total page = "+tabNumber);
-        //get text, highlight word
-        var color = storyMainPageFunctions.randColor();
-
-        console.log(locationColorList);
-        var count =0;
-        for(item in locationSelectList){
-          count++;
-          //console.log("***"+count);
-          //storyMainPageFunctions.highLightColor(i+1, item, colorList[item], count);
-          //nsole.log(item+"   "+ colorList[item]);
-        }
-        var locationChange;
-        var lastLocation ="null";
-        for(i =0; i<tabNumber; i++){
-          //storyMainPageFunctions.highLightColor(i+1, item, locationColorList[item], count);
-           //nsole.log(item+"   "+ colorList[item]);
-          //locationSpan(i+1, item, locationColorList[item], count);
-          locationChange = updateSpan(i+1);
-          targetNode = "location_container"+(i+1);
-          //generateBar(locationChange, "location_container"+(i+1));
-          if(locationChange.length <=0){
-            console.log("Page "+(i+1));
-            //this is the location change in this page
-            console.log(lastLocation);
-            var temp = [lastLocation];
-            generateBar(temp, targetNode);
-            
-          }
-          else{
-            console.log("Page "+(i+1));
-            //this is the location change in this page
-            console.log(locationChange);
-            generateBar(locationChange, targetNode);
-
-            lastLocation = locationChange[locationChange.length-1];
-          }
-        }
-
-        //updateSpan();        
+    
         
         //highLightColor(1, currentTag);
       },
@@ -96,12 +55,11 @@
       
       var tagArray = input.split(',')
       for(i = 0; i < tagArray.length; i++){
-        $('#locationTags').tagit('createTag', tagArray[i])
+        //$('#locationTags').tagit('createTag', tagArray[i])
 		
 		if(locationSelectList[tagArray[i]] ){
         }
         else{
-          locationSelectList[tagArray[i]] = 1;
           locationSelectList[tagArray[i]] = 1;
         }	
       }
@@ -132,48 +90,19 @@
       newCanvas.id = target+"_location_"+locationCount;
       //indexCount++;
       newCanvas.class = "location_mark";
-
-      // current node
-      //var tempID = "canvas"+index;
-      //var dotTarget = document.getElementById(tempID);
-
       
       currentNode.appendChild(newCanvas);
 
 
-     //console.log(newCanvas.id);
+    // console.log(newCanvas.id);
       var currentDot = document.getElementById(newCanvas.id);
-     // var ctx = currentDot.getContext("2d");
-      //ctx.beginPath();
-      //console.log(currentNode.style.height);
       var tempName = "#"+target;
-      //console.log($(tempName).height());
-      //ctx.rect(5, 10+locationCount*40, 100, 40);
-      //ctx.fillStyle = locationColorList[place];
-      //ctx.fill();
-      //ctx.lineWidth = 0;
 
       newCanvas.style.backgroundColor = locationColorList[place];
       //newCanvas.style.marginLeft = '5%';
       newCanvas.style.display ="table-cell";
       newCanvas.style.marginTop = "1px";
-      //newCanvas.style.height = '10%';
-      
 
-      //newCanvas.style.border = 'none';
-      //newCanvas.style.border = 'none';
-      //console.log("--->"+place+"  "+locationColorList[place]);
-      //newCanvas.style.backgroundColor = locationColorList[place];
-      //newCanvas.style.position = 'relative';
-      //newCanvas.style.width = "50%";
-      //newCanvas.style.height = "10px";
-      //newCanvas.style.top = 10*locationCount;
-      //newCanvas.style.border = 'none';
-      //newCanvas.style.position = "absolute";
-      //console.log(count);
-
-      //newCanvas.style.top = currentNode.style.top;
-      //newCanvas.style.left = dotTarget.style.left+100;  
     }
     
   }
@@ -202,7 +131,7 @@
     //record location: index in this page
     var testIndex = {};
    
-    for(item in locationColorList){
+    for(item in locationChosenList){
       //find index
       testIndex[item] = getIndicesOf(item, text, false); 
       //testIndex[item].shift();
@@ -215,7 +144,7 @@
   
     while(!checkStop(testIndex)){
       var compareIndex = [];
-      for(item in locationColorList){
+      for(item in locationChosenList){
         //find index
         if(testIndex[item].length >0){
           compareIndex[item] = testIndex[item][0]; 
@@ -273,4 +202,132 @@
     }
     return isStop;
   }
- 
+  function addLocationTags(selected_String){
+	console.log(selected_String);
+	tag_list_base = selected_String.split(",");
+	//add to list
+    var items = [];
+    $.each( tag_list_base, function(key, val ) {
+        // <input type="checkbox" name="vehicle" value="Bike"> I have a bike<br>
+        //items.push( "<li id='" + key + "'>" + key + "</li>" );
+		if(val != ""){
+			if(locationColorList[val]){
+				
+			}
+			else{
+				locationColorList[val] = colorList[val];
+				items.push( "<input type='checkbox' name='locationTagCheck' value='" + val + "' ><label style='background:"+colorList[val]+"; color: black'>" + val + "</label><br>" );
+			}
+			//
+		}
+	});
+       
+	$( "<form/>", {
+        "class": "my-new-list",
+		html: items.join( "" )
+    }).appendTo( "#location_tag_list" );	
+  }
+  function listenLocationTagOnChange(){
+	$(function() {
+
+		$('#location_tag_list').change(function() {
+			var selected_String = "";		
+			$('input[name="locationTagCheck"]:checked').each(function() {
+			  selected_String = selected_String + ","+this.value;
+
+			});
+
+			tag_list_base = selected_String.split(",");
+			//add to list
+			var items = [];
+			$.each( tag_list_base, function(key, val ) {
+				// <input type="checkbox" name="vehicle" value="Bike"> I have a bike<br>
+				//items.push( "<li id='" + key + "'>" + key + "</li>" );
+				if(locationChosenList[val]){
+				}
+				else{
+					locationChosenList[val] = 1;
+				}
+				
+				if(val != ""){
+					if(locationSelectList[val] ==1){
+						//if never highlight, then highlight
+
+						for(i =0; i<tabNumber; i++){
+							//for each page
+						  count =0;
+						  highLightLocationColor(i+1, val, colorList[val], count);
+						
+						//console.log("total page = "+tabNumber);
+						//get text, highlight word
+
+							//console.log(locationColorList);
+							var count =0;
+							var locationChange;
+							var lastLocation ="null";
+							locationChange = updateSpan(i+1);
+							targetNode = "location_container"+(i+1);
+							//generateBar(locationChange, "location_container"+(i+1));
+							if(locationChange.length <=0){
+								//console.log("Page "+(i+1));
+								//this is the location change in this page
+								//console.log(lastLocation);
+								var temp = [lastLocation];
+								generateBar(temp, targetNode);
+								
+							}
+							else{
+								//console.log("Page "+(i+1));
+								//this is the location change in this page
+								//console.log(locationChange);
+								generateBar(locationChange, targetNode);
+								lastLocation = locationChange[locationChange.length-1];
+							}
+
+						//updateSpan();    						  
+
+						}		
+						locationSelectList[val] = 2;
+						//locationColorList[val] = colorList[val];
+					}
+					else{
+						// colored
+						//locationColorList[val] = colorList[val];
+						
+					}
+				}
+			});
+		
+			//console.log(selected_String);
+		}); 
+		
+	});	
+  } 
+    var highLightLocationColor = function(index, word, color, count){
+    $(document).ready(function () {
+		var tempID = "#story_tab"+index;
+		var story_text = $(tempID).text();
+		//console.log(story_text);
+		var regex = new RegExp('('+word+')', 'ig');
+
+		story_text = story_text.replace(regex, '<span class="highlight" style="background-color: '+color+'">$1</span>')
+		//also color previously selected words
+		for(item in locationSelectList){
+			if(locationSelectList[item]==2){
+				regex = new RegExp('('+item+')', 'ig');
+				story_text = story_text.replace(regex, '<span class="highlight" style="background-color: '+colorList[item]+'">$1</span>')
+			}
+		}
+		var divID = "story_tab"+index;
+		var currentText = document.getElementById(divID);
+		text_separate_result[index] = story_text;
+		currentText.innerHTML = text_separate_result[index];
+		var needDraw = story_text.indexOf(color);
+
+		if(needDraw >=0){
+//		  addDot(index, color,character_index[word]);
+		}
+    });
+
+    
+  }
