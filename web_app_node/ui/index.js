@@ -204,8 +204,11 @@ var storyMainPageFunctions = (function () {
       $(elementName).click(function(){
         // open next page
         //alert("Test");
-		editNodes();
-		drawGraph();
+		//editNodes();
+		//drawGraph();
+		editNodes_v2();
+		drawGraph_v2();
+		//(new drawGraph_v2()).draw();
         openFrequencyNav();
       });
 

@@ -10,15 +10,14 @@ sys.path.insert(0, memory_path)
 from Brain import *
 from ConceptExtractor import *
 
-def main():
+def main(inputString):
     ''' Extract story assertions. '''
     # Here is an example string.
-    string = "The family of Dashwood had long been settled in Sussex.\
-            Their estate was large, and their residence was at Norland Park,in the centre of their property, where, for many generations, they had lived in so respectable a manner as to engage the general good opinion of their surrounding acquaintance.\
-            The late owner of this estate was a single man, who lived to a very advanced age, and who for many years of his life, had a constant companion and housekeeper in his sister."
-
+    string = inputString
     # Extract Rensa assertions with extract_story_concepts().
-    print "I'm reading: " + string + "\n* * * "
+    
+    ## remove this line for speed up process
+    #print "I'm reading: " + string + "\n* * * "
     learned = extract_story_concepts(string)
 
     # Store the assertions in a brain.
@@ -27,7 +26,7 @@ def main():
     # Realize the assertions we learned.
     print "Here's what I learned:"
     for a in Rensa.get_assertions():
-        print " > " + a.realize(Rensa,True)
+        print " > " + a.realize(Rensa,False)
         #print " > "
         #print str(a.prettyprint())
         #print " > " + str(a)
@@ -35,4 +34,10 @@ def main():
     print "* * *\nProcess completed."
 
 if __name__ == '__main__':
-    main()
+    #read a text file and separate to sentences
+    #for number of sentences
+    text_file = open("austen-sense_3.txt", "r")
+    #print text_file.read()
+    inputString = text_file.read()
+    text_file.close()
+    main(inputString)
