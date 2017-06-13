@@ -31,7 +31,7 @@ var storyMainPageFunctions = (function () {
 	draw("Get Places", 'get_location_from_text'); 
 	draw("Frequency", 'show_frequency'); 
 	draw("Sentiment", 'show_sentiment'); 
-	
+
 	
 	console.log("Show place is displayed");
     
@@ -65,6 +65,7 @@ var storyMainPageFunctions = (function () {
 	//printActions();
 	listenCharaTagOnChange();
 	listenLocationTagOnChange();
+
   };
   function changeValue(test){
     test = 2;
@@ -97,6 +98,7 @@ var storyMainPageFunctions = (function () {
 
         while ((m = match_paragraph.exec(currentText)) !== null) {
            text_separate_result.push(m[0]);
+		   text_original.push(m[0]);
         }
 
         //how many pages are needed
@@ -167,7 +169,13 @@ var storyMainPageFunctions = (function () {
       }
 
       var tempID = "story_tab"+id_number;
-      document.getElementById(tempID).style.display = "block";
+	  //console.log(id_number);
+      current_page_number = id_number;
+	  //reset full text
+	  document.getElementById(tempID).innerHTML = text_original[current_page_number-1];
+	  //console.log(text_separate_result[current_page_number-1]);
+	  readSentimentNav();
+	  document.getElementById(tempID).style.display = "block";
     }); 
 
   }  
@@ -220,8 +228,9 @@ var storyMainPageFunctions = (function () {
     $(document).ready(function(){
       $(elementName).click(function(){
         // open next page
-        //alert("Test");
-        openSentimentNav();
+        //alert("Test Sentiment");
+        //openSentimentNav();
+		readSentimentNav();
       });
 
     });
@@ -438,7 +447,9 @@ var storyMainPageFunctions = (function () {
   var highLightColor = function(index, word, color, count){
     $(document).ready(function () {
 		var tempID = "#story_tab"+index;
-		var story_text = $(tempID).text();
+		//var story_text = $(tempID).text();
+		var story_text = text_original[index];
+		
 		//console.log(story_text);
 		var regex = new RegExp('('+word+')', 'ig');
 
@@ -542,6 +553,7 @@ var storyMainPageFunctions = (function () {
 	$(function() {
 
 		$('#character_tag_list').change(function() {
+			//charaSelectList = {};
 			var selected_String = "";		
 			$('input[name="characterTagCheck"]:checked').each(function() {
 			  selected_String = selected_String + ","+this.value;
@@ -549,8 +561,18 @@ var storyMainPageFunctions = (function () {
 			});
 
 			tag_list_base = selected_String.split(",");
+			console.log(tag_list_base);
 			//add to list
 			var items = [];
+			
+			//clean charaSelectList
+			$.each(charaSelectList, function(key, val){
+				console.log(key+", "+val);
+				if(val == 2){
+					charaSelectList[key] = 1;
+				}
+			});
+
 			$.each( tag_list_base, function(key, val ) {
 				// <input type="checkbox" name="vehicle" value="Bike"> I have a bike<br>
 				//items.push( "<li id='" + key + "'>" + key + "</li>" );

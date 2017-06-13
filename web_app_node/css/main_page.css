@@ -52,12 +52,22 @@ div.top_viewmode_bar{
 }
 div.text_body{
 
-	height:75%;
+	height:65%;
 	width: 55%;
     margin-top: 3%;
-	margin-left: 5%;
+	margin-left: 15%;
 	border: 4px solid #632523;
     background-color: #FFFFFF;
+
+}
+#sentiment_body{
+
+	height:10%;
+	width: 55%;
+    margin-top: 3%;
+	margin-left: 15%;
+	border: 4px solid #632523;
+    background-color: #000000;
 
 }
 div.noun_list{
@@ -75,7 +85,7 @@ div.tag_list{
 	border: 1px solid #FFFFFF;
 	position: relative;
 	margin-bottom: 3%;
-	margin-left: 5%;
+	margin-left: 15%;
 	background-color: rgba(255, 255, 255, 0.1);
 
 }
@@ -88,21 +98,23 @@ div.dot{
 	
 	position: absolute;
     top: 5%;
-	margin-left: 60%;
+	margin-left: 70%;
     width: 10%;
     height: 75%;
     border: none;
 }
 #rightMap div{
-    width: 100%;
+    
+	table-layout:fixed;
+	width: 100%;
     height: 5%;
-    border: 1px solid #638523;
+    border: 1px solid #FF0000;
 }
 #rightLocation{
 	
 	position: absolute;
     top: 5%;
-	margin-left: 72%;
+	margin-left: 2.5%;
     width: 10%;
     height: 75%;
     border: none;
@@ -112,7 +124,7 @@ div.dot{
     display:table;
 	table-layout:fixed;
 	width: 100%;
-    height: 5%;
+    height: 5.3%;
     border: 1px solid #FF0000;
 }
 #over_frequency_frame div{
@@ -121,7 +133,7 @@ div.dot{
 #tab_menu{
 	height:5%;
 	width: 55%;
-	margin-left: 5%;
+	margin-left: 15%;
 	border: 1px solid #632523;
 }
 #tab_menu button{

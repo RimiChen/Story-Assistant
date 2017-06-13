@@ -36,7 +36,7 @@ def main(inputString):
 if __name__ == '__main__':
     #read a text file and separate to sentences
     #for number of sentences
-    text_file = open("austen-sense_3.txt", "r")
+    text_file = open("austen-sense_1.txt", "r")
     #print text_file.read()
     inputString = text_file.read()
     text_file.close()

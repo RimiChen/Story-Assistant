@@ -10,14 +10,27 @@ from Entity import *
 # Returns a list of story assertions gleaned from the string s.
 def extract_story_concepts(s):
     actors, assertions = [], []
+    # s in here is the target sentence
     extractActors = extract_actors(assertions, s)
     actors = extractActors[0]
     assertions = extractActors[1]
+    #here are all for actors
+    #print("test1: ")
+    #print(extractActors[0])
+    #print("test2: ")
+    #print(extractActors[1])
+    
     sentences = split_sentences(s)
+    
     for sp,e in enumerate(sentences):
+        #assertions = [];
         assertions = extract_basic_properties(assertions, e, sp)
+        
+        
         assertions = extract_actor_actions(assertions, actors, e, sp)
         assertions = extract_actor_properties(assertions, actors, e, sp)
+
+
     return assertions
 
 # Determine the actors present in the story.
