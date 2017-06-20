@@ -1,5 +1,5 @@
 const tabNumber = 20;
-const paragraph_limit = 3000;
+const paragraph_limit = 4100;
 var total_page_number = -1;
 var current_page_number = 1;
 var source_text = "../text_sample/austen-sense.txt";

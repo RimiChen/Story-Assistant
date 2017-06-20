@@ -184,8 +184,11 @@ var storyMainPageFunctions = (function () {
       current_page_number = id_number;
 	  //reset full text
 	  document.getElementById(tempID).innerHTML = text_original[current_page_number-1];
+	  highlight_on_tabs();
 	  document.getElementById(tempID).style.display = "block";
 	 // highLightColor(index, word, color, count)
+	 //highlight according to selected list
+	 
 	}); 
   }  
   // get character tags, open the selecting menu.
@@ -543,6 +546,48 @@ var storyMainPageFunctions = (function () {
 		html: items.join( "" )
     }).appendTo( "#character_tag_list" );	
   }
+  function highlight_on_tabs(){
+			var selected_String = "";		
+			$('input[name="characterTagCheck"]:checked').each(function() {
+			  selected_String = selected_String + ","+this.value;
+
+			});
+
+			tag_list_base = selected_String.split(",");
+			console.log(tag_list_base);
+			//add to list
+			var items = [];
+			
+			//clean charaSelectList
+			$.each(charaSelectList, function(key, val){
+				console.log(key+", "+val);
+				if(val == 2){
+					charaSelectList[key] = 1;
+				}
+			});
+
+			$.each( tag_list_base, function(key, val ) {
+				// <input type="checkbox" name="vehicle" value="Bike"> I have a bike<br>
+				//items.push( "<li id='" + key + "'>" + key + "</li>" );
+				if(val != ""){
+					if(charaSelectList[val] ==1){
+						//if never highlight, then highlight
+
+						for(i =0; i<tabNumber; i++){
+							//for each page
+						  count =0;
+						  highLightColor(i+1, val, colorList[val], count);
+
+						}		
+						charaSelectList[val] = 2;
+					}
+					else{
+						// colored
+						
+					}
+				}
+			});  
+  }	  
   function listenCharaTagOnChange(){
 	$(function() {
 
