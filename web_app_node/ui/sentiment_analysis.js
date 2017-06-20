@@ -67,12 +67,75 @@
 		analyzeSentitment(1, target_text, targetID);
 	  //}
   }
+  function readSentimentNav_original(target_text, targetID) {
+	  changed_text = analyzeSentitment_modify(1, target_text, targetID);
+	  //console.log("page: "+targetID);
+	  //console.log(changed_text);
+	  return changed_text;
+  }  
   /* Close when someone clicks on the "x" symbol inside the overlay */
   function closeSentimentNav() {
       //formLocationResult();
       document.getElementById("over_sentiment_frame").style.width = "0%";
 	  cleanAll();
   }
+  function analyzeSentitment_modify(max_sentence, target_text, targetID){
+	// split text with number of sentences
+	sentence_array = target_text.match(/\(?[^\.\?\!]+[\.!\?]\)?/g);
+	//console.log(sentence_array.length);
+	sentence_array = combineSentence(sentence_array, max_sentence);
+	//console.log("before: " +sentence_array.length);
+	//console.log("after: " +test.length);
+	
+	sentence_number = sentence_array.length;
+	//sentence_number = 5;
+	//console.log("============================");
+	var full_text = target_text;
+	//console.log("    "+current_page_number);
+	//console.log(full_text);
+	for(sentence = 0; sentence < sentence_number; sentence ++){
+		//"sentiment_page_"+index_shift+"_"+i
+		sentiment_score = computeSentimentScore(sentence_array[sentence]);
+		//console.log(sentence_array[sentence]+",  "+sentiment_score);
+		if(sentiment_score > 0){
+			//positive
+			color = "rgba(0, 255, 0, 1)";
+			//console.log("green: positive" + "    "+ sentence_array[sentence]);
+			//addSentimentDot(color, sentence, targetID, sentence_number);
+			full_text = highLightSentence(full_text, sentence_array[sentence],"green");
+		}
+		else if(sentiment_score < 0){
+			//negtive
+			color = "rgba(255, 0, 0, 1)";
+			//console.log("red: negative" + "    "+ sentence_array[sentence]);
+			//addSentimentDot(color, sentence, targetID, sentence_number);
+			full_text = highLightSentence(full_text, sentence_array[sentence], "red");
+		}
+		else{
+			//netural
+			color = "rgba(0, 0, 255, 1)";
+			//console.log("blue: netural" + "    "+ sentence_array[sentence]);
+			//addSentimentDot(color, sentence, targetID, sentence_number);
+			full_text = highLightSentence(full_text, sentence_array[sentence], "blue");
+
+		}
+
+		//console.log(sentence_array[sentence] +" : "+sentiment_score);
+	}
+	var divID = "story_tab"+current_page_number;
+	var currentText = document.getElementById(divID);
+	//text_separate_result[index] = story_text;
+	//text_original[current_page_number-1] = full_text;
+	
+	return full_text;
+	//var needDraw = story_text.indexOf(color);
+	//console.log(text_original[current_page_number-1]);	
+	
+	//also highlight chosen tags.
+	
+	
+  }
+  
   function analyzeSentitment(max_sentence, target_text, targetID){
 	// split text with number of sentences
 	sentence_array = target_text.match(/\(?[^\.\?\!]+[\.!\?]\)?/g);
@@ -96,18 +159,24 @@
 		//console.log(sentence_array[sentence]+",  "+sentiment_score);
 		if(sentiment_score > 0){
 			//positive
-			addSentimentDot("rgba(0, 255, 0, 1)", sentence, targetID, sentence_number);
-			full_text = highLightSentence(full_text, sentence_array[sentence], "rgba(0, 255, 0, 0.5)");
+			color = "rgba(0, 255, 0, 1)";
+			//console.log("green: positive" + "    "+ sentence_array[sentence]);
+			addSentimentDot(color, sentence, targetID, sentence_number);
+			full_text = highLightSentence(full_text, sentence_array[sentence],"green");
 		}
 		else if(sentiment_score < 0){
 			//negtive
-			addSentimentDot("rgba(255, 0, 0, 1)", sentence, targetID, sentence_number);
-			full_text = highLightSentence(full_text, sentence_array[sentence], "rgba(255, 0, 0, 0.5)");
+			color = "rgba(255, 0, 0, 1)";
+			//console.log("red: negative" + "    "+ sentence_array[sentence]);
+			addSentimentDot(color, sentence, targetID, sentence_number);
+			full_text = highLightSentence(full_text, sentence_array[sentence], "red");
 		}
 		else{
 			//netural
-			addSentimentDot("rgba(0, 0, 255, 1)", sentence, targetID, sentence_number);
-			full_text = highLightSentence(full_text, sentence_array[sentence], "rgba(0, 0, 255, 0.5)");
+			color = "rgba(0, 0, 255, 1)";
+			//console.log("blue: netural" + "    "+ sentence_array[sentence]);
+			addSentimentDot(color, sentence, targetID, sentence_number);
+			full_text = highLightSentence(full_text, sentence_array[sentence], "blue");
 
 		}
 		if(current_page_number == 2){
@@ -119,9 +188,15 @@
 	var divID = "story_tab"+current_page_number;
 	var currentText = document.getElementById(divID);
 	//text_separate_result[index] = story_text;
-	currentText.innerHTML = full_text;
+	//text_original[current_page_number-1] = full_text;
+	
+	return full_text;
 	//var needDraw = story_text.indexOf(color);
-		//console.log(story_text);	
+	//console.log(text_original[current_page_number-1]);	
+	
+	//also highlight chosen tags.
+	
+	
   }
   function highLightSentence(full_text, target_sentence, color){
     result_text = "";
@@ -135,7 +210,7 @@
 		//console.log("^^^"+story_text);
 		var regex = new RegExp('('+target_sentence+')', 'ig');
 
-		story_text = story_text.replace(regex, '<span class="highlight" style="background-color: '+color+'">$1</span>')
+		story_text = story_text.replace(regex, '<font style="opacity:.6" color="'+color+'">$1</font>')
 
 
 		result_text = story_text;

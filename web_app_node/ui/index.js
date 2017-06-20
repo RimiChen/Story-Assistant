@@ -30,7 +30,6 @@ var storyMainPageFunctions = (function () {
 	
 	draw("Get Places", 'get_location_from_text'); 
 	draw("Frequency", 'show_frequency'); 
-	draw("Sentiment", 'show_sentiment'); 
 
 	
 	console.log("Show place is displayed");
@@ -42,13 +41,12 @@ var storyMainPageFunctions = (function () {
     var $parent = $( "#main_frame" );
     
     clickFrequency();
-	clickSentiment();
 	clickCanvas();
 	clickCanvasGetLocation();
 	//clickChara();
 	console.log("Why the browser won't clear data by it self!!")
     //loadText("../text_sample/austen-sense.txt");
-    newLoadText("../text_sample/austen-sense.txt");
+    newLoadText(source_text);
 
     divOnChange();
 	//console.log(text_separate_result);
@@ -78,6 +76,9 @@ var storyMainPageFunctions = (function () {
       });      
     });   
   }
+  /*
+   * load all text and create text buffer.
+   */
   var divOnChange = function(){
     $(document).ready(function(){
       $('#inside_text').bind('contentchanged', function() {
@@ -85,9 +86,7 @@ var storyMainPageFunctions = (function () {
         var currentDiv = document.getElementById('inside_text');
 
         //separate text in here
-       
-	   //Without html length
-        
+	    //Without html length
         //divide text in here
         var currentText = $('#inside_text').text();
 
@@ -96,31 +95,38 @@ var storyMainPageFunctions = (function () {
 		var m;
         //var result = new Array();
 
-        while ((m = match_paragraph.exec(currentText)) !== null) {
+		var page_count = 0;
+        while ((m = match_paragraph.exec(currentText)) !== null && page_count < tabNumber) {
            text_separate_result.push(m[0]);
-		   text_original.push(m[0]);
+		   // from the beginning, analyze the sentiment to text.
+		   changed_text = readSentimentNav_original(m[0], page_count);	
+		   text_original.push(changed_text);
+		   page_count = page_count+1;
         }
 
-        //how many pages are needed
+        //how many pages are needed, create divs
 		total_page_number = text_separate_result.length;
-
         
         var text_area = document.getElementById('text_body');
-
+		
         for(var tab_iter = 1 ; tab_iter < tabNumber+1; tab_iter++){
-          addDiv(tab_iter, text_separate_result[tab_iter-1]);
+          //initial 1
+		  addDiv(tab_iter, text_original[tab_iter-1]);
+		  //initial 2
+		  addButton(tabNumber, tab_iter);
+		  // initial 3
           addCanvas(tabNumber,tab_iter);
-          addButton(tabNumber, tab_iter);
           addElement.addDiv("rightLocation", "location_container"+tab_iter, "location_container", "");
-          
         }
+		//show the first page
         var first_page = document.getElementById("story_tab"+1);
         first_page.style.display = "block";
+
         
       });      
-    });   
-
+	  });   
   }
+  //initial 1
   function addButton(tabNumber,id_number){
     var newButton = document.createElement("button");
     newButton.id = "button"+id_number;
@@ -136,6 +142,7 @@ var storyMainPageFunctions = (function () {
     };
 
   }
+  //initial 2
   function addDiv( id_number, content){
     var newDiv = document.createElement("div");
     newDiv.id = "story_tab"+id_number;
@@ -146,6 +153,7 @@ var storyMainPageFunctions = (function () {
     var divName = "#"+newDiv.id;
 
   }
+  //initial 3
   function addCanvas( tabNumber,id_number){
     var newCanvas = document.createElement("div");
     newCanvas.id = "canvas"+id_number;
@@ -157,6 +165,9 @@ var storyMainPageFunctions = (function () {
     tab_menu.appendChild(newCanvas);
 
   }  
+  /*
+  * when page tab clicked, open the corresponding story page.
+  */
   var openStoryTab = function(tabNumber, id_number) {
     $(document).ready(function(){
   // Declare all variables
@@ -173,13 +184,11 @@ var storyMainPageFunctions = (function () {
       current_page_number = id_number;
 	  //reset full text
 	  document.getElementById(tempID).innerHTML = text_original[current_page_number-1];
-	  //console.log(text_separate_result[current_page_number-1]);
-	  readSentimentNav();
 	  document.getElementById(tempID).style.display = "block";
-    }); 
-
+	 // highLightColor(index, word, color, count)
+	}); 
   }  
-  
+  // get character tags, open the selecting menu.
   var clickCanvas = function(){
     var elementName = "#get_tag_from_text";
     
@@ -189,10 +198,9 @@ var storyMainPageFunctions = (function () {
         //alert("Test");
         openNav();
       });
-
     });
   };
-
+  // get location tags, open the selecting menu.
   var clickCanvasGetLocation = function(){
     var elementName = "#get_location_from_text";
     
@@ -205,6 +213,7 @@ var storyMainPageFunctions = (function () {
 
     });
   };
+  //action after click frequency button
   function clickFrequency(){
     var elementName = "#show_frequency";
     
@@ -222,19 +231,7 @@ var storyMainPageFunctions = (function () {
 
     });
   };
-  function clickSentiment(){
-    var elementName = "#show_sentiment";
-    
-    $(document).ready(function(){
-      $(elementName).click(function(){
-        // open next page
-        //alert("Test Sentiment");
-        //openSentimentNav();
-		readSentimentNav();
-      });
-
-    });
-  };   
+  
   function clickPageCanvas(index){
     var elementName = "#canvas"+index;
     
@@ -444,13 +441,11 @@ var storyMainPageFunctions = (function () {
           
   }
   
-  var highLightColor = function(index, word, color, count){
+  function highLightColor(index, word, color, count){
     $(document).ready(function () {
 		var tempID = "#story_tab"+index;
 		//var story_text = $(tempID).text();
-		var story_text = text_original[index];
-		
-		//console.log(story_text);
+		var story_text = text_original[index-1];
 		var regex = new RegExp('('+word+')', 'ig');
 
 		story_text = story_text.replace(regex, '<span class="highlight" style="background-color: '+color+'">$1</span>')
@@ -471,7 +466,6 @@ var storyMainPageFunctions = (function () {
 		  addDot(index, color,character_index[word]);
 		}
     });
-
     
   }
   function addDot(index, color, count){
@@ -609,7 +603,6 @@ var storyMainPageFunctions = (function () {
     textOnChange: textOnChange,
     divOnChange: divOnChange,
 	randColor: randColor,
-	highLightColor: highLightColor,
     tagFunction:tagFunction,
     openNav: openNav,
     closeNav: closeNav,
