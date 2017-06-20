@@ -1,5 +1,5 @@
 const tabNumber = 20;
-const paragraph_limit = 3200;
+const paragraph_limit = 4000;
 var total_page_number = -1;
 var current_page_number = 1;
 

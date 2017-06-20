@@ -14,6 +14,7 @@ def extract_story_concepts(s):
     extractActors = extract_actors(assertions, s)
     actors = extractActors[0]
     assertions = extractActors[1]
+    showups = extractActors[2]
     #here are all for actors
     #print("test1: ")
     #print(extractActors[0])
@@ -22,20 +23,25 @@ def extract_story_concepts(s):
     
     sentences = split_sentences(s)
     
+    new_assertions = [];
+    now_actor_name = "Unknown"
     for sp,e in enumerate(sentences):
         #assertions = [];
         assertions = extract_basic_properties(assertions, e, sp)
-        
+        ##should return two variables
+        [new_assertions, now_actor_name] = link_basic_properties_to_actor(new_assertions, actors, e, sp, now_actor_name)
+        #print("\n   "+now_actor_name+"   \n")
         
         assertions = extract_actor_actions(assertions, actors, e, sp)
-        assertions = extract_actor_properties(assertions, actors, e, sp)
+        assertions = extract_actor_properties(assertions, showups, e, sp)
 
-
+    #print(new_assertions)
     return assertions
 
 # Determine the actors present in the story.
 def extract_actors(assertions, s):
     actors = []
+    showups = []
     # First, check for nouns that have specified genders.
     matches1 = en.sentence.find(s, "NN is female")
     matches1 += en.sentence.find(s, "NN is male")
@@ -59,6 +65,10 @@ def extract_actors(assertions, s):
     for match in matches:
         name = match[0][0]
         if baby_names.__contains__(name):
+            showups.append(match[0][0])
+            print("current actor:  "+match[0][0])
+            #extract basic property
+            
             if name not in actors:
                 actors.append(name)
                 gender = guess_gender(name)
@@ -67,7 +77,9 @@ def extract_actors(assertions, s):
                     {"l":[name], "relation":"has_gender","r":[gender]}
                 ]
                 assertions.extend([x for x in newAssertions if x not in assertions])
-    return [actors, assertions]
+
+            #no matter contain or not, add to showup
+    return [actors, assertions, showups]
 
 # Examples:
 # The sea was unpredictable.
@@ -82,6 +94,32 @@ def extract_basic_properties(assertions, s, sp):
                 assertions.append(assertion)
     return assertions
 
+def link_basic_properties_to_actor(assertions, showups, s, sp, now_actor_name):
+    #for actor in actors:
+        #print(actor)
+        #matches += en.sentence.find(s, actor + " is (DT) (RB) JJ")
+        #matches += en.sentence.find(s, actor + " was (DT) (RB) JJ")
+        #matches += en.sentence.find(s, actor + " looked (RB) JJ")
+    matches = en.sentence.find(s, "JJ NN")
+    
+    match_names = en.sentence.find(s, "NN")
+    for match_name in match_names:
+        name = match_name[0][0]
+        if baby_names.__contains__(name):
+            now_actor_name = name
+
+    print("\n----"+now_actor_name+"----\n")
+    print(s)
+    #print(matches)
+    print("\n\n")
+    for match in matches:
+        noun = match[1][0]
+        adj  = match[0][0]
+        if noun!="" and adj!="":
+            assertion = {"l":[noun], "relation":"has_property","r":[adj],"storypoints":[{"at":sp}]}
+            if assertion not in assertions:
+                assertions.append(assertion)
+    return [assertions, now_actor_name]
 # Examples:
 # Harry looked ill.
 # Ariel was really happy.

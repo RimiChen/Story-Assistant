@@ -25,8 +25,8 @@ def main(inputString):
 
     # Realize the assertions we learned.
     print "Here's what I learned:"
-    for a in Rensa.get_assertions():
-        print " > " + a.realize(Rensa,False)
+    #for a in Rensa.get_assertions():
+        #print " > " + a.realize(Rensa,False)
         #print " > "
         #print str(a.prettyprint())
         #print " > " + str(a)

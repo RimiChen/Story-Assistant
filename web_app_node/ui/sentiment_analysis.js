@@ -184,7 +184,7 @@
 		var x = x_shift-30;
 		var x_px = x+"px";
 		//var y = i*(h+10)+y_shift-50;
-		var y = (h+10)+y_shift-50;
+		var y = (h+10)+y_shift-70;
 		var y_px = y+"px";
 
 		addElement.addCanvas("sentiment_body", "sentiment_page_"+index_shift+"_"+i,  "sentiment_page", "rgba(255, 255, 255, 0.5)", i+1, x_px, y_px, width, height, border_color);
