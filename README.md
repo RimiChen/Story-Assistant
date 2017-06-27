@@ -1,7 +1,7 @@
 # Story-Assistant
 -----
 Setting Instructions:
-====
+================
 This tool has three parts:
 - visualization web interface
 - text processing
