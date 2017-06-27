@@ -21,7 +21,7 @@ def main(inputString):
     ## remove this line for speed up process
     #print "I'm reading: " + string + "\n* * * "
     #learned = extract_story_concepts(string)
-    learned = extract_story_concepts_no_print(string)
+    #learned = extract_story_concepts_no_print(string)
     
     
     learned_separate = extract_story_concepts_separate(string)
@@ -32,28 +32,47 @@ def main(inputString):
     key = 'John'
     #'Elinor'
     #'Henry'
-    
+    current_assertion_list = {};
     if key in learned_separate:
-        print("In!")
-        #print(str(type(learned_separate[key])))
-        #pp.pprint(sum(learned_separate[key],[]))
-    #print("\n\n"+str(type(learned_separate[Henry])))
-    #print(learned_separate)
+        print("Actor: " +key)
+        Rensa = make_brain(sum(learned_separate[key],[]))
+        current_assertion_list = get_actor_assertions(key, Rensa)
+        new_list = delete_assertion(current_assertion_list, Rensa)
+        #Rensa = make_brain(sum(learned_separate[key],[]))
+    #print "* * *\nProcess completed."
+    
+def delete_assertion(old_list, Rensa):
+    # this function keep reading user input to delete assertion_index_dict
+    print_asseartions(old_list, Rensa)
+    text = raw_input()
+    print(text)
+    new_list = old_list
+    return new_list
+    
+def print_asseartions(current_list, Rensa):
+    for i, j in enumerate(current_list):
+        print("["+str(i)+"]: "+j.realize(Rensa,False))
+        
+def get_actor_assertions(actor_key, Rensa):
 
-    # Store the assertions in a brain.
-    #Rensa = make_brain(learned)
-    Rensa = make_brain(sum(learned_separate[key],[]))
 
     # Realize the assertions we learned.
     #print "Here's what I learned:"
-    for a in Rensa.get_assertions():
-        print " > " + a.realize(Rensa,False)
+    file_name = actor_key+"_out.txt"
+    #target = open(file_name, 'w')
+    #for a in Rensa.get_assertions():
+        #assertion_index_dict[str(list_count)]
+        #target.write(json.dumps(a.realize(Rensa,False)))
+        #target.write("\n")
+        
+    #target.close()
+        
+        #print " > " + a.realize(Rensa,False)
         #print " > "
         #print str(a.prettyprint())
         #print " > " + str(a)
-
-    print "* * *\nProcess completed."
-
+    return Rensa.get_assertions()
+    
 if __name__ == '__main__':
     #read a text file and separate to sentences
     #for number of sentences
