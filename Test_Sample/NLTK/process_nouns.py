@@ -1,10 +1,12 @@
 import nltk
 import math
+import json
+import sys
 from nltk.corpus import gutenberg
 from nltk.tokenize import PunktSentenceTokenizer
 
-train_text = gutenberg.raw("austen-emma.txt")
-sample_text = gutenberg.raw("austen-sense.txt")
+train_text = gutenberg.raw(sys.argv[1])
+sample_text = gutenberg.raw(sys.argv[1])
 
 custom_sent_tokenizer = PunktSentenceTokenizer(train_text)
 
@@ -35,8 +37,8 @@ def process_content():
                         # current word = print(chunked[count][countNoun][0])
                         # if it is nnp add to list and get count
                         #print(chunked[count].pos)
-                    else:
-                        print("{}".format(chunked[count]))
+                    #else:
+                    #    print("{}".format(chunked[count]))
                     
                     countNoun= countNoun+1
 
@@ -103,7 +105,7 @@ def noun_frequency(constant, storyLength):
     # frequency = c log(storyLength)
     frequency = math.floor( constant * math.log10(storyLength))
     return frequency
-def process_content_find_verb():
+def process_content_find_verb(json_length):
     try:
         #how many words in this range
         # create a dictionary to filter out duplicate things
@@ -176,15 +178,30 @@ def process_content_find_verb():
                             #print("action pair: ({}, {})".format(targetString, chunked[count][0]))
         
         #print(dictionary_verb);
+        control_json_limit = 0;
+        print(type(dictionary_verb))
         for x in dictionary_verb:
-            print(repr(x),":",dictionary_verb[x], ",")
+        
+            if control_json_limit < json_length:
+                print(repr(x),":",dictionary_verb[x], ",")
+                control_json_limit = control_json_limit +1
         
     except Exception as e:
         print(str(e))    
 
 
+    return dictionary_verb
 
-        
+def process_json(print_limit, noun_list):
+    new_json_file = str(sys.argv[1]).replace(".txt","")+".json"
+    
+    #print ( sys.argv[1])
+    target = open(new_json_file, 'w')
+    target.write(json.dumps(noun_list, sort_keys=False, indent=4, separators=(',', ': ')))
+    #print (new_json_file)
+    #print ()
+    
+    
 #print("\n\n\n")        
 #print("====get all Noun phrase============")
 #process_content()
@@ -193,4 +210,5 @@ def process_content_find_verb():
 #process_content_filter_freqeuncy()
 print("\n\n\n")
 print("====combine with verb============")
-process_content_find_verb()
+name_list = process_content_find_verb(10)
+process_json(10, name_list)

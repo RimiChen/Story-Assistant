@@ -12,6 +12,11 @@ var storyMainPageFunctions = (function () {
     
   // Keep this variable private inside this closure scope
   var setAll = function() {
+	text_path = localStorage.getItem("text_path");
+	g_current_variables.current_text_file_path = text_path;
+	g_current_variables.current_json_path = text_path.replace(".txt", ".json");
+	console.log("LOAD TEXT PATH: "+g_current_variables.current_text_file_path);
+	console.log("LOAD NOUN PATH: "+g_current_variables.current_json_path);
 
     var test = 0;
     readJsonColor();
@@ -21,7 +26,8 @@ var storyMainPageFunctions = (function () {
 
 	//console.log(frequencyList);
 
-   
+    draw("Dashboard", 'back_to_dashboard');
+	
     draw("Character", 'character_tag_label');
 
     draw("Location", 'location_tag_label');    
@@ -41,12 +47,13 @@ var storyMainPageFunctions = (function () {
     var $parent = $( "#main_frame" );
     
     clickFrequency();
+	clickAllCanvas("#back_to_dashboard");
 	clickCanvas();
 	clickCanvasGetLocation();
 	//clickChara();
 	console.log("Why the browser won't clear data by it self!!")
     //loadText("../text_sample/austen-sense.txt");
-    newLoadText(source_text);
+    newLoadText(g_current_variables.current_text_file_path);
 
     divOnChange();
 	//console.log(text_separate_result);
@@ -56,15 +63,43 @@ var storyMainPageFunctions = (function () {
     drawCanvas("whole_book_view", '../img/book_view.png');
     drawCanvas("chapter_view", '../img/chapter_view.png');
     
-    tagFunction();
-	tagFunction_location();
+    //tagFunction();
+	//tagFunction_location();
     //postData('data to process');
     //$( "#minimap" ).minimap( $parent );
 	//printActions();
 	listenCharaTagOnChange();
 	listenLocationTagOnChange();
-
+	//testPython();
   };
+  //TO DO: test python work on javascript, possible solution: flask, cgi, ajax
+  function testPython(){
+	$.ajax({
+		  type: "POST",
+		  url: "./test.py",
+		  data: { room: "0", sensor: "1"}
+	}).done(function( o ) {
+	});
+	//console.log(jqXHR.responseText);
+  }
+  function clickAllCanvas(elementName){
+	//TODO: move all button check in here
+    //var elementName = "#get_tag_from_text";
+    
+    $(document).ready(function(){
+		switch(elementName) {
+			case "#back_to_dashboard":
+				$(elementName).click(function(){
+					console.log("back_to_dashboard");
+					//back to dashboard
+					window.location.href='../index.html';
+				});
+				break;
+			default:
+				console.log("no element name");
+		}	
+    }); 	
+  }
   function changeValue(test){
     test = 2;
     //return 3;
@@ -90,13 +125,13 @@ var storyMainPageFunctions = (function () {
         //divide text in here
         var currentText = $('#inside_text').text();
 
-        var match_paragraph = new RegExp('\\S[\\s\\S]{0,'+paragraph_limit+'}\\S(?=\\s|$)', "g");
+        var match_paragraph = new RegExp('\\S[\\s\\S]{0,'+g_settings.paragraph_word_limit+'}\\S(?=\\s|$)', "g");
         //console.log(myRe);
 		var m;
         //var result = new Array();
 
 		var page_count = 0;
-        while ((m = match_paragraph.exec(currentText)) !== null && page_count < tabNumber) {
+        while ((m = match_paragraph.exec(currentText)) !== null && page_count < g_settings.tabNumber) {
            text_separate_result.push(m[0]);
 		   // from the beginning, analyze the sentiment to text.
 		   changed_text = readSentimentNav_original(m[0], page_count);	
@@ -109,13 +144,13 @@ var storyMainPageFunctions = (function () {
         
         var text_area = document.getElementById('text_body');
 		
-        for(var tab_iter = 1 ; tab_iter < tabNumber+1; tab_iter++){
+        for(var tab_iter = 1 ; tab_iter < g_settings.tabNumber+1; tab_iter++){
           //initial 1
 		  addDiv(tab_iter, text_original[tab_iter-1]);
 		  //initial 2
-		  addButton(tabNumber, tab_iter);
+		  addButton(tab_iter);
 		  // initial 3
-          addCanvas(tabNumber,tab_iter);
+          addCanvas(tab_iter);
           addElement.addDiv("rightLocation", "location_container"+tab_iter, "location_container", "");
         }
 		//show the first page
@@ -127,7 +162,7 @@ var storyMainPageFunctions = (function () {
 	  });   
   }
   //initial 1
-  function addButton(tabNumber,id_number){
+  function addButton(id_number){
     var newButton = document.createElement("button");
     newButton.id = "button"+id_number;
     newButton.class = "tab_button";
@@ -138,7 +173,7 @@ var storyMainPageFunctions = (function () {
     tab_menu.appendChild(newButton);
     newButton.onclick = function(){
 
-      openStoryTab(tabNumber, id_number);
+      openStoryTab(g_settings.tabNumber, id_number);
     };
 
   }
@@ -154,12 +189,12 @@ var storyMainPageFunctions = (function () {
 
   }
   //initial 3
-  function addCanvas( tabNumber,id_number){
+  function addCanvas( id_number){
     var newCanvas = document.createElement("div");
     newCanvas.id = "canvas"+id_number;
     newCanvas.class = "tab_Canvas";
     newCanvas.addEventListener('click', function(event){
-      openStoryTab(tabNumber, id_number);
+      openStoryTab(id_number);
     });
     var tab_menu = document.getElementById("rightMap");    
     tab_menu.appendChild(newCanvas);
@@ -168,13 +203,13 @@ var storyMainPageFunctions = (function () {
   /*
   * when page tab clicked, open the corresponding story page.
   */
-  var openStoryTab = function(tabNumber, id_number) {
+  var openStoryTab = function(id_number) {
     $(document).ready(function(){
   // Declare all variables
       // Show the current tab, and add an "active" class to the button that opened the tab
       var tempID;
 
-      for (i = 1; i < tabNumber+1; i++) {
+      for (i = 1; i < g_settings.tabNumber+1; i++) {
         tempID = "story_tab"+i;
         document.getElementById(tempID).style.display = "none";
       }
@@ -303,7 +338,7 @@ var storyMainPageFunctions = (function () {
     $(document).ready(function () {
 
 	  console.log("Test");
-      $.getJSON( "../file/sample3.json", function( data ) {
+      $.getJSON( g_current_variables.current_json_path, function( data ) {
 
         $.each( data, function( key, val ) {
 			//console.log(val);
@@ -318,7 +353,7 @@ var storyMainPageFunctions = (function () {
 
 	  });
 
-      $.getJSON( "../file/sample3.json", function( data ) {
+      $.getJSON(g_current_variables.current_json_path, function( data ) {
         $.each( data, function( key, val ) {
 			
 			var color = randColor();
@@ -345,7 +380,7 @@ var storyMainPageFunctions = (function () {
   } 
   var readJson = function(){
     $(document).ready(function () {
-      $.getJSON( "../file/sample3.json", function( data ) {
+      $.getJSON( g_current_variables.current_json_path, function( data ) {
         var items = [];
         $.each( data, function( key, val ) {
 		  frequencyList[key] = val[0];
@@ -362,7 +397,7 @@ var storyMainPageFunctions = (function () {
   }
    var readJson_location = function(){
     $(document).ready(function () {
-      $.getJSON( "../file/sample3.json", function( data ) {
+      $.getJSON( g_current_variables.current_json_path, function( data ) {
         var items = [];
         $.each( data, function( key, val ) {
           // <input type="checkbox" name="vehicle" value="Bike"> I have a bike<br>
@@ -398,7 +433,7 @@ var storyMainPageFunctions = (function () {
         if(charaSelectList[currentTag] ==1){
 			//if never highlight, then highlight
 
-			for(i =0; i<tabNumber; i++){
+			for(i =0; i<g_settings.tabNumber; i++){
 				//for each page
 			  count =0;
    			  highLightColor(i+1, currentTag, colorList[currentTag], count);
@@ -573,7 +608,7 @@ var storyMainPageFunctions = (function () {
 					if(charaSelectList[val] ==1){
 						//if never highlight, then highlight
 
-						for(i =0; i<tabNumber; i++){
+						for(i =0; i<g_settings.tabNumber; i++){
 							//for each page
 						  count =0;
 						  highLightColor(i+1, val, colorList[val], count);
@@ -619,7 +654,7 @@ var storyMainPageFunctions = (function () {
 					if(charaSelectList[val] ==1){
 						//if never highlight, then highlight
 
-						for(i =0; i<tabNumber; i++){
+						for(i =0; i<g_settings.tabNumber; i++){
 							//for each page
 						  count =0;
 						  highLightColor(i+1, val, colorList[val], count);

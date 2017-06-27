@@ -776,7 +776,7 @@ than friendship.
 
 But, whatever might really be its limits, it was enough,
 when perceived by his sister, to make her uneasy,
-and at the same time, (which was still more common,)
+and at the same time, which was still more common,
 to make her uncivil.  She took the first opportunity of
 affronting her mother-in-law on the occasion, talking to
 her so expressively of her brother's great expectations,
@@ -1369,8 +1369,8 @@ feel for a man of thirty-five anything near enough
 to love, to make him a desirable companion to her.
 But I must object to your dooming Colonel Brandon and
 his wife to the constant confinement of a sick chamber,
-merely because he chanced to complain yesterday (a
-very cold damp day) of a slight rheumatic feel in one
+merely because he chanced to complain yesterday a
+very cold damp day of a slight rheumatic feel in one
 of his shoulders."
 
 "But he talked of flannel waistcoats," said Marianne;
@@ -2154,8 +2154,8 @@ She knew her sister's temper.  Opposition on so tender a
 subject would only attach her the more to her own opinion.
 But by an appeal to her affection for her mother,
 by representing the inconveniences which that indulgent
-mother must draw on herself, if (as would probably be
-the case) she consented to this increase of establishment,
+mother must draw on herself, if as would probably be
+the case she consented to this increase of establishment,
 Marianne was shortly subdued; and she promised not to
 tempt her mother to such imprudent kindness by mentioning
 the offer, and to tell Willoughby when she saw him next,
@@ -2963,8 +2963,8 @@ satisfactory way;--but you, Elinor, who love to doubt
 where you can--it will not satisfy YOU, I know; but you
 shall not talk ME out of my trust in it.  I am persuaded
 that Mrs. Smith suspects his regard for Marianne,
-disapproves of it, (perhaps because she has other views
-for him,) and on that account is eager to get him away;--
+disapproves of it, perhaps because she has other views
+for him, and on that account is eager to get him away;--
 and that the business which she sends him off to transact
 is invented as an excuse to dismiss him.  This is what I
 believe to have happened.  He is, moreover, aware that she
@@ -3014,7 +3014,7 @@ But you really do admit the justice of what I have said
 in his defence?--I am happy--and he is acquitted."
 
 "Not entirely.  It may be proper to conceal their
-engagement (if they ARE engaged) from Mrs. Smith--
+engagement if they ARE engaged from Mrs. Smith--
 and if that is the case, it must be highly expedient
 for Willoughby to be but little in Devonshire at present.
 But this is no excuse for their concealing it from us."
@@ -3906,7 +3906,7 @@ if you had any profession to engage your time and give
 an interest to your plans and actions.  Some inconvenience
 to your friends, indeed, might result from it--you
 would not be able to give them so much of your time.
-But (with a smile) you would be materially benefited
+But with a smile you would be materially benefited
 in one particular at least--you would know where to go
 when you left them."
 
@@ -4098,7 +4098,7 @@ and every thing in it burst forth.
 "Well! what a delightful room this is! I never
 saw anything so charming!  Only think, Mamma, how it
 is improved since I was here last! I always thought it
-such a sweet place, ma'am! (turning to Mrs. Dashwood)
+such a sweet place, ma'am! turning to Mrs. Dashwood
 but you have made it so charming!  Only look, sister,
 how delightful every thing is! How I should like such
 a house for myself!  Should not you, Mr. Palmer?"
@@ -4128,8 +4128,8 @@ by no one else, though they were seated on different sides
 of the room; "but, however, I can't help wishing they had
 not travelled quite so fast, nor made such a long journey
 of it, for they came all round by London upon account
-of some business, for you know (nodding significantly and
-pointing to her daughter) it was wrong in her situation.
+of some business, for you know nodding significantly and
+pointing to her daughter it was wrong in her situation.
 I wanted her to stay at home and rest this morning,
 but she would come with us; she longed so much to see
 you all!"
@@ -6366,7 +6366,7 @@ It was a lucky recollection, all her good spirits were
 restored by it.  "It is charming weather for THEM indeed,"
 she continued, as she sat down to the breakfast table
 with a happy countenance.  "How much they must enjoy
-it! But" (with a little return of anxiety) "it cannot
+it! But" with a little return of anxiety "it cannot
 be expected to last long.  At this time of the year,
 and after such a series of rain, we shall certainly
 have very little more of it.  Frosts will soon set in,
@@ -7234,9 +7234,9 @@ had bound us to each other."
 he did not feel the same."
 
 "He DID feel the same, Elinor--for weeks and weeks he
-felt it.  I know he did.  Whatever may have changed him now, (and
+felt it.  I know he did.  Whatever may have changed him now, and
 nothing but the blackest art employed against me can have done
-it), I was once as dear to him as my own soul could wish.
+it, I was once as dear to him as my own soul could wish.
 This lock of hair, which now he can so readily give up,
 was begged of me with the most earnest supplication.
 Had you seen his look, his manner, had you heard his voice
@@ -7300,7 +7300,7 @@ be yours!  Cruel, cruel--nothing can acquit you.  Elinor,
 nothing can.  Whatever he might have heard against me--
 ought he not to have suspended his belief? ought he not to
 have told me of it, to have given me the power of clearing
-myself? 'The lock of hair, (repeating it from the letter,)
+myself? 'The lock of hair, repeating it from the letter,
 which you so obligingly bestowed on me'--That is unpardonable.
 Willoughby, where was your heart when you wrote those words?
 Oh, barbarously insolent!--Elinor, can he be justified?"
@@ -7881,8 +7881,8 @@ He stopt a moment for recollection, and then,
 with another sigh, went on.
 
 "You have probably entirely forgotten a conversation--
-(it is not to be supposed that it could make any impression
-on you)--a conversation between us one evening at Barton
+it is not to be supposed that it could make any impression
+on you--a conversation between us one evening at Barton
 Park--it was the evening of a dance--in which I alluded
 to a lady I had once known, as resembling, in some measure,
 your sister Marianne."
@@ -7934,9 +7934,9 @@ herself at first to all the misery of her situation;
 and happy had it been if she had not lived to overcome those
 regrets which the remembrance of me occasioned.  But can we
 wonder that, with such a husband to provoke inconstancy,
-and without a friend to advise or restrain her (for
+and without a friend to advise or restrain her for
 my father lived only a few months after their marriage,
-and I was with my regiment in the East Indies) she
+and I was with my regiment in the East Indies she
 should fall?  Had I remained in England, perhaps--but I
 meant to promote the happiness of both by removing
 from her for years, and for that purpose had procured
@@ -8012,20 +8012,20 @@ by watching over her education myself, had the nature
 of our situations allowed it; but I had no family, no home;
 and my little Eliza was therefore placed at school.
 I saw her there whenever I could, and after the death of my
-brother, (which happened about five years ago, and which
-left to me the possession of the family property,) she
+brother, which happened about five years ago, and which
+left to me the possession of the family property, she
 visited me at Delaford.  I called her a distant relation;
 but I am well aware that I have in general been suspected
 of a much nearer connection with her.  It is now three
-years ago (she had just reached her fourteenth year,)
+years ago she had just reached her fourteenth year,
 that I removed her from school, to place her under the care
 of a very respectable woman, residing in Dorsetshire,
 who had the charge of four or five other girls of about
 the same time of life; and for two years I had every reason
 to be pleased with her situation.  But last February,
 almost a twelvemonth back, she suddenly disappeared.
-I had allowed her, (imprudently, as it has since turned
-out,) at her earnest desire, to go to Bath with one of
+I had allowed her, imprudently, as it has since turned
+out, at her earnest desire, to go to Bath with one of
 her young friends, who was attending her father there
 for his health.  I knew him to be a very good sort of man,
 and I thought well of his daughter--better than she deserved,
@@ -8318,7 +8318,7 @@ and having thus supported the dignity of her own sex,
 and spoken her decided censure of what was wrong
 in the other, she thought herself at liberty to attend
 to the interest of her own assemblies, and therefore
-determined (though rather against the opinion of Sir John)
+determined though rather against the opinion of Sir John
 that as Mrs. Willoughby would at once be a woman of elegance
 and fortune, to leave her card with her as soon as she married.
 
@@ -8331,7 +8331,7 @@ conversed with confidence.  His chief reward for the
 painful exertion of disclosing past sorrows and present
 humiliations, was given in the pitying eye with which
 Marianne sometimes observed him, and the gentleness
-of her voice whenever (though it did not often happen)
+of her voice whenever though it did not often happen
 she was obliged, or could oblige herself to speak to him.
 THESE assured him that his exertion had produced an
 increase of good-will towards himself, and THESE gave
@@ -8725,7 +8725,7 @@ Elinor could only smile.
 "Other great and inevitable expenses too we have
 had on first coming to Norland.  Our respected father,
 as you well know, bequeathed all the Stanhill effects
-that remained at Norland (and very valuable they were)
+that remained at Norland and very valuable they were
 to your mother.  Far be it from me to repine at his
 doing so; he had an undoubted right to dispose of his
 own property as he chose, but, in consequence of it,
@@ -9914,9 +9914,9 @@ Mrs. Dashwood will do very well.'"
 'is Mrs. Dashwood ill?' So then it all came out; and the
 long and the short of the matter, by all I can learn,
 seems to be this.  Mr. Edward Ferrars, the very young
-man I used to joke with you about (but however, as it
+man I used to joke with you about but however, as it
 turns out, I am monstrous glad there was never any thing
-in it), Mr. Edward Ferrars, it seems, has been engaged
+in it, Mr. Edward Ferrars, it seems, has been engaged
 above this twelvemonth to my cousin Lucy!--There's for you,
 my dear!--And not a creature knowing a syllable of the matter,
 except Nancy!--Could you have believed such a thing possible?--
@@ -9992,8 +9992,8 @@ time enough to collect her thoughts, she was able
 to give such an answer, and make such observations,
 as the subject might naturally be supposed to produce.
 Happy to find that she was not suspected of any extraordinary
-interest in it; that Mrs. Jennings (as she had of late
-often hoped might be the case) had ceased to imagine her
+interest in it; that Mrs. Jennings as she had of late
+often hoped might be the case had ceased to imagine her
 at all attached to Edward; and happy above all the rest,
 in the absence of Marianne, she felt very well able
 to speak of the affair without embarrassment, and to
@@ -10342,8 +10342,8 @@ a situation more deplorable.  The interest of two thousand
 pounds--how can a man live on it?--and when to that is added
 the recollection, that he might, but for his own folly,
 within three months have been in the receipt of two
-thousand, five hundred a-year (for Miss Morton has
-thirty thousand pounds,) I cannot picture to myself
+thousand, five hundred a-year for Miss Morton has
+thirty thousand pounds, I cannot picture to myself
 a more wretched condition.  We must all feel for him;
 and the more so, because it is totally out of our power
 to assist him."
@@ -10555,9 +10555,9 @@ I will take my oath he never dropt a syllable of being
 tired of her, or of wishing to marry Miss Morton, or any
 thing like it.  But, to be sure, Lucy would not give
 ear to such kind of talking; so she told him directly
-(with a great deal about sweet and love, you know,
+with a great deal about sweet and love, you know,
 and all that--Oh, la! one can't repeat such kind of things
-you know)--she told him directly, she had not the least
+you know--she told him directly, she had not the least
 mind in the world to be off, for she could live with him
 upon a trifle, and how little so ever he might have,
 she should be very glad to have it all, you know,
@@ -10580,7 +10580,7 @@ were not you?"
 "No, indeed, not us.  La! Miss Dashwood, do you
 think people make love when any body else is by?  Oh,
 for shame!--To be sure you must know better than that.
-(Laughing affectedly.)--No, no; they were shut up in the
+Laughing affectedly.--No, no; they were shut up in the
 drawing-room together, and all I heard was only by listening
 at the door."
 
@@ -10616,7 +10616,7 @@ out of sight.  Edward have got some business at Oxford,
 he says; so he must go there for a time; and after THAT,
 as soon as he can light upon a Bishop, he will be ordained.
 I wonder what curacy he will get!--Good gracious!
-(giggling as she spoke) I'd lay my life I know what
+giggling as she spoke I'd lay my life I know what
 my cousins will say, when they hear of it.  They will
 tell me I should write to the Doctor, to get Edward
 the curacy of his new living.  I know they will; but I am
@@ -11082,8 +11082,8 @@ wished any one to announce his intentions to Mr. Ferrars
 than himself."
 
 "And so YOU are forced to do it.  Well THAT is an odd
-kind of delicacy!  However, I will not disturb you (seeing
-her preparing to write.)  You know your own concerns best.
+kind of delicacy!  However, I will not disturb you seeing
+her preparing to write.  You know your own concerns best.
 So goodby, my dear.  I have not heard of any thing to
 please me so well since Charlotte was brought to bed."
 
@@ -11150,8 +11150,8 @@ our good wishes, even if we had not been able to give them
 in person.  Mrs. Jennings was quite right in what she said.
 I have something of consequence to inform you of,
 which I was on the point of communicating by paper.
-I am charged with a most agreeable office (breathing
-rather faster than usual as she spoke.)  Colonel Brandon,
+I am charged with a most agreeable office breathing
+rather faster than usual as she spoke.  Colonel Brandon,
 who was here only ten minutes ago, has desired me to say,
 that understanding you mean to take orders, he has
 great pleasure in offering you the living of Delaford
@@ -11218,8 +11218,8 @@ and in his manners perfectly the gentleman."
 
 "Indeed," replied Elinor, "I believe that you will find him,
 on farther acquaintance, all that you have heard him to be,
-and as you will be such very near neighbours (for I understand
-the parsonage is almost close to the mansion-house,)
+and as you will be such very near neighbours for I understand
+the parsonage is almost close to the mansion-house,
 it is particularly important that he SHOULD be all this."
 
 Edward made no answer; but when she had turned
@@ -12492,7 +12492,7 @@ with great self-reproach, recall the tenderness which,
 for a very short time, had the power of creating any return.
 I wish--I heartily wish it had never been.  But I have injured
 more than herself; and I have injured one, whose affection
-for me--(may I say it?) was scarcely less warm than hers;
+for me--may I say it? was scarcely less warm than hers;
 and whose mind--Oh! how infinitely superior!"--
 
 "Your indifference, however, towards that unfortunate
@@ -12608,8 +12608,8 @@ That infamous letter--Did she shew it you?"
 
 "Yes, I saw every note that passed."
 
-"When the first of hers reached me (as it immediately did,
-for I was in town the whole time,) what I felt is--
+"When the first of hers reached me as it immediately did,
+for I was in town the whole time, what I felt is--
 in the common phrase, not to be expressed; in a more
 simple one--perhaps too simple to raise any emotion--
 my feelings were very, very painful.--Every line, every word
@@ -13840,7 +13840,7 @@ to assist the happiness of all.  But he was now married;
 and she condemned her heart for the lurking flattery,
 which so much heightened the pain of the intelligence.
 
-That he should be married soon, before (as she imagined)
+That he should be married soon, before as she imagined
 he could be in orders, and consequently before he could
 be in possession of the living, surprised her a little
 at first.  But she soon saw how likely it was that Lucy,

@@ -1,102 +1,4 @@
-﻿The Project Gutenberg eBook, The Happy Prince, by Oscar Wilde, Illustrated
-by Walter Crane
-
-
-This eBook is for the use of anyone anywhere in the United States and most
-other parts of the world at no cost and with almost no restrictions 
-whatsoever.  You may copy it, give it away or re-use it under the terms of
-the Project Gutenberg License included with this eBook or online at 
-www.gutenberg.org.  If you are not located in the United States, you'll have
-to check the laws of the country where you are located before using this ebook.
-
-
-
-
-Title: The Happy Prince
-       and Other Tales
-
-
-Author: Oscar Wilde
-
-
-
-Release Date: March 29, 2015  [eBook #902]
-[This file was first posted on May 6, 1997]
-
-Language: English
-
-Character set encoding: UTF-8
-
-
-***START OF THE PROJECT GUTENBERG EBOOK THE HAPPY PRINCE***
-
-
-Transcribed from the 1910 David Nutt edition by David Price, email
-ccx074@pglaf.org.  Second proof by Paul Redmond.
-
-                          [Picture: Book cover]
-
-                       [Picture: The Happy Prince]
-
-
-
-
-
-                             The Happy Prince
-                             And Other Tales
-
-
-                                    BY
-                               OSCAR WILDE
-
-                              ILLUSTRATED BY
-                       WALTER CRANE AND JACOMB HOOD
-
-                                * * * * *
-
-                            SEVENTH IMPRESSION
-
-                                * * * * *
-
-                                  LONDON
-                       DAVID NUTT, 57–59 LONG ACRE
-                                   1910
-
-                                * * * * *
-
-_First Edition_         _May_ 1888
-_Second Impression_     _January_ 1889
-_Third Impression_      _February_ 1902
-_Fourth Impression_     _September_ 1905
-_Fifth Impression_      _February_ 1907
-_Sixth Impression_      _March_ 1908
-_Seventh Impression_    _March_ 1910
-
-                                * * * * *
-
-                                   _TO_
-                             _CARLOS BLACKER_
-
-                                * * * * *
-
-                [Picture: Decorative graphic of children]
-
-
-
-
-Contents.
-
-                                        Page
-The Happy Prince                           1
-The Nightingale and the Rose              25
-The Selfish Giant                         43
-The Devoted Friend                        57
-The Remarkable Rocket                     87
-
-
-
-
-The Happy Prince.
+﻿The Happy Prince.
 
 
              [Picture: Woman opening window and seeing bird]
@@ -1952,7 +1854,7 @@ be renamed.
 
 Creating the works from print editions not protected by U.S. copyright
 law means that no one owns a United States copyright in these works,
-so the Foundation (and you!) can copy and distribute it in the United
+so the Foundation and you! can copy and distribute it in the United
 States without permission and without paying copyright
 royalties. Special rules, set forth in the General Terms of Use part
 of this license, apply to copying and distributing Project
@@ -1974,8 +1876,8 @@ PLEASE READ THIS BEFORE YOU DISTRIBUTE OR USE THIS WORK
 
 To protect the Project Gutenberg-tm mission of promoting the free
 distribution of electronic works, by using or distributing this work
-(or any other work associated in any way with the phrase "Project
-Gutenberg"), you agree to comply with all the terms of the Full
+or any other work associated in any way with the phrase "Project
+Gutenberg", you agree to comply with all the terms of the Full
 Project Gutenberg-tm License available with this file or online at
 www.gutenberg.org/license.
 
@@ -1985,7 +1887,7 @@ Gutenberg-tm electronic works
 1.A. By reading or using any part of this Project Gutenberg-tm
 electronic work, you indicate that you have read, understand, agree to
 and accept all the terms of this license and intellectual property
-(trademark/copyright) agreement. If you do not agree to abide by all
+trademark/copyright agreement. If you do not agree to abide by all
 the terms of this agreement, you must cease using and return or
 destroy all copies of Project Gutenberg-tm electronic works in your
 possession. If you paid a fee for obtaining a copy of or access to a
@@ -2004,8 +1906,8 @@ Gutenberg-tm electronic works if you follow the terms of this
 agreement and help preserve free future access to Project Gutenberg-tm
 electronic works. See paragraph 1.E below.
 
-1.C. The Project Gutenberg Literary Archive Foundation ("the
-Foundation" or PGLAF), owns a compilation copyright in the collection
+1.C. The Project Gutenberg Literary Archive Foundation "the
+Foundation" or PGLAF, owns a compilation copyright in the collection
 of Project Gutenberg-tm electronic works. Nearly all the individual
 works in the collection are in the public domain in the United
 States. If an individual work is unprotected by copyright law in the
@@ -2035,9 +1937,9 @@ country outside the United States.
 
 1.E.1. The following sentence, with active links to, or other
 immediate access to, the full Project Gutenberg-tm License must appear
-prominently whenever any copy of a Project Gutenberg-tm work (any work
+prominently whenever any copy of a Project Gutenberg-tm work any work
 on which the phrase "Project Gutenberg" appears, or with which the
-phrase "Project Gutenberg" is associated) is accessed, displayed,
+phrase "Project Gutenberg" is associated is accessed, displayed,
 performed, viewed, copied or distributed:
 
   This eBook is for the use of anyone anywhere in the United States and
@@ -2049,9 +1951,9 @@ performed, viewed, copied or distributed:
   are located before using this ebook.
 
 1.E.2. If an individual Project Gutenberg-tm electronic work is
-derived from texts not protected by U.S. copyright law (does not
+derived from texts not protected by U.S. copyright law does not
 contain a notice indicating that it is posted with permission of the
-copyright holder), the work can be copied and distributed to anyone in
+copyright holder, the work can be copied and distributed to anyone in
 the United States without paying any fees or charges. If you are
 redistributing or providing access to a work with the phrase "Project
 Gutenberg" associated with or appearing on the work, you must comply
@@ -2083,7 +1985,7 @@ any word processing or hypertext form. However, if you provide access
 to or distribute copies of a Project Gutenberg-tm work in a format
 other than "Plain Vanilla ASCII" or other format used in the official
 version posted on the official Project Gutenberg-tm web site
-(www.gutenberg.org), you must, at no additional cost, fee or expense
+www.gutenberg.org, you must, at no additional cost, fee or expense
 to the user, provide a copy, a means of exporting a copy, or a means
 of obtaining a copy upon request, of the work in its original "Plain
 Vanilla ASCII" or other form. Any alternate format must include the
@@ -2103,15 +2005,15 @@ provided that
   to the owner of the Project Gutenberg-tm trademark, but he has
   agreed to donate royalties under this paragraph to the Project
   Gutenberg Literary Archive Foundation. Royalty payments must be paid
-  within 60 days following each date on which you prepare (or are
-  legally required to prepare) your periodic tax returns. Royalty
+  within 60 days following each date on which you prepare or are
+  legally required to prepare your periodic tax returns. Royalty
   payments should be clearly marked as such and sent to the Project
   Gutenberg Literary Archive Foundation at the address specified in
   Section 4, "Information about donations to the Project Gutenberg
   Literary Archive Foundation."
 
 * You provide a full refund of any money paid by a user who notifies
-  you in writing (or by e-mail) within 30 days of receipt that s/he
+  you in writing or by e-mail within 30 days of receipt that s/he
   does not agree to the terms of the full Project Gutenberg-tm
   License. You must require such a user to return or destroy all
   copies of the works possessed in a physical medium and discontinue
@@ -2162,7 +2064,7 @@ DAMAGE.
 
 1.F.3. LIMITED RIGHT OF REPLACEMENT OR REFUND - If you discover a
 defect in this electronic work within 90 days of receiving it, you can
-receive a refund of the money (if any) you paid for it by sending a
+receive a refund of the money if any you paid for it by sending a
 written explanation to the person you received the work from. If you
 received the work on a physical medium, you must return the medium
 with your written explanation. The person or entity that provided you
@@ -2194,9 +2096,9 @@ accordance with this agreement, and any volunteers associated with the
 production, promotion and distribution of Project Gutenberg-tm
 electronic works, harmless from all liability, costs and expenses,
 including legal fees, that arise directly or indirectly from any of
-the following which you do or cause to occur: (a) distribution of this
-or any Project Gutenberg-tm work, (b) alteration, modification, or
-additions or deletions to any Project Gutenberg-tm work, and (c) any
+the following which you do or cause to occur: a distribution of this
+or any Project Gutenberg-tm work, b alteration, modification, or
+additions or deletions to any Project Gutenberg-tm work, and c any
 Defect you cause.
 
 Section 2. Information about the Mission of Project Gutenberg-tm
@@ -2222,7 +2124,7 @@ Section 3. Information about the Project Gutenberg Literary
 Archive Foundation
 
 The Project Gutenberg Literary Archive Foundation is a non profit
-501(c)(3) educational corporation organized under the laws of the
+501c3 educational corporation organized under the laws of the
 state of Mississippi and granted tax exempt status by the Internal
 Revenue Service. The Foundation's EIN or federal tax identification
 number is 64-6221541. Contributions to the Project Gutenberg Literary
@@ -2233,7 +2135,7 @@ The Foundation's principal office is in Fairbanks, Alaska, with the
 mailing address: PO Box 750175, Fairbanks, AK 99775, but its
 volunteers and employees are scattered throughout numerous
 locations. Its business office is located at 809 North 1500 West, Salt
-Lake City, UT 84116, (801) 596-1887. Email contact links and up to
+Lake City, UT 84116, 801 596-1887. Email contact links and up to
 date contact information can be found at the Foundation's web site and
 official page at www.gutenberg.org/contact
 
@@ -2251,7 +2153,7 @@ spread public support and donations to carry out its mission of
 increasing the number of public domain and licensed works that can be
 freely distributed in machine readable form accessible by the widest
 array of equipment including outdated equipment. Many small donations
-($1 to $5,000) are particularly important to maintaining tax exempt
+$1 to $5,000 are particularly important to maintaining tax exempt
 status with the IRS.
 
 The Foundation is committed to complying with the laws regulating

@@ -253,12 +253,12 @@
 					if(locationSelectList[val] ==1){
 						//if never highlight, then highlight
 
-						for(i =0; i<tabNumber; i++){
+						for(i =0; i<g_settings.tabNumber; i++){
 							//for each page
 						  count =0;
 						  highLightLocationColor(i+1, val, colorList[val], count);
 						
-						//console.log("total page = "+tabNumber);
+						//console.log("total page = "+g_settings.tabNumber);
 						//get text, highlight word
 
 							//console.log(locationColorList);
