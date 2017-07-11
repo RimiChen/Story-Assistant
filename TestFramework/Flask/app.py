@@ -3,6 +3,7 @@ from datetime import datetime
 import time
 import json
 from process_nouns import *
+#from use_rensa import *
 
 app = Flask(__name__)
 # prepare log file
@@ -23,20 +24,26 @@ def index():
         'Index.html')
 
 
-
+# POST: chosen text file
 @app.route('/postmethod', methods = ['POST'])
 def get_post_javascript_data():
     jsdata = request.form['javascript_data']
     input_file = jsdata
-    #print("====================================\n\n\n")
-    #print(input_file)  
     # process input file
     last_show = str(input_file).rfind("/")
     input_file = str(input_file)[last_show+1:]
-    #print("remove path: "+input_file)
+
     preprocessing_text_file(input_file)
     return jsdata    
 
+# POST: chosen text file
+@app.route('/post_rensa', methods = ['POST'])
+def get_post_rensa():
+    jsdata = request.form['javascript_data']
+    #print("RENSA: "+str(jsdata))
+    rensa_test(jsdata)
+    return jsdata      
+    
 ##tool ui: /ui/index.html
 @app.route("/ui")
 def ui():
@@ -48,12 +55,13 @@ def ui():
     
     return render_template(
         'ui/index.html')  
-
+# text file and json file path
 @app.route("/Text_sample/<path:path>")
 def send_text_file(path):
     log_file.write(str(datetime.now())+" == System: read file\n")
     return send_from_directory('Text_sample', path)
 
+# image file path
 @app.route("/Img/<path:path>")
 def send_image_file(path):
     log_file.write(str(datetime.now())+" == System: read Image\n")
@@ -62,6 +70,6 @@ def send_image_file(path):
 # app starts from here
 if __name__ == "__main__":
     # record tool log for tracking the system
-    app.run(host='0.0.0.0', port=8116)
+    app.run(host='0.0.0.0', port=8082)
     # close log file after finish
     log_file.close()

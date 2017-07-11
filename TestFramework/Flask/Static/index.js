@@ -131,6 +131,11 @@ var storyMenuFunctions = (function () {
 			$.post( "/postmethod", {
 				javascript_data: file_path_to_storage 
 			});
+			/*
+            $.post( "/post_rensa", {
+				javascript_data: file_path_to_storage 
+			});
+            */
 			  window.location.href='/ui';
 			  //call pyhton function here
 			  
