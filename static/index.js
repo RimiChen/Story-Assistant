@@ -23,9 +23,9 @@ var storyMenuFunctions = (function () {
   	  
     console.log("Load stories to this dashboard");
 
-	var story_icon_path = './img/Book.png';
+	var story_icon_path = 'img/Book.png';
 	
-    var new_story_icon_Path = '{%./img/icon_Create.png%}';
+    var new_story_icon_Path = 'img/icon_Create.png';
     
 	//draw all opened stories
 		for(var storyNumberIter = 0; storyNumberIter < storyNumber; storyNumberIter++){
