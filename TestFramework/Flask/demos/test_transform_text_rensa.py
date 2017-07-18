@@ -7,7 +7,7 @@ import sys
 import os
 import pprint
 
-memory_path = os.path.abspath(os.path.join(os.path.dirname( __file__ ), '.', 'rensapy_src'))
+memory_path = os.path.abspath(os.path.join(os.path.dirname( __file__ ), '..', 'src'))
 sys.path.insert(0, memory_path)
 from Brain import *
 from ConceptExtractor import *

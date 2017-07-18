@@ -70,6 +70,11 @@ def strip_tags(str, clean=True):
     s = TagStripper()
     str = s.strip(str)
     
+    
+    print("See what in str"+type(str)+",  type of s "+type(s))
+    print(str)
+    
+    # regular expression
     import re
     str = re.sub("[ ]+", " ", str)
     
