@@ -53,6 +53,7 @@ function drawGraph(){
     var network = new vis.Network(container, data, options);
 }
 function drawGraph_v3(input_list){
+	add_line(50, 50, 200, 200, "over_graph_frame");
 	console.log(input_list)
 	location_temp = [];
 	count = 1;
@@ -77,13 +78,15 @@ function drawGraph_v3(input_list){
 		w_px = w+"px";
 		h = 50;
 		h_px = h+"px";
-		x= 300*x_count;
+		x= 300*x_count+30;
 		x_px = x+"px";
 		y = 150*count+30;
 		y_px = y+"px"
 		addElement.addCanvas("over_graph_frame", "graph_location_"+key,  "location_canvas", colorList[location_part], key, x_px, y_px, w_px, h_px, "rgba(255,255,255,0.5)");
 		
 		actor_count = 0;
+		x1 = 300*x_count;
+		y1 = 150*count+30;
 		Object.keys(input_list[key]).forEach(function(key_in){
 			//console.log(key_in, input_list[key][key_in])
 			actor_part = input_list[key][key_in].slice(0, input_list[key][key_in].lastIndexOf("_"));
@@ -92,18 +95,38 @@ function drawGraph_v3(input_list){
 			w_px = w+"px";
 			h = 30;
 			h_px = h+"px";
-			x= 300*x_count+120;
+			x= 300*x_count+150;
 			x_px = x+"px";
 			y = 150*count+actor_count*35;
 			y_px = y+"px"
+			
+			x2 = 300*x_count+120;
+			y2 = 150*count+actor_count*35;
 			addElement.addCanvas("over_graph_frame", "graph_actor_"+key+"_"+input_list[key][key_in],  "actor_canvas", colorList[actor_part], input_list[key][key_in], x_px, y_px, w_px, h_px, "rgba(255,255,255,0.5)");
+			//add_line(x1, y1, x2, y2, "over_graph_frame", input_list[key][key_in]);
 			actor_count = actor_count+1;
 		});
 	});
 	console.log(location_temp);
 	
 }
-
+function add_line(x1, y1, x2, y2, target_frame, name){
+//Make an SVG Container
+	console.log("draw line");
+ var svgContainer = d3.select("#over_graph_frame").append("svg")
+                                     .attr("width", 2000)
+                                     .attr("height", 2000);
+ 
+ //Draw the line
+ line_id = "line"+name;
+ var circle = svgContainer.append("line")
+                          .attr("x1", x1)
+                          .attr("y1", y1)
+                         .attr("x2", x2)
+                         .attr("y2", y2)
+                         .attr("stroke-width", 2)
+                         .attr("stroke", "white");				 
+}
 function drawGraph_v2(){
 	console.log("Test vis network");
 cytoscape({
