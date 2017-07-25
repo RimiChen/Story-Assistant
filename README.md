@@ -20,7 +20,7 @@ For Windows users, to the ease of installing nltk, here is Windows Binaries for 
 py -2 -m pip install <latest nltk wheel file>
 ```
 
-Step 3:
+- Third:
 after the installtion is done.
 in python command line >>
 ```
