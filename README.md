@@ -1,4 +1,37 @@
 # Story-Assistant
+
+The newe version of interface are migrated to Flask (python framework, compatible with python 2.7). The latest codes is at TestFramework/Flask_py2
+
+Step 1: install node.js.
+the installation files can be found in here: https://nodejs.org/en/
+
+Step 2: install python version 2.7: https://www.python.org/
+
+Step 3: install python toolkits.
+- The first one is Flask. If you use Windows, the following command helps to install Flask with python 2.7
+```
+py -2 -m pip install Flask
+```
+- Second: nltk package
+install nltk package, http://www.nltk.org/
+
+For Windows users, to the ease of installing nltk, here is Windows Binaries for Python Extension Packages: http://www.lfd.uci.edu/~gohlke/pythonlibs/
+```
+py -2 -m pip install <latest nltk wheel file>
+```
+
+Step 3:
+after the installtion is done.
+in python command line >>
+```
+import nltk
+```
+```
+nltk.download()
+```
+download all corpora.
+
+======= Modified =07/25/2017========================= 
 -----
 Setting Instructions:
 ================
