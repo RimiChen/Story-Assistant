@@ -31,6 +31,10 @@ nltk.download()
 ```
 download all corpora.
 
+Step 4: Lauch python framework
+```
+py -2 app.py <port number>
+```
 ======= Modified =07/25/2017========================= 
 -----
 Setting Instructions:
