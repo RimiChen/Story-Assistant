@@ -5,8 +5,13 @@ sys.path.append(os.path.join(os.path.dirname(__file__), '.', 'src'))
 from Brain import *
 from ConceptExtractor import *
 
-def rensa_test(input_string):
-    print(input_string)
+def rensa_test(input_file):
+    print("\nPrepare to process "+input_file)
+    text_file = open("./Text_sample/austen-sense_1.txt", "r")
+    #print text_file.read()
+    inputString = text_file.read()
+    text_file.close()
+    main(inputString)
     
 def main(inputString):
     ''' Extract story assertions. '''
@@ -29,24 +34,28 @@ def main(inputString):
     #'Elinor'
     #'Henry'
     current_assertion_list = {};
-    json_data=open(sys.argv[1])
+    json_data=open("austen-sense.json")
     jdata = json.load(json_data)
     
     for key in jdata.items():
         actor_key = str(key[0])
-        print(actor_key+"!")
+        #print(actor_key+"!")
     
         if actor_key in learned_separate:
             print("Actor: " +actor_key)
 
             Rensa = make_brain(sum(learned_separate[actor_key],[]))
             current_assertion_list = get_actor_assertions(actor_key, Rensa)
-            new_list = delete_assertion(current_assertion_list, Rensa)
+            #new_list = delete_assertion(current_assertion_list, Rensa)
+            new_list = current_assertion_list
             file_name =actor_key+"_out.txt"
             target = open(file_name, 'w')
             for a in new_list:
                 #assertion_index_dict[str(list_count)]
                 target.write(json.dumps(a.realize(Rensa,False)))
+                #print(str(a.prettyprint())+",  "+type(a.prettyprint()))
+                #target.write("\n")
+                #target.write(str(a.prettyprint()))
                 target.write("\n")
                 
             target.close()

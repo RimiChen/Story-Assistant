@@ -36,6 +36,8 @@ var storyMainPageFunctions = (function () {
 	
 	draw("Get Places", 'get_location_from_text'); 
 	draw("Frequency", 'show_frequency'); 
+	draw("Sentiment", 'show_sentiment'); 
+	draw("Graph", 'show_graph'); 
 
 	
 	console.log("Show place is displayed");
@@ -48,6 +50,8 @@ var storyMainPageFunctions = (function () {
     
     clickFrequency();
 	clickAllCanvas("#back_to_dashboard");
+	clickAllCanvas("#show_sentiment");
+	clickAllCanvas("#show_graph");
 	clickCanvas();
 	clickCanvasGetLocation();
 	//clickChara();
@@ -70,18 +74,9 @@ var storyMainPageFunctions = (function () {
 	//printActions();
 	listenCharaTagOnChange();
 	listenLocationTagOnChange();
-	//testPython();
+
   };
-  //TO DO: test python work on javascript, possible solution: flask, cgi, ajax
-  function testPython(){
-	$.ajax({
-		  type: "POST",
-		  url: "./test.py",
-		  data: { room: "0", sensor: "1"}
-	}).done(function( o ) {
-	});
-	//console.log(jqXHR.responseText);
-  }
+
   function clickAllCanvas(elementName){
 	//TODO: move all button check in here
     //var elementName = "#get_tag_from_text";
@@ -95,6 +90,20 @@ var storyMainPageFunctions = (function () {
 					window.location.href='/';
 				});
 				break;
+			case "#show_sentiment":
+				$(elementName).click(function(){
+					console.log("Show_sentiment");
+					openSentimentNav();
+				});
+				break;
+			case "#show_graph":
+				$(elementName).click(function(){
+					console.log("Show_graph");
+					page_name_list = editNodes_v2();
+					drawGraph_v3(page_name_list);
+					openGraphNav();
+				});
+				break;	
 			default:
 				console.log("no element name");
 		}	
@@ -131,19 +140,32 @@ var storyMainPageFunctions = (function () {
         //var result = new Array();
 
 		var page_count = 0;
-        while ((m = match_paragraph.exec(currentText)) !== null && page_count < g_settings.tabNumber) {
-           text_separate_result.push(m[0]);
+        while ((m = match_paragraph.exec(currentText)) !== null && page_count < g_settings.tabNumber*3) {
+		//while ((m = match_paragraph.exec(currentText)) !== null) {
+			//console.log(m[0].trim().split(/\s+/).length+", "+m[0].length);
+			paragraph_length = m[0].length;
+			
+
+			text_separate_result.push(m[0]);
 		   // from the beginning, analyze the sentiment to text.
+		   text_old.push(m[0])
 		   changed_text = readSentimentNav_original(m[0], page_count);	
 		   text_original.push(changed_text);
 		   page_count = page_count+1;
-        }
+		   
+			if(Math.abs(paragraph_length - g_settings.paragraph_word_limit)> 20){
+				console.log("End of story, should break");
+				break;
+			}
+		}
 
         //how many pages are needed, create divs
 		total_page_number = text_separate_result.length;
+		console.log("###Total: "+total_page_number+" pages.")
         
         var text_area = document.getElementById('text_body');
 		
+		//only create tab numbers of div to fit webpage
         for(var tab_iter = 1 ; tab_iter < g_settings.tabNumber+1; tab_iter++){
           //initial 1
 		  addDiv(tab_iter, text_original[tab_iter-1]);
@@ -156,7 +178,16 @@ var storyMainPageFunctions = (function () {
 		//show the first page
         var first_page = document.getElementById("story_tab"+1);
         first_page.style.display = "block";
-
+		target_frame = "sentiment_body"
+		parent_frame = "#"+target_frame;
+		$(parent_frame).contents().remove();
+		  var target_base = $(parent_frame);
+		  //console.log(target_base);
+		  var target_base_position = target_base.offset();
+		  //console.log(target_base_position);
+		  var left_offset = target_base_position.left;
+		  var top_offset = target_base_position.top;		
+		show_sentiment_bar(g_data.current_page_number, left_offset, top_offset, target_frame);
         
       });      
 	  });   
@@ -172,8 +203,7 @@ var storyMainPageFunctions = (function () {
     var tab_menu = document.getElementById("tab_menu");    
     tab_menu.appendChild(newButton);
     newButton.onclick = function(){
-
-      openStoryTab(g_settings.tabNumber, id_number);
+      openStoryTab(id_number);
     };
 
   }
@@ -216,11 +246,30 @@ var storyMainPageFunctions = (function () {
 
       var tempID = "story_tab"+id_number;
 	  //console.log(id_number);
-      current_page_number = id_number;
+      g_data.current_page_number = id_number;
 	  //reset full text
-	  document.getElementById(tempID).innerHTML = text_original[current_page_number-1];
+	  document.getElementById(tempID).innerHTML = text_original[g_data.current_page_number-1];
+	  //highlight character on tabs
 	  highlight_on_tabs();
+	  //show sentiment bar
+	  //show_sentiment_bar(page_number, pos_x, pos_y);
+	  target_frame = "sentiment_body"
+		parent_frame = "#"+target_frame;
+		$(parent_frame).contents().remove();
+
+	  var target_base = $(parent_frame);
+	  //console.log(target_base);
+	  var target_base_position = target_base.offset();
+	  //console.log(target_base_position);
+	  var left_offset = target_base_position.left;
+	  var top_offset = target_base_position.top;
+	  
+	  show_sentiment_bar(g_data.current_page_number, left_offset, top_offset, target_frame);
+	  //show_sentiment_bar(g_data.current_page_number, left_offset, top_offset+100, target_frame);
+	  //readSentimentNav();
 	  document.getElementById(tempID).style.display = "block";
+
+	  console.log("###"+g_data.current_page_number)
 	 // highLightColor(index, word, color, count)
 	 //highlight according to selected list
 	 
@@ -261,8 +310,12 @@ var storyMainPageFunctions = (function () {
         //alert("Test");
 		//editNodes();
 		//drawGraph();
-		editNodes_v2();
-		drawGraph_v2();
+		
+		
+		//editNodes_v2();
+		//drawGraph_v2();
+		
+		
 		//(new drawGraph_v2()).draw();
         openFrequencyNav();
       });
@@ -589,6 +642,7 @@ var storyMainPageFunctions = (function () {
 			});
 
 			tag_list_base = selected_String.split(",");
+			console.log(tag_list_base);
 			console.log(tag_list_base);
 			//add to list
 			var items = [];

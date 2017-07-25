@@ -18,7 +18,7 @@
   function showFrequency(){
 	//console.log(colorList);
 	//console.log(charaSelectList);
-
+	count = 0;
 	for(var key in colorList){
 		//console.log(colorList[key]);
 		//console.log(charaSelectList);
@@ -30,20 +30,25 @@
 		console.log(target_w +","+target_h);
 		if(key in charaSelectList && key != ""){
 			console.log("character: "+key);
-			var x =Math.floor(Math.random() * target_w);
+			//var x =Math.floor(Math.random() * target_w);
+			x = 100;
 			x_px = x+"px";
-			var y =Math.floor(Math.random() * target_h);
+			//var y =Math.floor(Math.random() * target_h);
+			y = 60*count +50;
 			y_px = y+"px";
 			
-			var f2w = Math.floor(Math.log(frequencyList[key]+1)*20);
+			//var f2w = Math.floor(Math.log(frequencyList[key]+1)*5);
+			f2w = 50;
 			var w = f2w;
 			var width = w+"px";
 			var height = w+"px";
 			var border_color = "#FF0000";
 			addElement.addCanvas("over_frequency_frame", "frequency_chara_"+key,  "freqeucy_chara", colorList[key], key+":"+frequencyList[key], x_px, y_px, width, height, border_color);
 			created[key] = 1;
+			count = count +1;
 			//addElement.addCanvas("over_frequency_frame", "frequency_"+key,  "freqeucy_chara", key);
 		}
+/*		
 		if(key in locationSelectList && key != ""){
 			console.log("location: "+key);
 			//console.log("character: "+key);
@@ -61,7 +66,7 @@
 			addElement.addCanvas("over_frequency_frame", "frequency_location_"+key,  "freqeucy_location", colorList[key], key+":"+frequencyList[key], x_px, y_px, width, height, border_color);
 			created[key] = 1;
 		}
-
+*/
 	}
   }
   function testPrint(){

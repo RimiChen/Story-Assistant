@@ -2,7 +2,15 @@
 var nodes = [];
 //{from: 1, to: 0},
 var edges = [];
+  function openGraphNav() {
+	  document.getElementById("over_graph_frame").style.width = "100%";
 
+  }
+  function closeGraphNav() {
+      document.getElementById("over_graph_frame").style.width = "0%";
+	  //cleanNodes();
+	  //cleanAllNodes();
+  }  
 function drawGraph(){
 	console.log("Test vis");
 
@@ -44,10 +52,62 @@ function drawGraph(){
     };
     var network = new vis.Network(container, data, options);
 }
+function drawGraph_v3(input_list){
+	console.log(input_list)
+	location_temp = [];
+	count = 1;
+	x_count = -1;
+	Object.keys(input_list).forEach(function(key) {
+		//console.log(key, input_list[key]);
+		location_part = key.slice(0, key.lastIndexOf("_"));
+		location_part = location_part.slice(location_part.indexOf("_")+1);
+		if(location_temp[location_part]!= null){
+			count = count +1;
+			location_temp[location_part] = count;
+			//draw with count to get y position
+		}
+		else{
+			location_temp[location_part] = 0;
+			count = 1;
+			x_count = x_count+1;
+			//draw x_count to get x_position
+		}
+		//console.log(50*x_count, 50*count)
+		w= 100;
+		w_px = w+"px";
+		h = 50;
+		h_px = h+"px";
+		x= 300*x_count;
+		x_px = x+"px";
+		y = 150*count+30;
+		y_px = y+"px"
+		addElement.addCanvas("over_graph_frame", "graph_location_"+key,  "location_canvas", colorList[location_part], key, x_px, y_px, w_px, h_px, "rgba(255,255,255,0.5)");
+		
+		actor_count = 0;
+		Object.keys(input_list[key]).forEach(function(key_in){
+			//console.log(key_in, input_list[key][key_in])
+			actor_part = input_list[key][key_in].slice(0, input_list[key][key_in].lastIndexOf("_"));
+			actor_part = actor_part.slice(actor_part.indexOf("_")+1);
+			w= 50;
+			w_px = w+"px";
+			h = 30;
+			h_px = h+"px";
+			x= 300*x_count+120;
+			x_px = x+"px";
+			y = 150*count+actor_count*35;
+			y_px = y+"px"
+			addElement.addCanvas("over_graph_frame", "graph_actor_"+key+"_"+input_list[key][key_in],  "actor_canvas", colorList[actor_part], input_list[key][key_in], x_px, y_px, w_px, h_px, "rgba(255,255,255,0.5)");
+			actor_count = actor_count+1;
+		});
+	});
+	console.log(location_temp);
+	
+}
+
 function drawGraph_v2(){
 	console.log("Test vis network");
 cytoscape({
-  container: document.getElementById('location_graph'),
+  container: document.getElementById('over_graph_frame'),
 
   boxSelectionEnabled: false,
   autounselectify: true,
@@ -101,7 +161,7 @@ function editNodes_v2(){
 			var pageLink = [];
 
 
-			for(i = 1 ; i <= tabNumber; i++){
+			for(i = 1 ; i <= g_settings.tabNumber; i++){
 				var tempID = "#story_tab"+i;
 				var text = $(tempID).text();
 				var inThisPage = text.indexOf(key);
@@ -150,12 +210,15 @@ function editNodes_v2(){
 				}
 				//console.log(pageNameList);
 			}
+			//console.log(pageNameList);
 			//console.log(finalChara);
 		}
 
 	}
-	console.log(nodes[0]);
-	console.log(edges[0]);
+	
+	return pageNameList;
+	//console.log(nodes[0]);
+	//console.log(edges[0]);
 }
 function editNodes(){
 	var finalChara = [];
@@ -170,7 +233,7 @@ function editNodes(){
 			var pageLink = [];
 
 
-			for(i = 1 ; i <= tabNumber; i++){
+			for(i = 1 ; i <= g_settings.tabNumber; i++){
 				var tempID = "#story_tab"+i;
 				var text = $(tempID).text();
 				var inThisPage = text.indexOf(key);

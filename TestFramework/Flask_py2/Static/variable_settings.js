@@ -18,6 +18,7 @@ var g_settings = {
 
 	story_number: 0,
 	tabNumber: 20,
+	tabMaxNumber: -1,
 	dashboard_icon_margin: 200,
 	paragraph_word_limit: 2800
 
@@ -51,7 +52,8 @@ TO DO:
 
 var g_data ={
 	opened_story: {},
-	story_list: []
+	story_list: [],
+	current_page_number: 1
 }
 
 
@@ -59,6 +61,7 @@ var total_page_number = -1;
 var current_page_number = 1;
 var source_text = "../text_sample/austen-sense.txt";
 
+var text_old = new Array();
 var text_original = new Array();
 var text_sentiment = new Array();
 

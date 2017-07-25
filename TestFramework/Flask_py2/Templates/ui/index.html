@@ -108,6 +108,8 @@
     <canvas id="get_tag_from_text" width="80%" height="20"></canvas>
     <canvas id="get_location_from_text" width="80%" height="20"></canvas>
     <canvas id="show_frequency" width="80%" height="20"></canvas>
+    <canvas id="show_sentiment" width="80%" height="20"></canvas>
+	<canvas id="show_graph" width="80%" height="20"></canvas>
 
 
 	</div>
@@ -190,7 +192,7 @@
 
     </div>
     <div id="over_sentiment_frame" class="overlay">
-		<div id = "location_graph"></div>
+		<div id = "sentiment_graph"></div>
 
       <!-- Button to close the overlay navigation -->
       <a href="javascript:void(0)" class="closebtn" onclick="closeSentimentNav()">&times;</a>
@@ -198,7 +200,15 @@
       <!-- Overlay content -->
 
     </div>
-	
+    <div id="over_graph_frame" class="overlay">
+		<div id = "graph_container"></div>
+
+      <!-- Button to close the overlay navigation -->
+      <a href="javascript:void(0)" class="closebtn" onclick="closeGraphNav()">&times;</a>
+
+      <!-- Overlay content -->
+
+    </div>	
 
   </div>
 

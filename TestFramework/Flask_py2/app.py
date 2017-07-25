@@ -33,7 +33,7 @@ def get_post_javascript_data():
     last_show = str(input_file).rfind("/")
     input_file = str(input_file)[last_show+1:]
 
-    preprocessing_text_file(input_file)
+    ###preprocessing_text_file(input_file)
     return jsdata    
 
 # POST: chosen text file
@@ -70,6 +70,6 @@ def send_image_file(path):
 # app starts from here
 if __name__ == "__main__":
     # record tool log for tracking the system
-    app.run(host='0.0.0.0', port=8083)
+    app.run(host='0.0.0.0', port=int(sys.argv[1]))
     # close log file after finish
     log_file.close()

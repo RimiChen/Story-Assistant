@@ -45,7 +45,8 @@ def main(inputString):
 
             Rensa = make_brain(sum(learned_separate[actor_key],[]))
             current_assertion_list = get_actor_assertions(actor_key, Rensa)
-            new_list = delete_assertion(current_assertion_list, Rensa)
+            new_list = current_assertion_list
+            #new_list = delete_assertion(current_assertion_list, Rensa)
             file_name =actor_key+"_out.txt"
             target = open(file_name, 'w')
             for a in new_list:

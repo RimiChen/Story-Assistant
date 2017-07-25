@@ -26,7 +26,7 @@ var addElement = (function () {
 	newDiv.style.color = "#FFFFFF";
 	newDiv.style.borderColor = border_color;
 	newDiv.addEventListener('click', function(event){
-      //openStoryTab(tabNumber, id_number);
+      //openStoryTab(g_settings.tabNumber, id_number);
 	  //console.log(this.id);
 	  if(this.class == "freqeucy_chara"){
 
@@ -44,7 +44,7 @@ var addElement = (function () {
 		
 		if(pageList.length >0){
 			closeFrequencyNav();
-			storyMainPageFunctions.openStoryTab(tabNumber, pageList[0]);
+			storyMainPageFunctions.openStoryTab(g_settings.tabNumber, pageList[0]);
 		}
 		
 	  }
@@ -55,7 +55,7 @@ var addElement = (function () {
   }
   function findPages(chara_name, action_name){
 	var pages = [];
-	for(i =1 ; i <= tabNumber; i++){
+	for(i =1 ; i <= g_settings.tabNumber; i++){
 		var tempID = "#story_tab"+i;
 		var text = $(tempID).text();		
 		//find all occurence of character
