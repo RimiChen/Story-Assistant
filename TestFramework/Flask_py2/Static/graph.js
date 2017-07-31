@@ -53,7 +53,7 @@ function drawGraph(){
     var network = new vis.Network(container, data, options);
 }
 function drawGraph_v3(input_list){
-	add_line(50, 50, 200, 200, "over_graph_frame");
+	//add_line(50, 50, 200, 200, "over_graph_frame");
 	console.log(input_list)
 	location_temp = [];
 	count = 1;
@@ -110,6 +110,7 @@ function drawGraph_v3(input_list){
 	console.log(location_temp);
 	
 }
+/*
 function add_line(x1, y1, x2, y2, target_frame, name){
 //Make an SVG Container
 	console.log("draw line");
@@ -127,6 +128,7 @@ function add_line(x1, y1, x2, y2, target_frame, name){
                          .attr("stroke-width", 2)
                          .attr("stroke", "white");				 
 }
+*/
 function drawGraph_v2(){
 	console.log("Test vis network");
 cytoscape({
