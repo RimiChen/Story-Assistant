@@ -23,6 +23,8 @@ var storyMainPageFunctions = (function () {
 	//printActions();
 	readJson();
     readJson_location();
+	read_story_points();
+	read_actor_assertions('Elinor');
 
 	//console.log(frequencyList);
 
@@ -37,7 +39,8 @@ var storyMainPageFunctions = (function () {
 	draw("Get Places", 'get_location_from_text'); 
 	draw("Frequency", 'show_frequency'); 
 	draw("Sentiment", 'show_sentiment'); 
-	draw("Graph", 'show_graph'); 
+	draw("Graph", 'show_graph');
+	draw("StoryPoint", 'story_points');	
 
 	
 	console.log("Show place is displayed");
@@ -52,6 +55,7 @@ var storyMainPageFunctions = (function () {
 	clickAllCanvas("#back_to_dashboard");
 	clickAllCanvas("#show_sentiment");
 	clickAllCanvas("#show_graph");
+	clickAllCanvas("#story_points");
 	clickCanvas();
 	clickCanvasGetLocation();
 	//clickChara();
@@ -103,7 +107,13 @@ var storyMainPageFunctions = (function () {
 					drawGraph_v3(page_name_list);
 					openGraphNav();
 				});
-				break;	
+				break;
+			case "#story_points":
+				$(elementName).click(function(){
+					console.log("story_points");
+					openStoryNav();
+				});
+				break;					
 			default:
 				console.log("no element name");
 		}	
@@ -430,7 +440,42 @@ var storyMainPageFunctions = (function () {
 	//	console.log("000");
 		console.log(tempKey+": "+frequencyList[tempKey]);
 	}
-  } 
+  }
+  var read_actor_assertions = function(actor_name){
+    $(document).ready(function () {
+		string_index = g_current_variables.current_json_path.lastIndexOf("/");
+		story_json_path = g_current_variables.current_json_path.substring(0,string_index)+"/"+actor_name+".json";
+		//console.log(story_json_path);
+		$.getJSON( story_json_path, function( data ) {
+			
+			$.each( data, function( key) {
+
+				console.log(data[key]['at']);
+				console.log(data[key]['realize']);
+				if(used_assertion[data[key]['at']]){
+				}
+				else{
+					used_assertion[data[key]['at']] = 1;
+				}
+
+			});
+		});
+    });    
+  }   
+  var read_story_points = function(){
+    $(document).ready(function () {
+		string_index = g_current_variables.current_json_path.lastIndexOf("/");
+		story_json_path = g_current_variables.current_json_path.substring(0,string_index)+"/story_point.json";
+		//console.log(story_json_path);
+      $.getJSON( story_json_path, function( data ) {
+        var items = [];
+        $.each( data, function( key, val ) {
+		  story_points[key] = val.replace(/(\r\n|\n|\r|\\|\\n)/gm," ");;
+        });
+		//console.log(story_points);
+		});
+    });    
+  }  
   var readJson = function(){
     $(document).ready(function () {
       $.getJSON( g_current_variables.current_json_path, function( data ) {

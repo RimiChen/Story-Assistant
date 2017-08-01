@@ -60,6 +60,11 @@ def ui():
 def send_text_file(path):
     log_file.write(str(datetime.now())+" == System: read file\n")
     return send_from_directory('Text_sample', path)
+# story points path
+@app.route("/<path:path>")
+def send_story_file(path):
+    log_file.write(str(datetime.now())+" == System: read file\n")
+    return send_from_directory('/', path)
 
 # image file path
 @app.route("/Img/<path:path>")

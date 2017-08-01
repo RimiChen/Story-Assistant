@@ -38,6 +38,8 @@ def main(inputString):
     json_data=open("austen-sense.json")
     jdata = json.load(json_data)
     
+    record_story = [];
+    
     for key in jdata.items():
         actor_key = str(key[0])
         #print(actor_key+"!")
@@ -45,6 +47,7 @@ def main(inputString):
         if actor_key in learned_separate:
             print("Actor: " +actor_key)
 
+            ## brain
             Rensa = make_brain(sum(learned_separate[actor_key],[]))
             current_assertion_list = get_actor_assertions(actor_key, Rensa)
             #new_list = delete_assertion(current_assertion_list, Rensa)
@@ -55,11 +58,20 @@ def main(inputString):
                 #assertion_index_dict[str(list_count)]
                 target.write(json.dumps(a.realize(Rensa,False)))
                 #print(str(a.prettyprint())+",  "+type(a.prettyprint()))
-                #target.write("\n")
-                #target.write(str(a.prettyprint()))
                 target.write("\n")
+                target.write(str(a.to_dict()['storypoints'][0]))
+                #target.write("\n")
+                #target.write(str(type(a.to_dict()['storypoints'][0]['at'])))                
+                target.write("\n")
+                temp_dict = {}
+                temp_dict['at'] = a.to_dict()['storypoints'][0]['at']
+                temp_dict['realize']=a.realize(Rensa,False)
+                record_story.append(dict(temp_dict));
                 
             target.close()
+            #print(record_story)
+            actor_json = open(actor_key+".json", 'w')
+            actor_json.write(json.dumps([{"at": str(item['at']), "realize": item['realize']} for item in record_story]))
         #Rensa = make_brain(sum(learned_separate[key],[]))
     #print "* * *\nProcess completed."
     

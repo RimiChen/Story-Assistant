@@ -23,7 +23,7 @@ var g_settings = {
 	paragraph_word_limit: 2800
 
 };
-
+used_assertion = {};
 /*
 --CURRENT VARIABLES--
 
@@ -55,7 +55,8 @@ var g_data ={
 	story_list: [],
 	current_page_number: 1
 }
-
+var story_points = {};
+var match_story = {};
 
 var total_page_number = -1;
 var current_page_number = 1;

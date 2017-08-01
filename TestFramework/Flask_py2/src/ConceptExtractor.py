@@ -3,7 +3,10 @@ This file provides fast, simple extraction of Rensa assertions from natural text
 
 Advanced users may want to look into more thorough extractors (e.g. Fader et al., 2011: "Identifying relations for open information extraction") or build their own.
 '''
-
+import sys
+import os
+import json
+import pprint
 import en
 #import regular expression
 import re
@@ -11,6 +14,7 @@ from Entity import *
 
 # Returns a list of story assertions gleaned from the string s.
 actor_gender = {};
+##didn't use it
 def extract_story_concepts(s):
     actors, assertions = [], []
     # s in here is the target sentence
@@ -33,6 +37,7 @@ def extract_story_concepts(s):
     old_assertions = [];
     for sp,e in enumerate(sentences):
         #assertions = [];
+        print("\n01:"+str(sp)+", "+str(sentences))
         assertions = extract_basic_properties(assertions, e, sp)
         #new_assertions = extract_basic_properties(assertions, e, sp)
         
@@ -80,6 +85,7 @@ def extract_story_concepts(s):
     else:
         return assertions
 
+##didn't use it
 def extract_story_concepts_no_print(s):
     actors, assertions = [], []
     # s in here is the target sentence
@@ -103,6 +109,7 @@ def extract_story_concepts_no_print(s):
     for sp,e in enumerate(sentences):
         #assertions = [];
         assertions = extract_basic_properties(assertions, e, sp)
+        print("\n02:"+str(sp)+", "+str(sentences))
         #new_assertions = extract_basic_properties(assertions, e, sp)
         
         ##should return two variables
@@ -171,8 +178,14 @@ def extract_story_concepts_separate(s):
     now_actor_name = "Unknown"
     new = 1;
     old_assertions = [];
+    #target = open('story_point.json', 'w')
+    # empty dictionary
+    story_points = {}    
     for sp,e in enumerate(sentences):
         #assertions = [];
+        story_points[str(sp)] = str(e.replace('\n', ' ').replace('\r', ''))
+        #print("\n")
+        #print("\n 03:"+str(sp)+", "+str(e))
         assertions = extract_basic_properties(assertions, e, sp)
         #new_assertions = extract_basic_properties(assertions, e, sp)
         
@@ -217,6 +230,9 @@ def extract_story_concepts_separate(s):
         assertions = extract_actor_actions(assertions, actors, e, sp)
         assertions = extract_actor_properties(assertions, showups, e, sp)
 
+    target = open('story_point.json', 'w')
+    target = target.write(json.dumps(story_points, ensure_ascii=False, indent = 4))
+    #target.close()
     #print(assertions)
     #print(new_assertions)
     #print(actor_gender)
