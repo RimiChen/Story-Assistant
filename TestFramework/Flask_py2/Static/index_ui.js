@@ -41,6 +41,7 @@ var storyMainPageFunctions = (function () {
 	draw("Sentiment", 'show_sentiment'); 
 	draw("Graph", 'show_graph');
 	draw("StoryPoint", 'story_points');	
+    draw("ShowAll", 'show_all');	
 
 	
 	console.log("Show place is displayed");
@@ -56,6 +57,7 @@ var storyMainPageFunctions = (function () {
 	clickAllCanvas("#show_sentiment");
 	clickAllCanvas("#show_graph");
 	clickAllCanvas("#story_points");
+    clickAllCanvas("#show_all");
 	clickCanvas();
 	clickCanvasGetLocation();
 	//clickChara();
@@ -113,7 +115,13 @@ var storyMainPageFunctions = (function () {
 					console.log("story_points");
 					openStoryNav();
 				});
-				break;					
+				break;
+			case "#show_all":
+				$(elementName).click(function(){
+					console.log("show_all");
+					openShowAllNav();
+				});
+				break;	                
 			default:
 				console.log("no element name");
 		}	

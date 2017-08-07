@@ -78,7 +78,7 @@
 <script src="{{url_for('static',filename='frequency.js')}}"></script>
 <script src="{{url_for('static',filename='graph.js')}}"></script>
 <script src="{{url_for('static',filename='story.js')}}"></script>
-
+<script src="{{url_for('static',filename='showall.js')}}"></script>
 <script src="//d3js.org/d3.v4.min.js"></script>
 
 
@@ -111,7 +111,7 @@
     <canvas id="show_sentiment" width="80%" height="20"></canvas>
 	<canvas id="show_graph" width="80%" height="20"></canvas>
 	<canvas id="story_points" width="80%" height="20"></canvas>
-
+	<canvas id="show_all" width="80%" height="20"></canvas>
 
 	</div>
   <div>
@@ -211,7 +211,6 @@
 
     </div>	
     <div id="over_story_frame" class="overlay">
-		<div id = "story_container"></div>
 
       <!-- Button to close the overlay navigation -->
       <a href="javascript:void(0)" class="closebtn" onclick="closeStoryNav()">&times;</a>
@@ -219,6 +218,13 @@
       <!-- Overlay content -->
 
     </div>
+    <div id="show_all_frame" class="overlay">
+
+      <!-- Button to close the overlay navigation -->
+      <a href="javascript:void(0)" class="closebtn" onclick="closeShowAllNav()">&times;</a>
+
+      <!-- Overlay content -->
+    </div>    
   </div>
 
 

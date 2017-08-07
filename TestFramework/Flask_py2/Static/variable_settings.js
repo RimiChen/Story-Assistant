@@ -20,7 +20,7 @@ var g_settings = {
 	tabNumber: 20,
 	tabMaxNumber: -1,
 	dashboard_icon_margin: 200,
-	paragraph_word_limit: 2800
+	paragraph_word_limit: 2500
 
 };
 used_assertion = {};

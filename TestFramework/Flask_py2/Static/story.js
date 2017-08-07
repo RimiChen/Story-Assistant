@@ -85,13 +85,15 @@ function add_story_point(target_frame, shift, story_text, color){
 	//console.log(target_base_position);
 	left_offset = target_base_position.left;
 	top_offset = target_base_position.top;
-	var x = left_offset+ shift*20;
+	var x = left_offset+ shift*20-50;
 	var x_px = x+"px";
 	//var y = i*(h+10)+y_shift-50;
 	var y = top_offset;
 	var y_px = y+"px";
 	//console.log("x_shift: "+x  +", y_shift: "+y+", shift:"+shift);	
-	addElement.addCanvas(target_frame,target_frame+"_"+item,"story_point_block", color, story_text, x_px, y_px, width, height, border_color);
+	//"over_story_frame"
+    //addElement.addCanvas(target_frame,target_frame+"_"+item,"story_point_block", color, story_text, x_px, y_px, width, height, border_color);
+    addElement.addCanvas("over_story_frame",target_frame+"_"+item,"story_point_block", color, story_text, x_px, y_px, width, height, border_color);
 
 }	
 function addPageFrames(x_shift, y_shift, index_shift, page_number, target_frame){
