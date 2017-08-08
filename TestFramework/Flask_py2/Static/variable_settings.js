@@ -27,7 +27,7 @@ used_assertion = {};
 var text_variables = {
 	number_columns: 3,
 	number_pages: -1,
-	font_size: 10
+	font_size: 3
 }
 /*
 --CURRENT VARIABLES--

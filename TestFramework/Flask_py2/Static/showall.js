@@ -44,6 +44,7 @@ function display_text(){
 			//console.log(target_text);
 			divID = "text_display_"+i;
 			var currentText = document.getElementById(divID);
+			currentText.style.fontSize = text_variables.font_size+"px";
 			currentText.innerHTML = target_text;			
 		}
 
