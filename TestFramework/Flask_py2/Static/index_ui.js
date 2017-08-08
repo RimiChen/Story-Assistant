@@ -158,12 +158,14 @@ var storyMainPageFunctions = (function () {
         //var result = new Array();
 
 		var page_count = 0;
-        while ((m = match_paragraph.exec(currentText)) !== null && page_count < g_settings.tabNumber*3) {
-		//while ((m = match_paragraph.exec(currentText)) !== null) {
+        //while ((m = match_paragraph.exec(currentText)) !== null && page_count < g_settings.tabNumber*3) {
+		while ((m = match_paragraph.exec(currentText)) !== null) {
 			//console.log(m[0].trim().split(/\s+/).length+", "+m[0].length);
 			paragraph_length = m[0].length;
-			
-
+			if(Math.abs(paragraph_length - g_settings.paragraph_word_limit)> 20){
+				console.log("End of story, should break");
+				break;
+			}			
 			text_separate_result.push(m[0]);
 		   // from the beginning, analyze the sentiment to text.
 		   text_old.push(m[0])
@@ -171,10 +173,7 @@ var storyMainPageFunctions = (function () {
 		   text_original.push(changed_text);
 		   page_count = page_count+1;
 		   
-			if(Math.abs(paragraph_length - g_settings.paragraph_word_limit)> 20){
-				console.log("End of story, should break");
-				break;
-			}
+
 		}
 
         //how many pages are needed, create divs

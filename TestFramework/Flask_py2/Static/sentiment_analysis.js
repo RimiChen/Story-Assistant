@@ -41,7 +41,8 @@
 		target_text = text_old[current_page-1];
 		//console.log("page: "+(current_page)+", "+target_text.length);
 		analyzeSentitment_dot_v2(max_sentence, target_text, targetID);
-  }  
+  }
+  
    function analyzeSentitment_dot_v2(max_sentence, target_text, targetID){
 	// split text with number of sentences
 	//console.log("show target: "+targetID)

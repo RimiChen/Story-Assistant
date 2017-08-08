@@ -12,6 +12,7 @@
 
 <link rel="stylesheet" href="{{url_for('static',filename='./css/main_page.css')}}">
 <link rel="stylesheet" href="{{url_for('static',filename='./css/overlay.css')}}">
+<link rel="stylesheet" href="{{url_for('static',filename='./css/overlay_no_alpha.css')}}">
 <link rel="stylesheet" href="{{url_for('static',filename='./css/tag_list.css')}}">
 
 <link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
@@ -218,7 +219,22 @@
       <!-- Overlay content -->
 
     </div>
-    <div id="show_all_frame" class="overlay">
+    <div id="show_all_frame" class="overlay_no_alpha">
+		<div id = "vertical_top"></div>
+		<div id = "vertical_middle">
+			<div id = "horizontal_left">
+				<div id = "actor_menu"></div>
+				<div id = "location_menu"></div>
+			</div>
+			<div id = "horizontal_middle">
+				<div id = "text_display"></div>
+			
+			</div>
+			<div id = "horizontal_right">
+				<div id = "sentiment_box_display"></div>			
+			</div>
+		</div>
+		<div id = "vertical_down"></div>
 
       <!-- Button to close the overlay navigation -->
       <a href="javascript:void(0)" class="closebtn" onclick="closeShowAllNav()">&times;</a>
