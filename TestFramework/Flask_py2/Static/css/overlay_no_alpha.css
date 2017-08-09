@@ -58,7 +58,7 @@
 #horizontal_left{
 	height:100%;
 	width: 10%;
-	border: 2px solid #FFFF00;
+	/*border: 2px solid #FFFF00;*/
     text-align: center; /* Centered text/links */
 	clear:both;
 	display:inline-block;
@@ -66,7 +66,7 @@
 #horizontal_middle{
 	height:100%;
 	width: 44%;
-	border: 2px solid #FF00FF;
+	/*border: 2px solid #FF00FF;*/
     text-align: center; /* Centered text/links */
 	clear:both;
 	display:inline-block;
@@ -74,7 +74,7 @@
 #horizontal_right{
 	height:100%;
 	width: 44%;
-	border: 2px solid #00FFFF;
+	/*border: 2px solid #00FFFF;*/
     text-align: center; /* Centered text/links */
 	clear:both;
 	display:inline-block;	
@@ -82,7 +82,7 @@
 #actor_menu{
 	height:30%;
 	width: 95%;
-	border: 2px solid #FFFFFF;
+	/*border: 2px solid #FFFFFF;*/
     text-align: center; /* Centered text/links */
 	clear:both;
 	margin-top: 5%;
@@ -90,7 +90,7 @@
 #location_menu{
 	height:30%;
 	width: 95%;
-	border: 2px solid #FFFFFF;
+	/*border: 2px solid #FFFFFF;*/
     text-align: center; /* Centered text/links */
 	clear:both;
 	margin-top: 5%;
@@ -98,7 +98,7 @@
 #text_display{
 	height:100%;
 	width: 100%;
-	border: 2px solid #FFFFFF;
+	/*border: 2px solid #FFFFFF;*/
     text-align: center; /* Centered text/links */
 	clear:both;
 }

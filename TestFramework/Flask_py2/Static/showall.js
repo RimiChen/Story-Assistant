@@ -1,6 +1,8 @@
 function openShowAllNav() {
     display_text();
 	display_sentiment_box();
+	add_actor_list();
+	add_location_list();
 	document.getElementById("show_all_frame").style.width = "100%";
 }
 function closeShowAllNav() {
@@ -84,7 +86,7 @@ function display_sentiment_box(){
 			//var x = width*i+target_offset_left;
 			var x = x_shift+column_width*i;
 			var x_px = x+"px";
-			console.log("X: "+x+", "+"Y: "+y+", W: "+column_width+", H:"+h);		
+			//console.log("X: "+x+", "+"Y: "+y+", W: "+column_width+", H:"+h);		
 			//addElement.addCanvas(target_frame, "sentiment_box_display_"+i,  "sentiment_box_display_column", "rgba(255, 255, 255, 1)", i+1, x_px, y_px, w_px, h_px, "rgba(255, 255, 255, 0.5)");
 			//careate sentiment boxes
 			parent_x = x;
@@ -105,7 +107,7 @@ function group_text(start_index, page_number){
 	return target_text;
 }
 function create_sentiment_boxes(start_index, page_limit, parent_x, parent_w, parent_h){
-	console.log("X:"+parent_x);
+	//console.log("X:"+parent_x);
 	
 	for(j = 0; j< page_limit; j++){
 		//carete boxes
@@ -214,4 +216,103 @@ function addSentimentDot_adjust(color, count, targetID, sentence_number, parent_
 	newCanvas.style.border = 'none';
     //newCanvas.style.top = dotTarget.style.top;
     //newCanvas.style.left = dotTarget.style.left+100;    
+}
+function add_actor_list(){
+	console.log(charaSelectList);
+	window_width = $( window ).width();
+	window_height = $( window ).height();
+	target_frame = "actor_menu";
+	var target_base = $("#"+target_frame);
+	var target_base_width = target_base.width();
+	var target_base_height = target_base.height();
+	var target_base_offset = target_base.offset();
+	var target_offset_left = target_base_offset.left;
+	var target_offset_top = target_base_offset.top;
+	
+	actor_iter = 0;
+	for(actor_name in charaSelectList ){
+		if(actor_name != ""){
+		//create color bolck
+			block_width = window_width*0.1;
+			var actor_w = block_width*0.1;
+			var actor_w_px = actor_w+"px";
+			var actor_h = actor_w;
+			var actor_h_px = actor_h+"px";
+			var actor_y = 10+(actor_h+2)*actor_iter;
+			var actor_y_px = actor_y+"px";
+			//var x = width*i+target_offset_left;
+			var actor_x = target_base_offset.left;
+			var actor_x_px = actor_x+"px";
+			console.log("^^X: "+actor_x+", "+"Y: "+actor_y+", W: "+actor_w+", H:"+actor_h);
+			//console.log(""+colorList[charaSelectList[actor_iter]]+", "+charaSelectList[actor_iter]);
+			addElement.addCanvas("actor_menu", "actor_menu_box_"+actor_iter,  "actor_menu_box", colorList[actor_name], "", actor_x_px, actor_y_px, actor_w_px, actor_h_px, "rgba(255, 255, 255, 0.5)");
+			//create name block
+			var w = target_base_width - actor_w-2;
+			var w_px = w+"px";
+			var h = actor_h;
+			var h_px = h+"px";
+			var y = 10+(actor_h+2)*actor_iter;
+			var y_px = y+"px";
+			//var x = width*i+target_offset_left;
+			var x = target_base_offset.left+actor_w+1;
+			var x_px = x+"px";
+			addElement.addCanvas("actor_menu", "actor_menu_name_"+actor_iter,  "actor_menu_name",  "rgba(255, 255, 255, 0)", actor_name, x_px, y_px, w_px, h_px, "rgba(255, 255, 255, 0.5)");
+			
+			
+			actor_iter++;
+
+
+		}
+	}
+	
+}
+function add_location_list(){
+	console.log(locationSelectList);
+	window_width = $( window ).width();
+	window_height = $( window ).height();
+	target_frame = "location_menu";
+	var target_base = $("#"+target_frame);
+	var target_base_width = target_base.width();
+	var target_base_height = target_base.height();
+	var target_base_offset = target_base.offset();
+	var target_offset_left = target_base_offset.left;
+	var target_offset_top = target_base_offset.top;
+	
+	actor_iter = 0;
+	height_shift = target_base_height+20;
+	for(actor_name in locationSelectList ){
+		if(actor_name != ""){
+		//create color bolck
+			block_width = window_width*0.1;
+			var actor_w = block_width*0.1;
+			var actor_w_px = actor_w+"px";
+			var actor_h = actor_w;
+			var actor_h_px = actor_h+"px";
+			var actor_y = height_shift+(actor_h+2)*actor_iter;
+			var actor_y_px = actor_y+"px";
+			//var x = width*i+target_offset_left;
+			var actor_x = target_base_offset.left;
+			var actor_x_px = actor_x+"px";
+			console.log("^^X: "+actor_x+", "+"Y: "+actor_y+", W: "+actor_w+", H:"+actor_h);
+			//console.log(""+colorList[charaSelectList[actor_iter]]+", "+charaSelectList[actor_iter]);
+			addElement.addCanvas("location_menu", "location_menu_box_"+actor_iter,  "location_menu_box", colorList[actor_name], "", actor_x_px, actor_y_px, actor_w_px, actor_h_px, "rgba(255, 255, 255, 0.5)");
+			//create name block
+			var w = target_base_width - actor_w-2;
+			var w_px = w+"px";
+			var h = actor_h;
+			var h_px = h+"px";
+			var y = height_shift+(actor_h+2)*actor_iter;
+			var y_px = y+"px";
+			//var x = width*i+target_offset_left;
+			var x = target_base_offset.left+actor_w+1;
+			var x_px = x+"px";
+			addElement.addCanvas("location_menu", "location_menu_name_"+actor_iter,  "location_menu_name",  "rgba(255, 255, 255, 0)", actor_name, x_px, y_px, w_px, h_px, "rgba(255, 255, 255, 0.5)");
+			
+			
+			actor_iter++;
+
+
+		}
+	}
+	
 }
