@@ -24,11 +24,26 @@ var g_settings = {
 
 };
 used_assertion = {};
+var display_settings = {
+	outer_frame_width :6818,
+	outer_frame_Height :2240,
+	margin_top: 100
+}
+
 var text_variables = {
 	number_columns: 4,
 	number_pages: -1,
-	font_size: 3
+	font_size: 6,
+	margin_top: 100
 }
+
+var sentiment_variables = {
+	number_columns: 4,
+	number_pages: -1,
+	margin_top: 100
+}
+
+
 /*
 --CURRENT VARIABLES--
 

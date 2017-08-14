@@ -1,4 +1,5 @@
 function openShowAllNav() {
+	initial_showall_settings();
     display_text();
 	display_sentiment_box();
 	add_actor_list();
@@ -7,6 +8,10 @@ function openShowAllNav() {
 }
 function closeShowAllNav() {
     document.getElementById("show_all_frame").style.width = "0%";
+}
+//set all variables
+function initial_showall_settings(){
+	$("#vertical_middle").css("margin-top", display_settings.margin_top+"px");
 }
 function display_text(){
 	//show all text
