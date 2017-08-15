@@ -24,17 +24,26 @@ var g_settings = {
 
 };
 used_assertion = {};
+
 var display_settings = {
 	outer_frame_width :6818,
 	outer_frame_Height :2240,
-	margin_top: 100
+	margin_top: 100,
+	menu_left_shift: 0,
+	menu_width: 200
+
+	
 }
 
 var text_variables = {
-	number_columns: 4,
+	number_columns: 5,
 	number_pages: -1,
 	font_size: 6,
-	margin_top: 100
+	margin_top: 100,
+	margin_bottom: 200,
+	height:display_settings.outer_frame_Height,
+	width: 1000,
+	empty_space: 30
 }
 
 var sentiment_variables = {

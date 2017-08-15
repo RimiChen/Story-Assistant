@@ -12,6 +12,9 @@ function closeShowAllNav() {
 //set all variables
 function initial_showall_settings(){
 	$("#vertical_middle").css("margin-top", display_settings.margin_top+"px");
+	$("#horizontal_left").css("margin-left", display_settings.menu_left_shift+"px");
+	$("#horizontal_left").css("width", display_settings.menu_width+"px");
+	$("#text_display").css("margin-left", display_settings.menu_width+"px");
 }
 function display_text(){
 	//show all text
@@ -20,8 +23,10 @@ function display_text(){
 	//clear old display
 	parent_frame = "#"+"text_display";
 	$(parent_frame).contents().not('.closebtn').remove();	
+
 	$(document).ready(function(){
 		//create columns
+		console.log(text_variables.height);
 		target_frame = "text_display";
 		var target_base = $("#"+target_frame);
 		var target_base_width = target_base.width();
@@ -29,25 +34,26 @@ function display_text(){
 		var target_base_offset = target_base.offset();
 		var target_offset_left = target_base_offset.left;
 		//width = 100/text_variables.number_columns -5;
-		width = 44/text_variables.number_columns -1;
-		window_width = $( window ).width();
-		x_shift = window_width*0.12;
+		width = text_variables.width;
+		//window_width = $( window ).width();
+		//x_shift = window_width*0.12;
+		x_shift = text_variables.empty_space;
 		//console.log("Number of pages "+text_original.length+ " Old pages: "+text_old.length);
 		page_limit = Math.floor(text_original.length/text_variables.number_columns);
 		for(i = 0; i < text_variables.number_columns; i++){
 			var w = width;
-			var w_px = w+"%";
-			var column_width =window_width*w/100; 
-			var h = target_base_height-5;
+			var w_px = w+"px";
+			var h = text_variables.height;
 			var h_px = h+"px";
 			var y =  0;
 			var y_px = y+"px";
 			//var x = width*i+target_offset_left;
-			var x = x_shift+column_width*i;
+			var x = (x_shift+w)*i;
 			var x_px = x+"px";
 			//console.log("X: "+x+", "+"Y: "+y+", W: "+column_width+", H:"+h);		
 			addElement.addCanvas(target_frame, "text_display_"+i,  "text_display_column", "rgba(255, 255, 255, 1)", i+1, x_px, y_px, w_px, h_px, "rgba(255, 255, 255, 0.5)");
 			target_text = group_text(page_limit*i, page_limit);
+			$("#"+"text_display_"+i).css("margin-bottom", text_variables.margin_bottom+"px");
 			//console.log(target_text);
 			divID = "text_display_"+i;
 			var currentText = document.getElementById(divID);
@@ -226,7 +232,7 @@ function add_actor_list(){
 	console.log(charaSelectList);
 	window_width = $( window ).width();
 	window_height = $( window ).height();
-	target_frame = "actor_menu";
+	target_frame = "horizontal_left";
 	var target_base = $("#"+target_frame);
 	var target_base_width = target_base.width();
 	var target_base_height = target_base.height();
@@ -250,7 +256,7 @@ function add_actor_list(){
 			var actor_x_px = actor_x+"px";
 			console.log("^^X: "+actor_x+", "+"Y: "+actor_y+", W: "+actor_w+", H:"+actor_h);
 			//console.log(""+colorList[charaSelectList[actor_iter]]+", "+charaSelectList[actor_iter]);
-			addElement.addCanvas("actor_menu", "actor_menu_box_"+actor_iter,  "actor_menu_box", colorList[actor_name], "", actor_x_px, actor_y_px, actor_w_px, actor_h_px, "rgba(255, 255, 255, 0.5)");
+			addElement.addCanvas("horizontal_left", "actor_menu_box_"+actor_iter,  "actor_menu_box", colorList[actor_name], "", actor_x_px, actor_y_px, actor_w_px, actor_h_px, "rgba(255, 255, 255, 0.5)");
 			//create name block
 			var w = target_base_width - actor_w-2;
 			var w_px = w+"px";
@@ -261,7 +267,7 @@ function add_actor_list(){
 			//var x = width*i+target_offset_left;
 			var x = target_base_offset.left+actor_w+1;
 			var x_px = x+"px";
-			addElement.addCanvas("actor_menu", "actor_menu_name_"+actor_iter,  "actor_menu_name",  "rgba(255, 255, 255, 0)", actor_name, x_px, y_px, w_px, h_px, "rgba(255, 255, 255, 0.5)");
+			addElement.addCanvas("horizontal_left", "actor_menu_name_"+actor_iter,  "actor_menu_name",  "rgba(255, 255, 255, 0)", actor_name, x_px, y_px, w_px, h_px, "rgba(255, 255, 255, 0.5)");
 			
 			
 			actor_iter++;
@@ -275,7 +281,7 @@ function add_location_list(){
 	console.log(locationSelectList);
 	window_width = $( window ).width();
 	window_height = $( window ).height();
-	target_frame = "location_menu";
+	target_frame = "horizontal_left";
 	var target_base = $("#"+target_frame);
 	var target_base_width = target_base.width();
 	var target_base_height = target_base.height();
@@ -300,7 +306,7 @@ function add_location_list(){
 			var actor_x_px = actor_x+"px";
 			console.log("^^X: "+actor_x+", "+"Y: "+actor_y+", W: "+actor_w+", H:"+actor_h);
 			//console.log(""+colorList[charaSelectList[actor_iter]]+", "+charaSelectList[actor_iter]);
-			addElement.addCanvas("location_menu", "location_menu_box_"+actor_iter,  "location_menu_box", colorList[actor_name], "", actor_x_px, actor_y_px, actor_w_px, actor_h_px, "rgba(255, 255, 255, 0.5)");
+			addElement.addCanvas("horizontal_left", "location_menu_box_"+actor_iter,  "location_menu_box", colorList[actor_name], "", actor_x_px, actor_y_px, actor_w_px, actor_h_px, "rgba(255, 255, 255, 0.5)");
 			//create name block
 			var w = target_base_width - actor_w-2;
 			var w_px = w+"px";
@@ -311,7 +317,7 @@ function add_location_list(){
 			//var x = width*i+target_offset_left;
 			var x = target_base_offset.left+actor_w+1;
 			var x_px = x+"px";
-			addElement.addCanvas("location_menu", "location_menu_name_"+actor_iter,  "location_menu_name",  "rgba(255, 255, 255, 0)", actor_name, x_px, y_px, w_px, h_px, "rgba(255, 255, 255, 0.5)");
+			addElement.addCanvas("horizontal_left", "location_menu_name_"+actor_iter,  "location_menu_name",  "rgba(255, 255, 255, 0)", actor_name, x_px, y_px, w_px, h_px, "rgba(255, 255, 255, 0.5)");
 			
 			
 			actor_iter++;
