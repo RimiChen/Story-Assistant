@@ -28,12 +28,7 @@ function display_text(){
 		//create columns
 		console.log(text_variables.height);
 		target_frame = "text_display";
-		var target_base = $("#"+target_frame);
-		var target_base_width = target_base.width();
-		var target_base_height = target_base.height();
-		var target_base_offset = target_base.offset();
-		var target_offset_left = target_base_offset.left;
-		//width = 100/text_variables.number_columns -5;
+
 		width = text_variables.width;
 		//window_width = $( window ).width();
 		//x_shift = window_width*0.12;
@@ -48,7 +43,7 @@ function display_text(){
 			var y =  0;
 			var y_px = y+"px";
 			//var x = width*i+target_offset_left;
-			var x = (x_shift+w)*i;
+			var x = display_settings.menu_width+(x_shift+w)*i;
 			var x_px = x+"px";
 			//console.log("X: "+x+", "+"Y: "+y+", W: "+column_width+", H:"+h);		
 			addElement.addCanvas(target_frame, "text_display_"+i,  "text_display_column", "rgba(255, 255, 255, 1)", i+1, x_px, y_px, w_px, h_px, "rgba(255, 255, 255, 0.5)");
@@ -72,37 +67,28 @@ function display_sentiment_box(){
 	$(parent_frame).contents().not('.closebtn').remove();	
 	$(document).ready(function(){
 		//create columns
-		window_width = $( window ).width();
-		window_height = $( window ).height();
-		target_frame = "sentiment_box_display";
-		var target_base = $("#"+target_frame);
-		var target_base_width = target_base.width();
-		var target_base_height = window_height*0.7;
-		var target_base_offset = target_base.offset();
-		var target_offset_left = target_base_offset.left;
-		//width = 100/text_variables.number_columns -5;
-		width = 44/text_variables.number_columns -1;
 
-		x_shift = window_width*0.56;
+		width = sentiment_variables.width;
+
+		x_shift = display_settings.menu_width + (text_variables.empty_space+text_variables.width)*text_variables.number_columns;
 		//console.log("Number of pages "+text_original.length+ " Old pages: "+text_old.length);
 		page_limit = Math.floor(text_original.length/text_variables.number_columns);
-		for(i = 0; i < text_variables.number_columns; i++){
+		for(i = 0; i < sentiment_variables.number_columns; i++){
 			var w = width;
-			var w_px = w+"%";
-			var column_width =window_width*w/100; 
-			var h = target_base_height-5;
+			var w_px = w+"px";
+			var h = sentiment_variables.height;
 			var h_px = h+"px";
 			var y =  0;
 			var y_px = y+"px";
 			//var x = width*i+target_offset_left;
-			var x = x_shift+column_width*i;
+			var x = x_shift+(sentiment_variables.empty_space+w)*i;
 			var x_px = x+"px";
 			//console.log("X: "+x+", "+"Y: "+y+", W: "+column_width+", H:"+h);		
 			//addElement.addCanvas(target_frame, "sentiment_box_display_"+i,  "sentiment_box_display_column", "rgba(255, 255, 255, 1)", i+1, x_px, y_px, w_px, h_px, "rgba(255, 255, 255, 0.5)");
 			//careate sentiment boxes
 			parent_x = x;
-			parent_w = column_width-2;
-			parent_h = target_base_height-10;
+			parent_w = w-2;
+			parent_h = h-10;
 
 			create_sentiment_boxes(page_limit*i, page_limit, parent_x, parent_w, parent_h);;
 		}

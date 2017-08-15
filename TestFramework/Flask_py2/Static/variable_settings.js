@@ -42,14 +42,18 @@ var text_variables = {
 	margin_top: 100,
 	margin_bottom: 200,
 	height:display_settings.outer_frame_Height,
-	width: 1000,
+	width: 850,
 	empty_space: 30
 }
 
 var sentiment_variables = {
-	number_columns: 4,
+	number_columns: 2,
 	number_pages: -1,
-	margin_top: 100
+	margin_top: 100,
+	margin_bottom: 200,
+	height:display_settings.outer_frame_Height,
+	width: 300,
+	empty_space: 30
 }
 
 
