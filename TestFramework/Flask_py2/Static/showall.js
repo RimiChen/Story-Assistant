@@ -4,6 +4,7 @@ function openShowAllNav() {
 	display_sentiment_box();
 	add_actor_list();
 	add_location_list();
+    actor_show_up();
 	document.getElementById("show_all_frame").style.width = "100%";
 }
 function closeShowAllNav() {
@@ -15,6 +16,50 @@ function initial_showall_settings(){
 	$("#horizontal_left").css("margin-left", display_settings.menu_left_shift+"px");
 	$("#horizontal_left").css("width", display_settings.menu_width+"px");
 	$("#text_display").css("margin-left", display_settings.menu_width+"px");
+}
+function actor_show_up(){
+    var total_width = actor_showup.total_width;
+    var total_height = display_settings.margin_top - (actor_showup.margin_top+actor_showup.margin_bottom);
+    
+    var total_page_number = text_original.length;
+    
+    var block_width = total_width/total_page_number;
+    var block_height = total_height/Object.keys(charaSelectList).length;
+    console.log("#Actor: "+Object.keys(charaSelectList).length);
+    
+    for(page_iter = 0; page_iter <total_page_number; page_iter++ ){
+        actor_iter = 0;
+        for(actor_name in charaSelectList ){
+            if(actor_name != ""){
+            //create color bolck
+                
+  				regex = new RegExp('('+actor_name+')', 'ig');
+                var str = text_original[page_iter]; 
+                var res = str.match(regex);
+                if(res != null){
+                        //console.log("^^"+actor_name+", "+page_iter);
+                    
+                    var actor_w = block_width;
+                    var actor_w_px = actor_w+"px";
+                    var actor_h = block_height;
+                    var actor_h_px = actor_h+"px";
+                    var actor_y = actor_showup.margin_top+block_height*actor_iter;
+                    var actor_y_px = actor_y+"px";
+                    //var x = width*i+target_offset_left;
+                    var actor_x = block_width*page_iter;
+                    var actor_x_px = actor_x+"px";
+                    //console.log("^^X: "+actor_x+", "+"Y: "+actor_y+", W: "+actor_w+", H:"+actor_h);
+                    //console.log(""+colorList[charaSelectList[actor_iter]]+", "+charaSelectList[actor_iter]);
+                    addElement.addCanvas("show_all_frame", "actor_show_up_box_"+page_iter+"_"+actor_iter,  "actor_show_up_box", colorList[actor_name], "", actor_x_px, actor_y_px, actor_w_px, actor_h_px, "rgba(255, 255, 255, 0.5)");
+                }
+             
+                actor_iter++;
+
+
+            }
+        }
+    }
+    
 }
 function display_text(){
 	//show all text
@@ -230,8 +275,8 @@ function add_actor_list(){
 	for(actor_name in charaSelectList ){
 		if(actor_name != ""){
 		//create color bolck
-			block_width = window_width*0.1;
-			var actor_w = block_width*0.1;
+			block_width = menu_settings.block_width;
+			var actor_w = block_width;
 			var actor_w_px = actor_w+"px";
 			var actor_h = actor_w;
 			var actor_h_px = actor_h+"px";
@@ -240,7 +285,7 @@ function add_actor_list(){
 			//var x = width*i+target_offset_left;
 			var actor_x = target_base_offset.left;
 			var actor_x_px = actor_x+"px";
-			console.log("^^X: "+actor_x+", "+"Y: "+actor_y+", W: "+actor_w+", H:"+actor_h);
+			//console.log("^^X: "+actor_x+", "+"Y: "+actor_y+", W: "+actor_w+", H:"+actor_h);
 			//console.log(""+colorList[charaSelectList[actor_iter]]+", "+charaSelectList[actor_iter]);
 			addElement.addCanvas("horizontal_left", "actor_menu_box_"+actor_iter,  "actor_menu_box", colorList[actor_name], "", actor_x_px, actor_y_px, actor_w_px, actor_h_px, "rgba(255, 255, 255, 0.5)");
 			//create name block
@@ -248,7 +293,7 @@ function add_actor_list(){
 			var w_px = w+"px";
 			var h = actor_h;
 			var h_px = h+"px";
-			var y = 10+(actor_h+2)*actor_iter;
+			var y =  menu_settings.actor_menu_margin_top+(actor_h+2)*actor_iter;
 			var y_px = y+"px";
 			//var x = width*i+target_offset_left;
 			var x = target_base_offset.left+actor_w+1;
@@ -280,12 +325,12 @@ function add_location_list(){
 	for(actor_name in locationSelectList ){
 		if(actor_name != ""){
 		//create color bolck
-			block_width = window_width*0.1;
-			var actor_w = block_width*0.1;
+			block_width = menu_settings.block_width;
+			var actor_w = block_width;
 			var actor_w_px = actor_w+"px";
 			var actor_h = actor_w;
 			var actor_h_px = actor_h+"px";
-			var actor_y = height_shift+(actor_h+2)*actor_iter;
+			var actor_y = menu_settings.location_menu_margin_top+(actor_h+2)*actor_iter;
 			var actor_y_px = actor_y+"px";
 			//var x = width*i+target_offset_left;
 			var actor_x = target_base_offset.left;
@@ -298,7 +343,7 @@ function add_location_list(){
 			var w_px = w+"px";
 			var h = actor_h;
 			var h_px = h+"px";
-			var y = height_shift+(actor_h+2)*actor_iter;
+			var y = menu_settings.location_menu_margin_top+(actor_h+2)*actor_iter;
 			var y_px = y+"px";
 			//var x = width*i+target_offset_left;
 			var x = target_base_offset.left+actor_w+1;

@@ -56,7 +56,17 @@ var sentiment_variables = {
 	empty_space: 30
 }
 
+var menu_settings ={
+    block_width: 20,
+    actor_menu_margin_top: 0,
+    location_menu_margin_top: display_settings.outer_frame_Height/5
+}
 
+var actor_showup = {
+    margin_top: 10,
+    margin_bottom: 10,
+    total_width: display_settings.outer_frame_width/2
+}
 /*
 --CURRENT VARIABLES--
 
