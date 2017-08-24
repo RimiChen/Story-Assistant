@@ -272,6 +272,10 @@ function display_sentiment_box(){
 
 	})	
 }
+function text_highlight(target_text){
+	result_text = target_text;
+	return result_text;
+}
 function group_text(start_index, page_number){
 	target_text = "";
 	console.log("page range: "+start_index+","+(start_index+page_number-1));
