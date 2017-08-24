@@ -36,7 +36,7 @@ var display_settings = {
 }
 
 var text_variables = {
-	number_columns: 5,
+	number_columns: 6,
 	number_pages: -1,
 	font_size: 6,
 	margin_top: 100,
@@ -65,7 +65,9 @@ var menu_settings ={
 var actor_showup = {
     margin_top: 10,
     margin_bottom: 10,
-    total_width: display_settings.outer_frame_width/2
+    margin_left: 30,
+    total_width: display_settings.outer_frame_width/2,
+    location_shift_on: true
 }
 /*
 --CURRENT VARIABLES--
