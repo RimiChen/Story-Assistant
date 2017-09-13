@@ -27,8 +27,8 @@ used_assertion = {};
 
 var display_settings = {
 	outer_frame_width :6818,
-	outer_frame_Height :2240,
-	margin_top: 100,
+	outer_frame_Height :1940,
+	margin_top: 200,
 	menu_left_shift: 0,
 	menu_width: 200
 
@@ -36,29 +36,29 @@ var display_settings = {
 }
 
 var text_variables = {
-	number_columns: 6,
+	number_columns: 8,
 	number_pages: -1,
-	font_size: 6,
-	margin_top: 100,
-	margin_bottom: 200,
+	font_size: 5.5,
+	margin_top: 150,
+	margin_bottom: 150,
 	height:display_settings.outer_frame_Height,
-	width: 850,
+	width: 565,
 	empty_space: 30
 }
 
 var sentiment_variables = {
-	number_columns: 2,
+	number_columns: 8,
 	number_pages: -1,
-	margin_top: 100,
-	margin_bottom: 200,
+	margin_top: 150,
+	margin_bottom: 150,
 	height:display_settings.outer_frame_Height,
-	width: 300,
-	empty_space: 30
+	width: 200,
+	empty_space: 20
 }
 
 var menu_settings ={
-    block_width: 20,
-    actor_menu_margin_top: 0,
+    block_width: 80,
+    actor_menu_margin_top: 100,
     location_menu_margin_top: display_settings.outer_frame_Height/5
 }
 
@@ -66,8 +66,8 @@ var actor_showup = {
     margin_top: 10,
     margin_bottom: 10,
     margin_left: 30,
-    total_width: display_settings.outer_frame_width/2,
-    location_shift_on: true
+    total_width: display_settings.outer_frame_width,
+    location_shift_on: false
 }
 /*
 --CURRENT VARIABLES--

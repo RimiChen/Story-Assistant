@@ -175,7 +175,7 @@ function actor_show_up(){
                     var actor_w_px = actor_w+"px";
                     var actor_h = block_height;
                     var actor_h_px = actor_h+"px";
-                    var actor_y = actor_showup.margin_top+block_height*actor_iter;
+                    var actor_y = block_height*actor_iter;
                     var actor_y_px = actor_y+"px";
                     //var x = width*i+target_offset_left;
                     var actor_x = actor_showup.margin_left+block_width*page_iter;
@@ -220,7 +220,7 @@ function display_text(){
 			var y =  0;
 			var y_px = y+"px";
 			//var x = width*i+target_offset_left;
-			var x = display_settings.menu_width+(x_shift+w)*i;
+			var x = display_settings.menu_width+(x_shift+w+sentiment_variables.width+sentiment_variables.empty_space)*i;
 			var x_px = x+"px";
 			//console.log("X: "+x+", "+"Y: "+y+", W: "+column_width+", H:"+h);		
 			addElement.addCanvas(target_frame, "text_display_"+i,  "text_display_column", "rgba(255, 255, 255, 1)", i+1, x_px, y_px, w_px, h_px, "rgba(255, 255, 255, 0.5)");
@@ -230,10 +230,32 @@ function display_text(){
 			divID = "text_display_"+i;
 			var currentText = document.getElementById(divID);
 			currentText.style.fontSize = text_variables.font_size+"px";
+			target_text = highlight_text(target_text);
 			currentText.innerHTML = target_text;			
 		}
 
 	})	
+}
+function highlight_text(target_text){
+	var result_text = target_text;
+	var actor_iter = 0;
+	for(actor_name in charaSelectList ){
+		if(actor_name != ""){
+		//create color bolck
+			
+			regex = new RegExp('('+actor_name+')', 'ig');
+			var str = target_text; 
+			var res = str.match(regex);
+			if(res != null){
+				result_text = result_text.replace(regex, '<span class="highlight" style="background-color: '+colorList[actor_name]+'">$1</span>')
+			}
+		 
+			actor_iter++;
+
+
+		}
+	}
+	return result_text;	
 }
 function display_sentiment_box(){
 	//show all text
@@ -247,7 +269,7 @@ function display_sentiment_box(){
 
 		width = sentiment_variables.width;
 
-		x_shift = display_settings.menu_width + (text_variables.empty_space+text_variables.width)*text_variables.number_columns;
+		x_shift = display_settings.menu_width + text_variables.width+sentiment_variables.empty_space;
 		//console.log("Number of pages "+text_original.length+ " Old pages: "+text_old.length);
 		page_limit = Math.floor(text_original.length/text_variables.number_columns);
 		for(i = 0; i < sentiment_variables.number_columns; i++){
@@ -258,7 +280,7 @@ function display_sentiment_box(){
 			var y =  0;
 			var y_px = y+"px";
 			//var x = width*i+target_offset_left;
-			var x = x_shift+(sentiment_variables.empty_space+w)*i;
+			var x = x_shift+(text_variables.empty_space+text_variables.width+w+sentiment_variables.empty_space)*i;
 			var x_px = x+"px";
 			//console.log("X: "+x+", "+"Y: "+y+", W: "+column_width+", H:"+h);		
 			//addElement.addCanvas(target_frame, "sentiment_box_display_"+i,  "sentiment_box_display_column", "rgba(255, 255, 255, 1)", i+1, x_px, y_px, w_px, h_px, "rgba(255, 255, 255, 0.5)");
@@ -271,10 +293,6 @@ function display_sentiment_box(){
 		}
 
 	})	
-}
-function text_highlight(target_text){
-	result_text = target_text;
-	return result_text;
 }
 function group_text(start_index, page_number){
 	target_text = "";
