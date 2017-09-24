@@ -1,8 +1,0 @@
-2017-07-25 09:38:51.307000 == System: open log file.2017-07-25 09:38:53.695000 == System: python function routing in here!
-2017-07-25 09:38:53.990000 == System: read Image
-2017-07-25 09:38:57.447000 == System: read Image
-2017-07-25 09:38:59.110000 == System: run python script for chosen file
-2017-07-25 09:38:59.707000 == System: read file
-2017-07-25 09:38:59.710000 == System: read file
-2017-07-25 09:38:59.715000 == System: read Image
-2017-07-25 09:38:59.717000 == System: read Image
