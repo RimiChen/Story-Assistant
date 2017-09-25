@@ -1,0 +1,112 @@
+.overlay_no_alpha {
+    /* Height & width depends on how you want to reveal the overlay (see JS below) */    
+    height: 100%;
+    width: 0;
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    background-color: rgba(0,0,0, 1); /* Black w/o opacity */
+    overflow-x: hidden; /* Disable horizontal scroll */
+    transition: 0.5s; /* 0.5 second transition effect to slide in or slide down the overlay (height or width, depending on reveal) */
+	margin-left: 0%;
+}
+/* Position the close button (top right corner) */
+.overlay_no_alpha .closebtn {
+    position: absolute;
+    top: 20px;
+    left: 95%;
+    font-size: 60px;
+}
+/* When the height of the screen is less than 450 pixels, change the font-size of the links and position the close button again, so they don't overlap */
+@media screen and (max-height: 450px) {
+    .overlay a {font-size: 20px}
+    .overlay .closebtn {
+        font-size: 40px;
+        top: 15px;
+        right: 35px;
+    }
+}
+/* frames*/
+/*
+#vertical_top{
+	height:15%;
+	width: 100%;
+	background-color: #000000;
+	border: 2px solid #FF0000;
+    position: relative;
+    text-align: center; 
+	clear:both;
+}
+*/
+#vertical_middle{
+	background-color: #000000;
+	/*border: 2px solid #00FF00;*/
+    position: relative;
+    text-align: center; /* Centered text/links */
+	clear:both;
+}
+/*
+#vertical_down{
+	height:15%;
+	width: 100%;
+	background-color: #000000;
+	border: 2px solid #0000FF;
+    position: relative;
+    text-align: center;
+	clear:both;
+}
+*/
+#horizontal_left{
+	/*
+	height:100%;
+	width: 10%;
+	/*border: 2px solid #FFFF00;*/
+    text-align: center; /* Centered text/links */
+	clear:both;
+	display:inline-block;
+}
+#horizontal_middle{
+	/*
+	height:100%;
+	width: 44%;
+	border: 2px solid #FF00FF;*/
+    text-align: center; /* Centered text/links */
+	clear:both;
+	display:inline-block;
+}
+#horizontal_right{
+	/*
+	height:100%;
+	width: 44%;
+	/*border: 2px solid #00FFFF;*/
+    text-align: center; /* Centered text/links */
+	clear:both;
+	display:inline-block;	
+}
+#actor_menu{
+	height:30%;
+	width: 95%;
+	/*border: 2px solid #FFFFFF;*/
+    text-align: center; /* Centered text/links */
+	clear:both;
+	margin-top: 5%;
+}
+#location_menu{
+	height:30%;
+	width: 95%;
+	/*border: 2px solid #FFFFFF;*/
+    text-align: center; /* Centered text/links */
+	clear:both;
+	margin-top: 5%;
+}
+#text_display{
+	/*height:100%;*/
+	width: 100%;
+	/*border: 2px solid #FFFFFF;*/
+    text-align: center; /* Centered text/links */
+	clear:both;
+}
+.sentiment_box_display_column{
+	text-align: top
+}

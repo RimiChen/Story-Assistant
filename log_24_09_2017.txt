@@ -1,0 +1,14 @@
+2017-09-24 21:52:30.205000 == System: open log file.2017-09-24 21:52:32.801000 == System: python function routing in here!
+2017-09-24 21:52:33.131000 == System: read Image
+2017-09-24 21:52:36.698000 == System: read Image
+2017-09-24 21:52:36.700000 == System: read Image
+2017-09-24 21:52:38.155000 == System: run python script for chosen file
+2017-09-24 21:52:38.808000 == System: read file
+2017-09-24 21:52:38.812000 == System: read file
+2017-09-24 21:52:38.813000 == System: read file
+2017-09-24 21:52:38.816000 == System: read file
+2017-09-24 21:52:38.817000 == System: read file
+2017-09-24 21:52:38.819000 == System: read Image
+2017-09-24 21:52:38.821000 == System: read Image
+2017-09-24 21:52:38.823000 == System: read file
+2017-09-24 21:52:38.827000 == System: read file

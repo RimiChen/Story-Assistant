@@ -1,0 +1,18 @@
+"John repents notly."
+{'at': 17}
+"The attention is little."
+{'at': 18}
+"The people are other."
+{'at': 18}
+"The behaviour is ungracious."
+{'at': 18}
+"The girl is eldest."
+{'at': 18}
+"The tender is own."
+{'at': 18}
+"The daughter is eldest."
+{'at': 18}
+"Heart;--her is excellent."
+{'at': 19}
+"The respects are many."
+{'at': 19}

@@ -1,0 +1,39 @@
+
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="UTF-8">
+<!--Title-->
+<title>Stroy-Assistant</title>
+<!-- CSS style file -->
+<link rel="stylesheet" href="{{url_for('static',filename='./css/books.css')}}">
+<link rel="stylesheet" href="{{url_for('static',filename='./css/font-awesome.min.css')}}">
+
+
+<!-- Script files -->
+ 
+	<script src="{{url_for('static',filename='3_party/jquery.min.js')}}"></script>
+	<script src="{{url_for('static',filename='data_structures.js')}}"></script>
+	<script src="{{url_for('static',filename='variable_settings.js')}}"></script>
+	<script src="{{url_for('static',filename='index.js')}}"></script>
+
+
+
+
+
+
+<input type="file" id="fileLoader" name="files" title="Load File" />
+
+</head>
+
+
+<body onload = "storyMenuFunctions.initialDashboard()">
+	<!--Load stories from  -->
+	<div id="storyList">
+
+	</div>
+
+</body>
+
+</html>
